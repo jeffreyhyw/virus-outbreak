@@ -1,3 +1,8 @@
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
@@ -12,9 +17,29 @@ public class MainController {
         //creating and showing config application's GUI.
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                //Turn off metal's use of bold fonts
-				UIManager.put("swing.boldMetal", Boolean.FALSE);
-				VirusConfigMainPanel.createAndShowGUI();
+            	
+            	//For testing your UI
+            	 //Create and set up the window.
+                JFrame frame = new JFrame("Virus Outbreak");
+                int height = 540;
+                int width = 960;
+
+                // set the jframe height and width
+                frame.setPreferredSize(new Dimension(width, height));
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                
+                //Change new JPanel() to the UI class you want to try
+                JPanel panel = new JPanel();
+                
+                //Add content to the window
+                frame.add(panel , BorderLayout.CENTER);
+                
+                //Display the window.
+                frame.pack();
+                frame.setVisible(true);
+            	
+				//UIManager.put("swing.boldMetal", Boolean.FALSE);
+				//VirusConfigMainPanel.createAndShowGUI();
             }
         });
 	}

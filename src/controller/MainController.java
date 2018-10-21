@@ -12,6 +12,8 @@ import ui.VirusConfigMainPanel;
 
 public class MainController {
 	
+	public static JFrame frame;
+	
 	public static void main(String[] args) {
 	
 
@@ -22,7 +24,7 @@ public class MainController {
             	
             	//For testing your UI
             	 //Create and set up the window.
-                JFrame frame = new JFrame("Virus Outbreak");
+                frame = new JFrame("Virus Outbreak");
                 int height = 540;
                 int width = 960;
 

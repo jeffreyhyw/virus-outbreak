@@ -1,6 +1,9 @@
 package ui;
 
 import javax.swing.*;
+
+import controller.MainController;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -79,6 +82,36 @@ public class Main{
 		layout.gridy=2;
 		layout.gridwidth=2;
 		layout.fill=GridBagConstraints.HORIZONTAL;
+		
+		//Exit the program when exit button clicked
+		exit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				JComponent comp = (JComponent) e.getSource();
+				Window win = SwingUtilities.getWindowAncestor(comp);
+				win.dispose();
+			}
+		});
+					
+		
+		//Go to attribute page
+		attritube.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+				    @Override
+				    public void run() {
+				    	MainController.frame.getContentPane().removeAll();
+						MainController.frame.getContentPane().add(VirusConfigMainPanel.createAndShowGUI());
+						MainController.frame.revalidate();
+				    }
+				});
+			}
+		});
+		
 		mainpanel.add(bottom,layout);
 	}
 

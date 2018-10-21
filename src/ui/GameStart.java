@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+import controller.MainController;
+
 public class GameStart {
     private static JPanel mainPanel = new JPanel();
 
@@ -59,6 +61,19 @@ public class GameStart {
                             } else if (rowComponent.getClass().equals(JComboBox.class)) {
                                 valid = checkComboBox(rowComponent);
                             }
+                        }
+                        
+                        //Go to Main UI if valid
+                        if(valid) 
+                        {
+                        	EventQueue.invokeLater(new Runnable() {
+            				    @Override
+            				    public void run() {
+            				    	MainController.frame.getContentPane().removeAll();
+            						MainController.frame.getContentPane().add(Main.createAndShowGUI());
+            						MainController.frame.revalidate();
+            				    }
+            				});
                         }
                     }
                 });

@@ -30,7 +30,7 @@ public class MainController {
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 
                 //Change new JPanel() to the UI class you want to try
-                JPanel panel = Main.Buildmain();
+                JPanel panel = Main.createAndShowGUI();
                 
                 //Add content to the window
                 frame.add(panel , BorderLayout.CENTER);
@@ -39,8 +39,6 @@ public class MainController {
                 frame.pack();
                 frame.setVisible(true);
                 
-            	
-//				VirusConfigMainPanel.createAndShowGUI();
             }
         });
 	}

@@ -1,5 +1,95 @@
 package ui;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+
 public class GameStart {
+    private static JPanel mainPanel = new JPanel();
+
+    public static Boolean valid = false; // Hi
+
+    public static JPanel createAndShowGUI() {
+        buildUI();
+        return mainPanel;
+    }
+
+    private static void buildUI() {
+
+        JPanel gameStartPanel = new JPanel();
+        gameStartPanel.setLayout(new BoxLayout(gameStartPanel, BoxLayout.PAGE_AXIS));
+
+
+        String[] labelName = {"VIRUS", "Virus Name", "---", "Born Country", "---", "Start"};
+
+        int testNumber = 10;
+
+        String[] testData = new String[testNumber + 1];
+        testData[0] = "---";
+
+        for (int i = 1; i <= testNumber; i++) {
+            testData[i] = "mo_" + String.valueOf(i);
+        }
+
+        for (int i = 0; i < 6; i++) {
+            JPanel rowPanel = new JPanel();
+            if (i == 0 || i == 1 || i == 3) {
+                JLabel jlabel = new JLabel(labelName[i]);
+                if (i == 0) {
+                    jlabel.setFont(new Font("sans serif", Font.BOLD, 16));
+                }
+                rowPanel.add(jlabel);
+            } else if (i == 2) {
+                JTextField jTextField = new JTextField(20);
+                rowPanel.add(jTextField);
+            } else if (i == 4) {
+                final JComboBox<String> cb = new JComboBox<>(testData);
+                cb.setVisible(true);
+                rowPanel.add(cb);
+            } else {
+                JButton jButton = new JButton(labelName[i]);
+                jButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        for (Component gameStartComponent : gameStartPanel.getComponents()) {
+                            Component rowComponent = ((JPanel) gameStartComponent).getComponent(0);
+                            if (rowComponent.getClass().equals(JTextField.class)) {
+                                valid = checkTextFiled(rowComponent);
+                            } else if (rowComponent.getClass().equals(JComboBox.class)) {
+                                valid = checkComboBox(rowComponent);
+                            }
+                        }
+                    }
+                });
+                rowPanel.add(jButton);
+            }
+            gameStartPanel.add(rowPanel);
+            mainPanel.add(gameStartPanel);
+        }
+    }
+
+    private static boolean checkTextFiled(Component rowComponent){
+        JTextField tx = (JTextField) rowComponent;
+        if (tx.getText().trim().isEmpty()) {
+            System.out.println("\u001B[31m"+"ERROR : EMPTY STRING"+"\u001B[0m");
+            return false;
+        } else {
+            System.out.println("\u001B[33m"+"DEBUG : Input String is "+"\u001B[36m"+"\""+ tx.getText()+"\""+"\u001B[0m");
+            return true;
+        }
+    }
+
+    private static boolean checkComboBox(Component rowComponent){
+        JComboBox jComboBox = (JComboBox) rowComponent;
+        if (jComboBox.getSelectedIndex() == 0) {
+            System.out.println("\u001B[31m"+"ERROR : DO NOT SELECT ZERO ITEM"+"\u001B[0m");
+            return false;
+        } else {
+            System.out.println("\u001B[33m"+"DEBUG : Selected index : "+"\u001B[36m" + String.valueOf(jComboBox.getSelectedIndex())+"\u001B[0m");
+            System.out.println("\u001B[33m"+"DEBUG : Selected item : "+"\u001B[36m" + String.valueOf(jComboBox.getSelectedItem())+"\u001B[0m");
+            return true;
+        }
+    }
 
 }

@@ -30,6 +30,21 @@ import object.VirusAttribute;
 public class ConfigAbilityPanel {
 	
 	ArrayList<VirusAttribute> att_list;
+	final int full_width = 960;
+	final int details_height = 120;
+	final int details_item_width = 320;
+	final int scrollView_width = 760;
+	final int scrollView_height = 410;
+	final int configureView_width = 760;
+	final int configureView_height = 50;
+	final int att_name_field_width = 250;
+	final int att_cost_field_width = 100;
+	final int att_level_field_width = 150;
+	final int att_add_field_width = 100;
+	final int att_info_field_width = 100;
+	final int descriptionView_width = 200;
+	final int descriptionView_height = 410;
+	
 	int curr_cost = 100;
 	JLabel descriptionLabel;
 	JLabel currcostLabel;
@@ -70,17 +85,17 @@ public class ConfigAbilityPanel {
 	
 	void generateConfigureTitle(JPanel configurePanel) {
 		JPanel title_panel = new JPanel();
-		title_panel.setPreferredSize(new Dimension(760, 50));
+		title_panel.setPreferredSize(new Dimension(configureView_width, configureView_height));
 		JLabel name_title_label = new JLabel("Attributes Name");
-		name_title_label.setPreferredSize(new Dimension(250, 50));
+		name_title_label.setPreferredSize(new Dimension(att_name_field_width, configureView_height));
 		JLabel cost_title_label = new JLabel("Cost");
-		cost_title_label.setPreferredSize(new Dimension(100, 50));
+		cost_title_label.setPreferredSize(new Dimension(att_cost_field_width, configureView_height));
 		JLabel level_title_label = new JLabel("Level");
-		level_title_label.setPreferredSize(new Dimension(150, 50));
+		level_title_label.setPreferredSize(new Dimension(att_level_field_width, configureView_height));
 		JLabel upLevel_title_label = new JLabel("Up Level");
-		upLevel_title_label.setPreferredSize(new Dimension(100, 50));
+		upLevel_title_label.setPreferredSize(new Dimension(att_add_field_width, configureView_height));
 		JLabel info_title_label = new JLabel("Info");
-		info_title_label.setPreferredSize(new Dimension(100, 50));
+		info_title_label.setPreferredSize(new Dimension(att_info_field_width, configureView_height));
 		title_panel.add(name_title_label);
 		title_panel.add(cost_title_label);
 		title_panel.add(level_title_label);
@@ -99,23 +114,23 @@ public class ConfigAbilityPanel {
       
 		for(int i = 0; i < att_list.size(); i ++) {
       		JPanel att_panel = new JPanel();
-      		att_panel.setPreferredSize(new Dimension(760, 50));
+      		att_panel.setPreferredSize(new Dimension(configureView_width, configureView_height));
       		
       		JLabel att_name_label = new JLabel(att_list.get(i).getAtt_name());
-      		att_name_label.setPreferredSize(new Dimension(250, 50));
+      		att_name_label.setPreferredSize(new Dimension(att_name_field_width, configureView_height));
       		att_panel.add(att_name_label);
       		
       		JLabel cost_label = new JLabel(""+att_list.get(i).getCost());
-      		cost_label.setPreferredSize(new Dimension(100, 50));
+      		cost_label.setPreferredSize(new Dimension(att_cost_field_width, configureView_height));
       		att_panel.add(cost_label);
       		
       		JLabel levelLabel = new JLabel("Level " + att_list.get(i).getLevel());
       		levelLabel.setName("label"+i);
-      		levelLabel.setPreferredSize(new Dimension(150, 50));
+      		levelLabel.setPreferredSize(new Dimension(att_level_field_width, configureView_height));
       		att_panel.add(levelLabel);
       		
       		JButton upLevelBtn = new JButton("+");
-      		upLevelBtn.setPreferredSize(new Dimension(100, 50));
+      		upLevelBtn.setPreferredSize(new Dimension(att_add_field_width, configureView_height));
       		upLevelBtn.setName("" + i);
       		upLevelBtn.addActionListener(new ActionListener() {
       		    @Override
@@ -145,7 +160,7 @@ public class ConfigAbilityPanel {
       		});
       		
       		JButton infoBtn = new JButton("Info");
-      		infoBtn.setPreferredSize(new Dimension(100, 50));
+      		infoBtn.setPreferredSize(new Dimension(att_info_field_width, configureView_height));
       		infoBtn.setName("" + i);
       		infoBtn.addActionListener(new ActionListener() {
       		    @Override
@@ -172,7 +187,7 @@ public class ConfigAbilityPanel {
 	}
 	void generateDetailsPanel(JPanel detailsPanel) {
 		detailsPanel.setLayout(new BoxLayout(detailsPanel, BoxLayout.X_AXIS));
-        detailsPanel.setPreferredSize(new Dimension(960, 120));
+        detailsPanel.setPreferredSize(new Dimension(full_width, details_height));
         detailsPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         
         JPanel resumPanel = new JPanel();
@@ -181,17 +196,17 @@ public class ConfigAbilityPanel {
         currcostLabel.setHorizontalAlignment(SwingConstants.CENTER);
         updateCurrCost();
         resumPanel.add(currcostLabel);
-        resumPanel.setPreferredSize(new Dimension(320, 120));
+        resumPanel.setPreferredSize(new Dimension(details_item_width, details_height));
 
         JPanel virusNamePanel = new JPanel();
         virusName = new JLabel("virusName");
         virusNamePanel.add(virusName);
-        virusNamePanel.setPreferredSize(new Dimension(320, 120));
+        virusNamePanel.setPreferredSize(new Dimension(details_item_width, details_height));
 
         JPanel backButtonPanel = new JPanel();
         JButton backButton = new JButton("Back");
         backButtonPanel.add(backButton);
-        backButtonPanel.setPreferredSize(new Dimension(320, 120));
+        backButtonPanel.setPreferredSize(new Dimension(details_item_width, details_height));
         
         detailsPanel.add(resumPanel);
         detailsPanel.add(virusNamePanel);
@@ -203,7 +218,7 @@ public class ConfigAbilityPanel {
 		descriptionLabel.setVerticalAlignment(SwingConstants.CENTER);
 		descriptionLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		descriptionPanel.add(descriptionLabel);
-		descriptionPanel.setPreferredSize(new Dimension(200, 410));
+		descriptionPanel.setPreferredSize(new Dimension(descriptionView_width, descriptionView_height));
 		descriptionPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 	}
 	
@@ -221,7 +236,7 @@ public class ConfigAbilityPanel {
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setBounds(50, 30, 300, 50);
-        scrollPane.setPreferredSize(new Dimension(760, 410));
+        scrollPane.setPreferredSize(new Dimension(scrollView_width, scrollView_height));
 		
 		JPanel descriptionPanel = new JPanel(new BorderLayout());
 		generateDescriptionPanel(descriptionPanel);

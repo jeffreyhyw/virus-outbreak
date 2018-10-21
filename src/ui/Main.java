@@ -1,7 +1,8 @@
+package ui;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-package ui;
 
 public class Main{
 	static JFrame frame= new JFrame("MainUI");

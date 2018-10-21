@@ -1,3 +1,4 @@
+package controller;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
@@ -38,7 +39,7 @@ public class MainController {
                 //Display the window.
                 frame.pack();
                 frame.setVisible(true);
-                
+
             }
         });
 	}

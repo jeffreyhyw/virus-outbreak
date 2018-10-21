@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
+import ui.GameStart;
 import ui.Main;
 import ui.VirusConfigMainPanel;
 
@@ -33,8 +34,10 @@ public class MainController {
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 
                 //Change new JPanel() to the UI class you want to try
-                JPanel panel = Main.createAndShowGUI();
-                
+//                JPanel panel = Main.createAndShowGUI();
+                JPanel panel = GameStart.createAndShowGUI();
+
+
                 //Add content to the window
                 frame.add(panel , BorderLayout.CENTER);
                 

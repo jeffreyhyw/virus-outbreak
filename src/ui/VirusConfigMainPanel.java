@@ -77,7 +77,8 @@ public class VirusConfigMainPanel extends JPanel {
      * this method should be invoked from
      * the event dispatch thread.
      */
-    public static void createAndShowGUI() {
+    public static JPanel createAndShowGUI() {
+    	/*
         //Create and set up the window.
         JFrame frame = new JFrame("Virus Outbreak");
         
@@ -95,6 +96,8 @@ public class VirusConfigMainPanel extends JPanel {
         //Display the window.
         frame.pack();
         frame.setVisible(true);
+        */
+    	return new VirusConfigMainPanel();
     }
     
 }

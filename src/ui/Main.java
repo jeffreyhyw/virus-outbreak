@@ -82,7 +82,7 @@ public class Main{
 		mainpanel.add(bottom,layout);
 	}
 
-	public static JPanel Buildmain() {
+	public static JPanel createAndShowGUI() {
 		mainpanel.setLayout(new GridBagLayout());
 		BuildInfo();
 		BuildDate();

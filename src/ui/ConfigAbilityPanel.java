@@ -1,105 +1,240 @@
 package ui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
 
 import object.VirusAttribute;
 
 
 public class ConfigAbilityPanel {
+	
+	ArrayList<VirusAttribute> att_list;
+	int curr_cost = 100;
+	JLabel descriptionLabel;
+	JLabel currcostLabel;
+	JLabel virusName;
+	
 	public JComponent makeTextPanel() {
+		generateDate();
         JPanel panel = new JPanel(false);
 //        JLabel filler = new JLabel("Ability Panel");
 //        filler.setHorizontalAlignment(JLabel.CENTER);
 //        panel.setLayout(new GridLayout(1, 1));
         generateAbilityContent(panel);
 //        panel.add(filler);
+        
         return panel;
     }
-	public void generateAbilityContent(JPanel mainPanel) {
-		ArrayList<VirusAttribute> att_list = new ArrayList<VirusAttribute>();
-		att_list.add(new VirusAttribute("att_1_name", 1, "att_1_decription"));
-		att_list.add(new VirusAttribute("att_2_name", 1, "att_2_decription"));
-		att_list.add(new VirusAttribute("att_3_name", 1, "att_3_decription"));
-		att_list.add(new VirusAttribute("att_4_name", 1, "att_4_decription"));
-		att_list.add(new VirusAttribute("att_5_name", 1, "att_5_decription"));
-		
-		
-		JPanel configurePanel = new JPanel();
-        configurePanel.setLayout(new BoxLayout(configurePanel, BoxLayout.PAGE_AXIS));
-//        configurePanel.add(Box.createRigidArea(new Dimension(0,15)));
-        
-        for(int i = 0; i < att_list.size(); i ++) {
-        		JPanel att_panel = new JPanel();
-        		att_panel.add(new JLabel(att_list.get(i).getAtt_name()));
-        		
-        		JLabel levelLabel = new JLabel("Level " + att_list.get(i).getLevel());
-        		levelLabel.setName("label"+i);
-        		att_panel.add(levelLabel);
-        		
-        		JButton upLevelBtn = new JButton("+");
-        		upLevelBtn.setName("" + i);
-        		upLevelBtn.addActionListener(new ActionListener() {
-        		    @Override
-        		    public void actionPerformed(ActionEvent e) {
-        		    		JButton o = (JButton)e.getSource();
-        		    		String checkLabelName = "label" + o.getName();
-        		        //your actions
-        		    		for(int k = 0; k < att_panel.getComponentCount(); k ++) {
-        		    			if(att_panel.getComponent(k).getName() == null) {
-        		    				continue;
-        		    			}
-        		    			else if(att_panel.getComponent(k).getName().equals(checkLabelName)) {
-        		    				int pos = Integer.parseInt(o.getName());
-        		    				att_list.get(pos).setLevel(att_list.get(pos).getLevel() + 1);
-        		    				((JLabel)att_panel.getComponent(k)).setText("Level " + att_list.get(pos).getLevel());
-        		    				break;
-        		    			}
-        		    		}
-        		    }
-					
-        		});
-        		att_panel.add(upLevelBtn);
-        		configurePanel.add(att_panel);
-        }
-
-
-        JPanel descriptionPanel = new JPanel();
-        descriptionPanel.setLayout(new BoxLayout(descriptionPanel, BoxLayout.X_AXIS));
+	
+	void generateDate() {
+		att_list = new ArrayList<VirusAttribute>();
+		att_list.add(new VirusAttribute("att_1_name", 1, "att_1_decription",30));
+		att_list.add(new VirusAttribute("att_2_name", 1, "att_2_decription",30));
+		att_list.add(new VirusAttribute("att_3_name", 1, "att_3_decription",30));
+		att_list.add(new VirusAttribute("att_4_name", 1, "att_4_decription",30));
+		att_list.add(new VirusAttribute("att_5_name", 1, "att_5_decription",30));
+		att_list.add(new VirusAttribute("att_6_name", 1, "att_6_decription",30));
+		att_list.add(new VirusAttribute("att_7_name", 1, "att_7_decription",30));
+		att_list.add(new VirusAttribute("att_8_name", 1, "att_8_decription",30));
+		att_list.add(new VirusAttribute("att_9_name", 1, "att_9_decription",30));
+		att_list.add(new VirusAttribute("att_10_name", 1, "att_10_decription",30));
+		att_list.add(new VirusAttribute("att_11_name", 1, "att_11_decription",30));
+		att_list.add(new VirusAttribute("att_12_name", 1, "att_12_decription",30));
+		att_list.add(new VirusAttribute("att_13_name", 1, "att_13_decription",30));
+		att_list.add(new VirusAttribute("att_14_name", 1, "att_14_decription",30));
+		att_list.add(new VirusAttribute("att_15_name", 1, "att_15_decription",30));
+		att_list.add(new VirusAttribute("att_16_name", 1, "att_16_decription",30));
+		att_list.add(new VirusAttribute("att_17_name", 1, "att_17_decription",30));
+	}
+	
+	void generateConfigureTitle(JPanel configurePanel) {
+		JPanel title_panel = new JPanel();
+		title_panel.setPreferredSize(new Dimension(760, 50));
+		JLabel name_title_label = new JLabel("Attributes Name");
+		name_title_label.setPreferredSize(new Dimension(250, 50));
+		JLabel cost_title_label = new JLabel("Cost");
+		cost_title_label.setPreferredSize(new Dimension(100, 50));
+		JLabel level_title_label = new JLabel("Level");
+		level_title_label.setPreferredSize(new Dimension(150, 50));
+		JLabel upLevel_title_label = new JLabel("Up Level");
+		upLevel_title_label.setPreferredSize(new Dimension(100, 50));
+		JLabel info_title_label = new JLabel("Info");
+		info_title_label.setPreferredSize(new Dimension(100, 50));
+		title_panel.add(name_title_label);
+		title_panel.add(cost_title_label);
+		title_panel.add(level_title_label);
+		title_panel.add(upLevel_title_label);
+		title_panel.add(info_title_label);
+		configurePanel.add(title_panel);
+	}
+	
+	void updateCurrCost() {
+		currcostLabel.setText("Current Cost : " + curr_cost);
+	}
+	
+	void generateConfigurePanel(JPanel configurePanel) {
+		configurePanel.setLayout(new BoxLayout(configurePanel, BoxLayout.PAGE_AXIS));
+		generateConfigureTitle(configurePanel);
+      
+		for(int i = 0; i < att_list.size(); i ++) {
+      		JPanel att_panel = new JPanel();
+      		att_panel.setPreferredSize(new Dimension(760, 50));
+      		
+      		JLabel att_name_label = new JLabel(att_list.get(i).getAtt_name());
+      		att_name_label.setPreferredSize(new Dimension(250, 50));
+      		att_panel.add(att_name_label);
+      		
+      		JLabel cost_label = new JLabel(""+att_list.get(i).getCost());
+      		cost_label.setPreferredSize(new Dimension(100, 50));
+      		att_panel.add(cost_label);
+      		
+      		JLabel levelLabel = new JLabel("Level " + att_list.get(i).getLevel());
+      		levelLabel.setName("label"+i);
+      		levelLabel.setPreferredSize(new Dimension(150, 50));
+      		att_panel.add(levelLabel);
+      		
+      		JButton upLevelBtn = new JButton("+");
+      		upLevelBtn.setPreferredSize(new Dimension(100, 50));
+      		upLevelBtn.setName("" + i);
+      		upLevelBtn.addActionListener(new ActionListener() {
+      		    @Override
+      		    public void actionPerformed(ActionEvent e) {
+      		    		JButton o = (JButton)e.getSource();
+      		    		String checkLabelName = "label" + o.getName();
+      		        //your actions
+      		    		for(int k = 0; k < att_panel.getComponentCount(); k ++) {
+      		    			if(att_panel.getComponent(k).getName() == null) {
+      		    				continue;
+      		    			}
+      		    			else if(att_panel.getComponent(k).getName().equals(checkLabelName)) {
+      		    				int pos = Integer.parseInt(o.getName());
+      		    				if(curr_cost - att_list.get(pos).getCost() < 0) {
+      		    					break;
+      		    				}
+      		    				else {
+      		    					curr_cost = curr_cost - att_list.get(pos).getCost();
+      		    					updateCurrCost();
+      		    					att_list.get(pos).setLevel(att_list.get(pos).getLevel() + 1);
+          		    				((JLabel)att_panel.getComponent(k)).setText("Level " + att_list.get(pos).getLevel());
+          		    				break;
+      		    				}
+      		    			}
+      		    		}
+      		    }
+      		});
+      		
+      		JButton infoBtn = new JButton("Info");
+      		infoBtn.setPreferredSize(new Dimension(100, 50));
+      		infoBtn.setName("" + i);
+      		infoBtn.addActionListener(new ActionListener() {
+      		    @Override
+      		    public void actionPerformed(ActionEvent e) {
+      		    		JButton o = (JButton)e.getSource();
+      		    		String checkLabelName = "label" + o.getName();
+      		        //your actions
+      		    		for(int k = 0; k < att_panel.getComponentCount(); k ++) {
+      		    			if(att_panel.getComponent(k).getName() == null) {
+      		    				continue;
+      		    			}
+      		    			else if(att_panel.getComponent(k).getName().equals(checkLabelName)) {
+      		    				int pos = Integer.parseInt(o.getName());
+      		    				descriptionLabel.setText(att_list.get(pos).getDescription());
+      		    			}
+      		    		}
+      		    }
+      		});
+      		
+      		att_panel.add(upLevelBtn);
+      		att_panel.add(infoBtn);
+      		configurePanel.add(att_panel);
+      }
+	}
+	void generateDetailsPanel(JPanel detailsPanel) {
+		detailsPanel.setLayout(new BoxLayout(detailsPanel, BoxLayout.X_AXIS));
+        detailsPanel.setPreferredSize(new Dimension(960, 120));
+        detailsPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         
         JPanel resumPanel = new JPanel();
-        JLabel resumLabel = new JLabel("jlabel");
-        resumPanel.add(resumLabel);
+        currcostLabel = new JLabel("", SwingConstants.CENTER);
+        currcostLabel.setVerticalAlignment(SwingConstants.CENTER);
+        currcostLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        updateCurrCost();
+        resumPanel.add(currcostLabel);
+        resumPanel.setPreferredSize(new Dimension(320, 120));
 
         JPanel virusNamePanel = new JPanel();
-        JLabel virusName = new JLabel("virusName");
+        virusName = new JLabel("virusName");
         virusNamePanel.add(virusName);
+        virusNamePanel.setPreferredSize(new Dimension(320, 120));
 
         JPanel backButtonPanel = new JPanel();
         JButton backButton = new JButton("Back");
         backButtonPanel.add(backButton);
+        backButtonPanel.setPreferredSize(new Dimension(320, 120));
         
-        descriptionPanel.add(resumPanel);
-        descriptionPanel.add(virusNamePanel);
-        descriptionPanel.add(backButtonPanel);
+        detailsPanel.add(resumPanel);
+        detailsPanel.add(virusNamePanel);
+        detailsPanel.add(backButtonPanel);
         
+	}
+	void generateDescriptionPanel(JPanel descriptionPanel) {
+		descriptionLabel = new JLabel("Description", SwingConstants.CENTER);
+		descriptionLabel.setVerticalAlignment(SwingConstants.CENTER);
+		descriptionLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		descriptionPanel.add(descriptionLabel);
+		descriptionPanel.setPreferredSize(new Dimension(200, 410));
+		descriptionPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+	}
+	
+	void initDetails() {
+		
+	}
+	
+	public void generateAbilityContent(JPanel mainPanel) {
+		
+		JPanel configurePanel = new JPanel();
+		generateConfigurePanel(configurePanel);
+//		configurePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		
+		JScrollPane scrollPane = new JScrollPane(configurePanel);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setBounds(50, 30, 300, 50);
+        scrollPane.setPreferredSize(new Dimension(760, 410));
+		
+		JPanel descriptionPanel = new JPanel(new BorderLayout());
+		generateDescriptionPanel(descriptionPanel);
+		
 
-        // The container panel.
+        JPanel detailsPanel = new JPanel();
+        generateDetailsPanel(detailsPanel);
+
+     // The container panel.
         JPanel containerPanel = new JPanel(new BorderLayout());
-        containerPanel.add(configurePanel, BorderLayout.WEST);
-        containerPanel.add(descriptionPanel,  BorderLayout.SOUTH);
+        containerPanel.add(scrollPane, BorderLayout.WEST);
+        containerPanel.add(descriptionPanel, BorderLayout.EAST);
+        containerPanel.add(detailsPanel,  BorderLayout.SOUTH);
 
         mainPanel.add(containerPanel);
         

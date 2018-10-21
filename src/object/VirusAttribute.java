@@ -4,10 +4,12 @@ public class VirusAttribute {
 	private String att_name;
 	private int level;
 	private String description;
-	public VirusAttribute(String att_name, int level, String description) {
+	private int cost;
+	public VirusAttribute(String att_name, int level, String description, int cost) {
 		this.att_name = att_name;
 		this.level = level;
 		this.description = description;
+		this.cost = cost;
 	}
 	public String getAtt_name() {
 		return att_name;
@@ -27,4 +29,11 @@ public class VirusAttribute {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public int getCost() {
+		return cost;
+	}
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
+	
 }

@@ -82,17 +82,17 @@ public class Main{
 		mainpanel.add(bottom,layout);
 	}
 
-	public static void Buildmain(String[] args) {
+	public static JPanel Buildmain() {
 		mainpanel.setLayout(new GridBagLayout());
 		BuildInfo();
 		BuildDate();
 		BuildBottom();
-		mainpanel.setSize(800, 600);
-		/*	frame.add(mainpanel);
-			frame.setSize(800, 600);
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame.setVisible(true);
-		*/
-
+		
+		return mainpanel;
+		
+//		frame.add(mainpanel);
+//		frame.setSize(960, 540);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setVisible(true);
 	}
-    }
+}

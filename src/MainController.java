@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
+import ui.Main;
 import ui.VirusConfigMainPanel;
 
 public class MainController {
@@ -29,7 +30,7 @@ public class MainController {
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 
                 //Change new JPanel() to the UI class you want to try
-                JPanel panel = new JPanel();
+                JPanel panel = Main.Buildmain();
                 
                 //Add content to the window
                 frame.add(panel , BorderLayout.CENTER);
@@ -37,9 +38,9 @@ public class MainController {
                 //Display the window.
                 frame.pack();
                 frame.setVisible(true);
+                
             	
-				//UIManager.put("swing.boldMetal", Boolean.FALSE);
-				//VirusConfigMainPanel.createAndShowGUI();
+//				VirusConfigMainPanel.createAndShowGUI();
             }
         });
 	}

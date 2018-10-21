@@ -1,10 +1,13 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 package ui;
 
 public class Main{
 	static JFrame frame= new JFrame("MainUI");
 	static JPanel mainpanel = new JPanel();
 	static String att[]= {"Country","Infect","Death"};
-	static Object info [][]= 
+	static Object info [][]=
 		{
 			{"China","200000","5000"},
 			{"Africa","1000000","95000"},
@@ -28,9 +31,9 @@ public class Main{
 			{"UK","20000","950"},
 			{"UK","20000","950"}
 		};
-	
-	
-	public static void BuildInfo() 
+
+
+	public static void BuildInfo()
 	{
 		JTable table = new JTable(info, att);
 		JScrollPane scrollPane = new JScrollPane(table);
@@ -41,7 +44,7 @@ public class Main{
 		layout.gridheight=2;
 		layout.insets = new Insets(0,0,0,20);
 		mainpanel.add(scrollPane,layout);
-		
+
 
 	}
 	public static void BuildDate()
@@ -56,7 +59,7 @@ public class Main{
 		layout.gridy=1;
 		mainpanel.add(resDate,layout);
 	}
-	
+
 	public static void BuildBottom()
 	{
 		JPanel bottom=new JPanel();
@@ -77,7 +80,7 @@ public class Main{
 		layout.fill=GridBagConstraints.HORIZONTAL;
 		mainpanel.add(bottom,layout);
 	}
-	
+
 	public static void Buildmain(String[] args) {
 		mainpanel.setLayout(new GridBagLayout());
 		BuildInfo();
@@ -89,8 +92,6 @@ public class Main{
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.setVisible(true);
 		*/
-		
+
 	}
     }
-
-

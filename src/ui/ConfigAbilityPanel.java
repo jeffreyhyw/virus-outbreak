@@ -145,6 +145,7 @@ public class ConfigAbilityPanel {
       		    			else if(att_panel.getComponent(k).getName().equals(checkLabelName)) {
       		    				int pos = Integer.parseInt(o.getName());
       		    				if(curr_cost - att_list.get(pos).getCost() < 0) {
+      		    					System.out.println("No enough Cost");
       		    					break;
       		    				}
       		    				else {

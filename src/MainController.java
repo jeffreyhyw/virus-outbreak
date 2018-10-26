@@ -38,8 +38,8 @@ public class MainController {
                 frame.pack();
                 frame.setVisible(true);
             	
-				//UIManager.put("swing.boldMetal", Boolean.FALSE);
-				//VirusConfigMainPanel.createAndShowGUI();
+				UIManager.put("swing.boldMetal", Boolean.FALSE);
+				VirusConfigMainPanel.createAndShowGUI();
             }
         });
 	}

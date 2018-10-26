@@ -45,6 +45,9 @@ public class MainController {
                 frame.pack();
                 frame.setVisible(true);
 
+                // from Ho
+//                UIManager.put("swing.boldMetal", Boolean.FALSE);
+//                VirusConfigMainPanel.createAndShowGUI();
             }
         });
 	}

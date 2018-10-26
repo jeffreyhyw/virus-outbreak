@@ -106,7 +106,7 @@ public class ConfigSymptomPanel {
       		JPanel att_panel = new JPanel();
       		att_panel.setPreferredSize(new Dimension(configureView_width, configureView_height));
       		
-      		JLabel att_name_label = new JLabel(symptom_list.get(i).getSymptom_name());
+      		JLabel att_name_label = new JLabel(symptom_list.get(i).getAtt_name());
       		att_name_label.setPreferredSize(new Dimension(att_name_field_width, configureView_height));
       		att_panel.add(att_name_label);
       		

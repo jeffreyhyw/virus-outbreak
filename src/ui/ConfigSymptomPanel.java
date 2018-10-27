@@ -3,6 +3,7 @@ package ui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
+import controller.MainController;
 import object.VirusSymptom;
 
 public class ConfigSymptomPanel {
@@ -210,6 +212,21 @@ public class ConfigSymptomPanel {
         JButton backButton = new JButton("Back");
         backButtonPanel.add(backButton);
         backButtonPanel.setPreferredSize(new Dimension(details_item_width, details_height));
+        
+        backButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+				    @Override
+				    public void run() {
+				    	MainController.frame.getContentPane().removeAll();
+						MainController.frame.getContentPane().add(Main.createAndShowGUI());
+						MainController.frame.revalidate();
+				    }
+				});
+			}
+		});
         
         detailsPanel.add(resumPanel);
         detailsPanel.add(virusNamePanel);

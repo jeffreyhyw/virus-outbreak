@@ -58,7 +58,7 @@ public class GameStart {
                             Component rowComponent = ((JPanel) gameStartComponent).getComponent(0);
                             if (rowComponent.getClass().equals(JTextField.class)) {
                                 valid = checkTextFiled(rowComponent);
-                            } else if (rowComponent.getClass().equals(JComboBox.class)) {
+                            } else if (rowComponent.getClass().equals(JComboBox.class) && valid) {
                                 valid = checkComboBox(rowComponent);
                             }
                         }
@@ -87,10 +87,10 @@ public class GameStart {
     private static boolean checkTextFiled(Component rowComponent){
         JTextField tx = (JTextField) rowComponent;
         if (tx.getText().trim().isEmpty()) {
-            System.out.println("\u001B[31m"+"ERROR : EMPTY STRING"+"\u001B[0m");
+            System.out.println("\u001B "+"ERROR : EMPTY STRING"+"\u001B");
             return false;
         } else {
-            System.out.println("\u001B[33m"+"DEBUG : Input String is "+"\u001B[36m"+"\""+ tx.getText()+"\""+"\u001B[0m");
+            System.out.println("\u001B "+"DEBUG : Input String is "+"\u001B "+"\""+ tx.getText()+"\""+"\u001B");
             return true;
         }
     }
@@ -98,11 +98,11 @@ public class GameStart {
     private static boolean checkComboBox(Component rowComponent){
         JComboBox jComboBox = (JComboBox) rowComponent;
         if (jComboBox.getSelectedIndex() == 0) {
-            System.out.println("\u001B[31m"+"ERROR : DO NOT SELECT ZERO ITEM"+"\u001B[0m");
+            System.out.println("\u001B "+"ERROR : DO NOT SELECT ZERO ITEM"+"\u001B");
             return false;
         } else {
-            System.out.println("\u001B[33m"+"DEBUG : Selected index : "+"\u001B[36m" + String.valueOf(jComboBox.getSelectedIndex())+"\u001B[0m");
-            System.out.println("\u001B[33m"+"DEBUG : Selected item : "+"\u001B[36m" + String.valueOf(jComboBox.getSelectedItem())+"\u001B[0m");
+            System.out.println("\u001B "+"DEBUG : Selected index : "+"\u001B" + String.valueOf(jComboBox.getSelectedIndex())+"\u001B");
+            System.out.println("\u001B "+"DEBUG : Selected item : "+"\u001B" + String.valueOf(jComboBox.getSelectedItem())+"\u001B");
             return true;
         }
     }

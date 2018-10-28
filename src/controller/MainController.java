@@ -7,10 +7,13 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
+import ui.GameStart;
 import ui.Main;
 import ui.VirusConfigMainPanel;
 
 public class MainController {
+	
+	public static JFrame frame;
 	
 	public static void main(String[] args) {
 	
@@ -22,17 +25,20 @@ public class MainController {
             	
             	//For testing your UI
             	 //Create and set up the window.
-                JFrame frame = new JFrame("Virus Outbreak");
+                frame = new JFrame("Virus Outbreak");
                 int height = 540;
                 int width = 960;
 
                 // set the jframe height and width
                 frame.setPreferredSize(new Dimension(width, height));
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setResizable(false);
                 
                 //Change new JPanel() to the UI class you want to try
-                JPanel panel = Main.createAndShowGUI();
-                
+//                JPanel panel = Main.createAndShowGUI();
+                JPanel panel = GameStart.createAndShowGUI();
+
+
                 //Add content to the window
                 frame.add(panel , BorderLayout.CENTER);
                 
@@ -40,6 +46,9 @@ public class MainController {
                 frame.pack();
                 frame.setVisible(true);
 
+                // from Ho
+//                UIManager.put("swing.boldMetal", Boolean.FALSE);
+//                VirusConfigMainPanel.createAndShowGUI();
             }
         });
 	}

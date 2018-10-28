@@ -39,8 +39,10 @@ public class Main{
 	public static void BuildTitle(JPanel panel)
 	{
 		GridBagConstraints layout=new GridBagConstraints();
-		JLabel title=new JLabel("VIRUS", SwingConstants.CENTER);
-		title.setFont(new Font("sans serif", Font.BOLD, 24));
+		JLabel title=new JLabel("This is a message", SwingConstants.CENTER);
+		title.setFont(new Font("sans serif", Font.BOLD, 16));
+		Dimension d = title.getPreferredSize();
+		title.setPreferredSize(new Dimension(d.width+200,d.height));//<-----------
 		layout.gridx=0;
 		layout.gridy=0;
 		panel.add(title,layout);

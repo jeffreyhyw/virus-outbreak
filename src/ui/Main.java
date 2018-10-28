@@ -1,12 +1,15 @@
 package ui;
 
 import javax.swing.*;
+import javax.swing.table.JTableHeader;
+
+import controller.MainController;
+
 import java.awt.*;
 import java.awt.event.*;
 
 public class Main{
 	static JFrame frame= new JFrame("MainUI");
-	static JPanel mainpanel = new JPanel();
 	static String att[]= {"Country","Infect","Death"};
 	static Object info [][]=
 		{
@@ -33,21 +36,33 @@ public class Main{
 			{"UK","20000","950"}
 		};
 
+	public static void BuildTitle(JPanel panel)
+	{
+		GridBagConstraints layout=new GridBagConstraints();
+		JLabel title=new JLabel("VIRUS", SwingConstants.CENTER);
+		title.setFont(new Font("sans serif", Font.BOLD, 24));
+		layout.gridx=0;
+		layout.gridy=0;
+		panel.add(title,layout);
+	}
 
-	public static void BuildInfo()
+	public static void BuildInfo(JPanel panel)
 	{
 		JTable table = new JTable(info, att);
+		table.setEnabled(false);
+		JTableHeader TableHeadertable=table.getTableHeader();
+		TableHeadertable.setReorderingAllowed(false);
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setPreferredSize(new Dimension(500, 300));
 		GridBagConstraints layout=new GridBagConstraints();
 		layout.gridx=0;
-		layout.gridy=0;
+		layout.gridy=1;
 		layout.gridheight=3;
 		layout.insets = new Insets(0,0,0,20);
-		mainpanel.add(scrollPane,layout);
+		panel.add(scrollPane,layout);
 
 	}
-	public static void BuildTotal()
+	public static void BuildTotal(JPanel panel)
 	{
 		JPanel Total=new JPanel();
 		Total.setLayout(new GridBagLayout());
@@ -68,12 +83,12 @@ public class Main{
 		layout.gridy=1;
 		Total.add(TotalDeath,layout);
 		layout.gridx=1;
-		layout.gridy=2;
+		layout.gridy=3;
 		layout.insets = new Insets(0,0,10,0);
-		mainpanel.add(Total,layout);
+		panel.add(Total,layout);
 	}
 
-	public static void BuildDate()
+	public static void BuildDate(JPanel panel)
 	{
 		JPanel Date=new JPanel();
 		Date.setLayout(new GridBagLayout());
@@ -86,11 +101,12 @@ public class Main{
 		Date.add(finDate,layout);
 		layout.gridy=1;
 		Date.add(resDate,layout);
+		layout.gridy=2;
 		layout.gridx=1;
-		mainpanel.add(Date,layout);
+		panel.add(Date,layout);
 	}
 
-	public static void BuildBottom()
+	public static void BuildBottom(JPanel panel)
 	{
 		JPanel bottom=new JPanel();
 		bottom.setLayout(new GridLayout(1,3));
@@ -110,18 +126,51 @@ public class Main{
 		bottom.add(respoint);
 		GridBagConstraints layout=new GridBagConstraints();
 		layout.gridx=0;
-		layout.gridy=3;
+		layout.gridy=4;
 		layout.gridwidth=2;
 		layout.fill=GridBagConstraints.HORIZONTAL;
-		mainpanel.add(bottom,layout);
+		
+		//Exit the program when exit button clicked
+		exit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				JComponent comp = (JComponent) e.getSource();
+				Window win = SwingUtilities.getWindowAncestor(comp);
+				win.dispose();
+			}
+		});
+					
+		
+		//Go to attribute page
+		attritube.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+				    @Override
+				    public void run() {
+				    	MainController.frame.getContentPane().removeAll();
+						MainController.frame.getContentPane().add(VirusConfigMainPanel.createAndShowGUI());
+						MainController.frame.revalidate();
+				    }
+				});
+			}
+		});
+		
+		panel.add(bottom,layout);
 	}
 
 	public static JPanel createAndShowGUI() {
+
+		JPanel mainpanel = new JPanel();
 		mainpanel.setLayout(new GridBagLayout());
-		BuildInfo();
-		BuildDate();
-		BuildBottom();
-		BuildTotal();
+		BuildTitle(mainpanel);
+		BuildInfo(mainpanel);
+		BuildDate(mainpanel);
+		BuildBottom(mainpanel);
+		BuildTotal(mainpanel);
 
 		return mainpanel;
 

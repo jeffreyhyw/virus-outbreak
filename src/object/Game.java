@@ -14,7 +14,7 @@ public class Game {
     private final int totalNumberOfDays = 300;
     private int day = 0;
     private int msBetweenDay = 1500; // Millisecond until next day
-    private Calendar cal = Calendar.getInstance();
+    private Calendar calendar = Calendar.getInstance();
 	private SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
     private String currentDate = "";  // new date
     public MainTableModel mainTableModel = new MainTableModel();
@@ -63,15 +63,15 @@ public class Game {
 	
 	//Get the real date of today
 	public String getTodayDate() {
-		return formatDate.format(cal.getTime());
+		return formatDate.format(calendar.getTime());
 	}
 
-	public Calendar getCal() {
-		return cal;
+	public Calendar getCalendar() {
+		return calendar;
 	}
 
-	public void setCal(Calendar cal) {
-		this.cal = cal;
+	public void setCalendar(Calendar cal) {
+		this.calendar = cal;
 	}
 	
 	//Add n days to current date
@@ -80,8 +80,8 @@ public class Game {
     	setDay(getDay() + n);
     	
     	//Store the current date
-		cal.add(Calendar.DATE, n);
-		setCurrentDate(formatDate.format(cal.getTime()));  
+		calendar.add(Calendar.DATE, n);
+		setCurrentDate(formatDate.format(calendar.getTime()));  
 	}
 	
 	//Get the current date in game
@@ -122,8 +122,8 @@ public class Game {
 	    		 //Loop for each day
 		        while (!isEndGame()) {
 		        	
-		        	//Check if game is paused
-		        	 if(!running.get()) {
+		        	//Check if game is paused/resumed
+		        	if(!running.get()) {
 			        	try {
 				             System.out.println("Game Paused");
 				             Thread.sleep(999999);
@@ -138,7 +138,7 @@ public class Game {
 					//Sleep for 1 second before going to next day			
 		        	try{
 		        		Thread.sleep(msBetweenDay);
-		    		}catch(InterruptedException ex){
+		    		} catch(InterruptedException ex){
 		    		  //do stuff
 		    		}
 		        	

@@ -1,8 +1,10 @@
 package ui;
 
 import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
 
 import controller.MainController;
+import object.Game;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -10,6 +12,10 @@ import java.awt.event.*;
 public class Main{
 	static JFrame frame= new JFrame("MainUI");
 	static String att[]= {"Country","Infect","Death"};
+
+    public static Game game;
+   
+	
 	static Object info [][]=
 		{
 			{"China","200000","5000"},
@@ -38,8 +44,9 @@ public class Main{
 
 	public static void BuildInfo(JPanel panel)
 	{
-		JTable table = new JTable(info, att);
-		JScrollPane scrollPane = new JScrollPane(table);
+		Main m = new Main();
+		game.mainInfoTable = new JTable(game.mainTableModel);
+		JScrollPane scrollPane = new JScrollPane(game.mainInfoTable);
 		scrollPane.setPreferredSize(new Dimension(500, 300));
 		GridBagConstraints layout=new GridBagConstraints();
 		layout.gridx=0;
@@ -80,14 +87,19 @@ public class Main{
 		JPanel Date=new JPanel();
 		Date.setLayout(new GridBagLayout());
 		GridBagConstraints layout=new GridBagConstraints();
-		JLabel finDate= new JLabel("Finish Date: 1/1/2020");
-		JLabel resDate= new JLabel("Research Date: 15/10/2019");
+
+		game.mainCurrentDateLabel = new JLabel("Current Date: " + game.getCurrentDate());
+		game.mainFinDateLabel= new JLabel("Finish Date: " + game.getEndGameDate());
+		JLabel resDate= new JLabel("Research Date: Not Started");
 		layout.gridx=0;
 		layout.gridy=0;
 		layout.anchor=GridBagConstraints.NORTHWEST;
-		Date.add(finDate,layout);
+		Date.add(game.mainCurrentDateLabel, layout);
 		layout.gridy=1;
+		Date.add(game.mainFinDateLabel, layout);
+		layout.gridy=2;
 		Date.add(resDate,layout);
+		
 		layout.gridx=1;
 		panel.add(Date,layout);
 	}
@@ -125,6 +137,7 @@ public class Main{
 				JComponent comp = (JComponent) e.getSource();
 				Window win = SwingUtilities.getWindowAncestor(comp);
 				win.dispose();
+				System.exit(0);
 			}
 		});
 					
@@ -134,12 +147,17 @@ public class Main{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//Stop the game
+				game.pauseGame();
+				
 				EventQueue.invokeLater(new Runnable() {
 				    @Override
 				    public void run() {
 				    	MainController.frame.getContentPane().removeAll();
-						MainController.frame.getContentPane().add(VirusConfigMainPanel.createAndShowGUI());
+						MainController.frame.getContentPane().add(VirusConfigMainPanel.createAndShowGUI(game));
 						MainController.frame.revalidate();
+						
+						
 				    }
 				});
 			}
@@ -148,7 +166,8 @@ public class Main{
 		panel.add(bottom,layout);
 	}
 
-	public static JPanel createAndShowGUI() {
+	public static JPanel createAndShowGUI(Game gm) {
+		game = gm;
 
 		JPanel mainpanel = new JPanel();
 		mainpanel.setLayout(new GridBagLayout());
@@ -158,10 +177,5 @@ public class Main{
 		BuildTotal(mainpanel);
 
 		return mainpanel;
-
-//		frame.add(mainpanel);
-//		frame.setSize(960, 540);
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		frame.setVisible(true);
 	}
 }

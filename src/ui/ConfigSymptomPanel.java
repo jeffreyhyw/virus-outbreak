@@ -18,6 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 import controller.MainController;
+import object.Game;
 import object.VirusSymptom;
 
 public class ConfigSymptomPanel {
@@ -43,7 +44,10 @@ public class ConfigSymptomPanel {
 	JLabel currcostLabel;
 	JLabel virusName;
 	
-	public JComponent makeTextPanel() {
+    public static Game game;
+	
+	public JComponent makeTextPanel(Game gm) {
+		game = gm;
 		generateDate();
         JPanel panel = new JPanel(false);
 //        JLabel filler = new JLabel("Symptom Panel");
@@ -221,8 +225,11 @@ public class ConfigSymptomPanel {
 				    @Override
 				    public void run() {
 				    	MainController.frame.getContentPane().removeAll();
-						MainController.frame.getContentPane().add(Main.createAndShowGUI());
+						MainController.frame.getContentPane().add(Main.createAndShowGUI(game));
 						MainController.frame.revalidate();
+						
+						//resume the game
+						game.resumeGame();
 				    }
 				});
 			}
@@ -265,20 +272,12 @@ public class ConfigSymptomPanel {
         JPanel detailsPanel = new JPanel();
         generateDetailsPanel(detailsPanel);
 
-     // The container panel.
+        // The container panel.
         JPanel containerPanel = new JPanel(new BorderLayout());
         containerPanel.add(scrollPane, BorderLayout.WEST);
         containerPanel.add(descriptionPanel, BorderLayout.EAST);
         containerPanel.add(detailsPanel,  BorderLayout.SOUTH);
 
         mainPanel.add(containerPanel);
-        
-        // Show it.
-//        JFrame t = new JFrame("Button Layout Demo");
-//        t.setContentPane(containerPanel);
-//        t.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        t.setSize(400, 240);
-//        t.setVisible(true);
-		
 	}
 }

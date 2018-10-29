@@ -138,9 +138,10 @@ public class Main{
 				EventQueue.invokeLater(new Runnable() {
 				    @Override
 				    public void run() {
-				    	MainController.frame.getContentPane().removeAll();
+				    		MainController.frame.getContentPane().removeAll();
 						MainController.frame.getContentPane().add(VirusConfigMainPanel.createAndShowGUI());
 						MainController.frame.revalidate();
+						MainController.frame.repaint();
 				    }
 				});
 			}

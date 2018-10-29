@@ -3,6 +3,8 @@ package ui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
+import controller.MainController;
 import object.VirusAbility;
 import object.VirusTransmission;
 
@@ -201,7 +204,15 @@ public class ConfigTransmissionPanel {
         backButton.addActionListener(new ActionListener() {
   		    @Override
   		    public void actionPerformed(ActionEvent e) {
-  		    		
+  		    		EventQueue.invokeLater(new Runnable() {
+				    @Override
+				    public void run() {
+				    		MainController.frame.getContentPane().removeAll();
+						MainController.frame.getContentPane().add(GameStart.createAndShowGUI());
+						MainController.frame.revalidate();
+						MainController.frame.repaint();
+				    }
+				});
   		    }
   		});
         backButtonPanel.add(backButton);

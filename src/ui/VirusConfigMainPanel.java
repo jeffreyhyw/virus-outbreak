@@ -71,7 +71,7 @@ public class VirusConfigMainPanel extends JPanel {
 //            return null;
 //        }
 //    }
-    
+    //
     /**
      * Create the GUI and show it.  For thread safety,
      * this method should be invoked from

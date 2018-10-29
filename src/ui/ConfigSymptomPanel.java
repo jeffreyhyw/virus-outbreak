@@ -228,6 +228,21 @@ public class ConfigSymptomPanel {
         backButtonPanel.add(backButton);
         backButtonPanel.setPreferredSize(new Dimension(details_item_width, details_height));
         
+        backButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+				    @Override
+				    public void run() {
+				    	MainController.frame.getContentPane().removeAll();
+						MainController.frame.getContentPane().add(Main.createAndShowGUI());
+						MainController.frame.revalidate();
+				    }
+				});
+			}
+		});
+        
         detailsPanel.add(resumPanel);
         detailsPanel.add(virusNamePanel);
         detailsPanel.add(backButtonPanel);

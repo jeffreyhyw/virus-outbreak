@@ -9,7 +9,6 @@ import java.awt.event.*;
 
 public class Main{
 	static JFrame frame= new JFrame("MainUI");
-	static JPanel mainpanel = new JPanel();
 	static String att[]= {"Country","Infect","Death"};
 	static Object info [][]=
 		{
@@ -37,7 +36,7 @@ public class Main{
 		};
 
 
-	public static void BuildInfo()
+	public static void BuildInfo(JPanel panel)
 	{
 		JTable table = new JTable(info, att);
 		JScrollPane scrollPane = new JScrollPane(table);
@@ -47,10 +46,10 @@ public class Main{
 		layout.gridy=0;
 		layout.gridheight=3;
 		layout.insets = new Insets(0,0,0,20);
-		mainpanel.add(scrollPane,layout);
+		panel.add(scrollPane,layout);
 
 	}
-	public static void BuildTotal()
+	public static void BuildTotal(JPanel panel)
 	{
 		JPanel Total=new JPanel();
 		Total.setLayout(new GridBagLayout());
@@ -73,10 +72,10 @@ public class Main{
 		layout.gridx=1;
 		layout.gridy=2;
 		layout.insets = new Insets(0,0,10,0);
-		mainpanel.add(Total,layout);
+		panel.add(Total,layout);
 	}
 
-	public static void BuildDate()
+	public static void BuildDate(JPanel panel)
 	{
 		JPanel Date=new JPanel();
 		Date.setLayout(new GridBagLayout());
@@ -90,10 +89,10 @@ public class Main{
 		layout.gridy=1;
 		Date.add(resDate,layout);
 		layout.gridx=1;
-		mainpanel.add(Date,layout);
+		panel.add(Date,layout);
 	}
 
-	public static void BuildBottom()
+	public static void BuildBottom(JPanel panel)
 	{
 		JPanel bottom=new JPanel();
 		bottom.setLayout(new GridLayout(1,3));
@@ -147,15 +146,17 @@ public class Main{
 			}
 		});
 		
-		mainpanel.add(bottom,layout);
+		panel.add(bottom,layout);
 	}
 
 	public static JPanel createAndShowGUI() {
+
+		JPanel mainpanel = new JPanel();
 		mainpanel.setLayout(new GridBagLayout());
-		BuildInfo();
-		BuildDate();
-		BuildBottom();
-		BuildTotal();
+		BuildInfo(mainpanel);
+		BuildDate(mainpanel);
+		BuildBottom(mainpanel);
+		BuildTotal(mainpanel);
 
 		return mainpanel;
 

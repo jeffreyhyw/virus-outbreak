@@ -32,6 +32,7 @@ public class MainController {
                 // set the jframe height and width
                 frame.setPreferredSize(new Dimension(width, height));
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setResizable(false);
                 
                 //Change new JPanel() to the UI class you want to try
 //                JPanel panel = Main.createAndShowGUI();

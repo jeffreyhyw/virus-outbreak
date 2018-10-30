@@ -41,10 +41,11 @@ public class ConfigTransmissionPanel {
 	final int descriptionView_width = 200;
 	final int descriptionView_height = 410;
 	
-	int curr_cost = 100;
+	int curr_cost = 0;
 	JLabel descriptionLabel;
 	JLabel currcostLabel;
 	JLabel virusName;
+	String virusNameStr;
 	
 	public JComponent makeTextPanel() {
 		generateDate();
@@ -58,24 +59,28 @@ public class ConfigTransmissionPanel {
     }
 	
 	void generateDate() {
+		
+		curr_cost = 100;
+		virusNameStr = "Testing";
+		
 		att_list = new ArrayList<VirusTransmission>();
-		att_list.add(new VirusTransmission("att_1_name", 1, "att_1_decription",30));
-		att_list.add(new VirusTransmission("att_2_name", 1, "att_2_decription",30));
-		att_list.add(new VirusTransmission("att_3_name", 1, "att_3_decription",30));
-		att_list.add(new VirusTransmission("att_4_name", 1, "att_4_decription",30));
-		att_list.add(new VirusTransmission("att_5_name", 1, "att_5_decription",30));
-		att_list.add(new VirusTransmission("att_6_name", 1, "att_6_decription",30));
-		att_list.add(new VirusTransmission("att_7_name", 1, "att_7_decription",30));
-		att_list.add(new VirusTransmission("att_8_name", 1, "att_8_decription",30));
-		att_list.add(new VirusTransmission("att_9_name", 1, "att_9_decription",30));
-		att_list.add(new VirusTransmission("att_10_name", 1, "att_10_decription",30));
-		att_list.add(new VirusTransmission("att_11_name", 1, "att_11_decription",30));
-		att_list.add(new VirusTransmission("att_12_name", 1, "att_12_decription",30));
-		att_list.add(new VirusTransmission("att_13_name", 1, "att_13_decription",30));
-		att_list.add(new VirusTransmission("att_14_name", 1, "att_14_decription",30));
-		att_list.add(new VirusTransmission("att_15_name", 1, "att_15_decription",30));
-		att_list.add(new VirusTransmission("att_16_name", 1, "att_16_decription",30));
-		att_list.add(new VirusTransmission("att_17_name", 1, "att_17_decription",30));
+		att_list.add(new VirusTransmission("trans_1_name", 1, "att_1_decription",30, "method1"));
+		att_list.add(new VirusTransmission("trans_2_name", 1, "att_2_decription",30, "method2"));
+		att_list.add(new VirusTransmission("trans_3_name", 1, "att_3_decription",30, "method3"));
+		att_list.add(new VirusTransmission("trans_4_name", 1, "att_4_decription",30, "method4"));
+		att_list.add(new VirusTransmission("trans_5_name", 1, "att_5_decription",30, "method5"));
+		att_list.add(new VirusTransmission("att_6_name", 1, "att_6_decription",30, "method6"));
+		att_list.add(new VirusTransmission("att_7_name", 1, "att_7_decription",30, "method7"));
+		att_list.add(new VirusTransmission("att_8_name", 1, "att_8_decription",30, "method8"));
+		att_list.add(new VirusTransmission("att_9_name", 1, "att_9_decription",30, "method9"));
+		att_list.add(new VirusTransmission("att_10_name", 1, "att_10_decription",30, "method10"));
+		att_list.add(new VirusTransmission("att_11_name", 1, "att_11_decription",30, "method11"));
+		att_list.add(new VirusTransmission("att_12_name", 1, "att_12_decription",30, "method12"));
+		att_list.add(new VirusTransmission("att_13_name", 1, "att_13_decription",30, "method13"));
+		att_list.add(new VirusTransmission("att_14_name", 1, "att_14_decription",30, "method14"));
+		att_list.add(new VirusTransmission("att_15_name", 1, "att_15_decription",30, "method15"));
+		att_list.add(new VirusTransmission("att_16_name", 1, "att_16_decription",30, "method16"));
+		att_list.add(new VirusTransmission("att_17_name", 1, "att_17_decription",30, "method17"));
 	}
 	
 	void generateConfigureTitle(JPanel configurePanel) {
@@ -195,7 +200,7 @@ public class ConfigTransmissionPanel {
         resumPanel.setPreferredSize(new Dimension(details_item_width, details_height));
 
         JPanel virusNamePanel = new JPanel();
-        virusName = new JLabel("virusName");
+        virusName = new JLabel(virusNameStr);
         virusNamePanel.add(virusName);
         virusNamePanel.setPreferredSize(new Dimension(details_item_width, details_height));
 

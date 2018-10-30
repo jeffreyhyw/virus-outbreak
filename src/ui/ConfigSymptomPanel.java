@@ -38,10 +38,11 @@ public class ConfigSymptomPanel {
 	final int descriptionView_width = 200;
 	final int descriptionView_height = 410;
 	
-	int curr_cost = 100;
+	int curr_cost = 0;
 	JLabel descriptionLabel;
 	JLabel currcostLabel;
 	JLabel virusName;
+	String virusNameStr;
 	
 	
 	public JComponent makeTextPanel() {
@@ -56,6 +57,10 @@ public class ConfigSymptomPanel {
     }
 	
 	void generateDate() {
+		
+		curr_cost = 100;
+		virusNameStr = "Testing";
+		
 		symptom_list = new ArrayList<VirusSymptom>();
 		symptom_list.add(new VirusSymptom("Symptom_1_name", 1, "Symptom_1_decription",30,true));
 		symptom_list.add(new VirusSymptom("Symptom_2_name", 1, "Symptom_2_decription",30,false));
@@ -205,7 +210,7 @@ public class ConfigSymptomPanel {
         resumPanel.setPreferredSize(new Dimension(details_item_width, details_height));
 
         JPanel virusNamePanel = new JPanel();
-        virusName = new JLabel("virusName");
+        virusName = new JLabel(virusNameStr);
         virusNamePanel.add(virusName);
         virusNamePanel.setPreferredSize(new Dimension(details_item_width, details_height));
 

@@ -13,6 +13,4 @@ public class VirusAbility extends VirusAttribute{
 	public void setLevel(int level) {
 		this.level = level;
 	}
-	
-	
 }

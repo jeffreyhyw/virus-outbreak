@@ -48,10 +48,11 @@ public class ConfigAbilityPanel {
 	final int descriptionView_width = 200;
 	final int descriptionView_height = 410;
 	
-	int curr_cost = 100;
+	int curr_cost = 0;
 	JLabel descriptionLabel;
 	JLabel currcostLabel;
 	JLabel virusName;
+	String virusNameStr;
 	
 	public JComponent makeTextPanel() {
 		generateDate();
@@ -66,6 +67,10 @@ public class ConfigAbilityPanel {
     }
 	
 	void generateDate() {
+		
+		curr_cost = 100;
+		virusNameStr = "Testing";
+		
 		att_list = new ArrayList<VirusAbility>();
 		att_list.add(new VirusAbility("att_1_name", 1, "att_1_decription",30));
 		att_list.add(new VirusAbility("att_2_name", 1, "att_2_decription",30));
@@ -203,7 +208,7 @@ public class ConfigAbilityPanel {
         resumPanel.setPreferredSize(new Dimension(details_item_width, details_height));
 
         JPanel virusNamePanel = new JPanel();
-        virusName = new JLabel("virusName");
+        virusName = new JLabel(virusNameStr);
         virusNamePanel.add(virusName);
         virusNamePanel.setPreferredSize(new Dimension(details_item_width, details_height));
 

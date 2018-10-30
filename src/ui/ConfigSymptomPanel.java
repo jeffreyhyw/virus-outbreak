@@ -227,7 +227,7 @@ public class ConfigSymptomPanel {
 				    @Override
 				    public void run() {
 				    		MainController.frame.getContentPane().removeAll();
-						MainController.frame.getContentPane().add(GameStart.createAndShowGUI());
+						MainController.frame.getContentPane().add(GameStart.createAndShowGUI(game));
 						MainController.frame.revalidate();
 						MainController.frame.repaint();
 				    }

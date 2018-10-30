@@ -9,6 +9,10 @@ import javax.swing.JFrame;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+
+import controller.MainController;
+import object.Game;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -20,11 +24,13 @@ public class VirusConfigMainPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 6208462680830995778L;
 
-	public VirusConfigMainPanel() {
+
+	public VirusConfigMainPanel(Game gm) {
         super(new GridLayout(1, 1));
         
         JTabbedPane tabbedPane = new JTabbedPane();
         UIFactory uiFactory = new UIFactory();
+        uiFactory.game = gm;
         
         //Add the panel into tab
         try {
@@ -77,7 +83,8 @@ public class VirusConfigMainPanel extends JPanel {
      * this method should be invoked from
      * the event dispatch thread.
      */
-    public static JPanel createAndShowGUI() {
+    public static JPanel createAndShowGUI(Game game) {
+    	
     	/*
         //Create and set up the window.
         JFrame frame = new JFrame("Virus Outbreak");
@@ -97,7 +104,7 @@ public class VirusConfigMainPanel extends JPanel {
         frame.pack();
         frame.setVisible(true);
         */
-    	return new VirusConfigMainPanel();
+    	return new VirusConfigMainPanel(game);
     }
     
 }

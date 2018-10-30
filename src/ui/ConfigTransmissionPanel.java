@@ -17,6 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
+import controller.MainController;
+import object.Game;
 import object.VirusAbility;
 import object.VirusTransmission;
 
@@ -43,7 +45,11 @@ public class ConfigTransmissionPanel {
 	JLabel currcostLabel;
 	JLabel virusName;
 	
-	public JComponent makeTextPanel() {
+
+	public static Game game;
+	
+	public JComponent makeTextPanel(Game gm) {
+		game = gm;
 		generateDate();
         JPanel panel = new JPanel(false);
 //        JLabel filler = new JLabel("Transmission Panel");

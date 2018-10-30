@@ -37,6 +37,7 @@ public class MainController {
                 // set the jframe height and width
                 frame.setPreferredSize(new Dimension(width, height));
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setResizable(false);
                 
                 //Game start Panel
                 JPanel panel = GameStart.createAndShowGUI(game);

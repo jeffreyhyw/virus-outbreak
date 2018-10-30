@@ -1,7 +1,7 @@
 package object;
 
 public class Country {
-	private int population, infectedPopulation, didePopulation;
+	private int population, infectedPopulation, deathPopulation;
 	private String name;
 	private CountryClimate climate;
 	private CountryEconomy economy;
@@ -12,11 +12,16 @@ public class Country {
 		this.name = name;
 		this.population = pop;
 		this.infectedPopulation = 0;
-		this.didePopulation = 0;
+		this.deathPopulation = 0;
 		climate = new CountryClimate();
 		economy = new CountryEconomy();
 	}
 	
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getName()
 	{
 		return this.name;
@@ -42,14 +47,32 @@ public class Country {
 		this.infectedPopulation = pop;
 	}
 	
-	public int getDiedPopulation()
+	public void addInfectedPopulation(int pop)
 	{
-		return this.didePopulation;
+		infectedPopulation += pop;
+		if(infectedPopulation > population)
+		{
+			infectedPopulation = population;
+		}
 	}
 	
-	public void setDiedPopulation(int pop)
+	public int getDeathPopulation()
 	{
-		this.didePopulation = pop;
+		return this.deathPopulation;
+	}
+	
+	public void setDeathPopulation(int pop)
+	{
+		this.deathPopulation = pop;
+	}
+	
+	public void addDeathPopulation(int pop)
+	{
+		deathPopulation += pop;
+		if(deathPopulation > population)
+		{
+			deathPopulation = population;
+		}
 	}
 	
 	public CountryClimate getClimate()

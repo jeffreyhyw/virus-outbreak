@@ -80,7 +80,7 @@ public class GameStart {
             				});
                         	
                         	//Start the game
-                            game.gameStart();
+                            MainController.gameStart();
                         }
                     }
                 });

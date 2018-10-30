@@ -1,6 +1,7 @@
 package object;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -11,19 +12,22 @@ public class Game {
 	//Initialize variables
 	private String virusName;
     private boolean endGame = false;
-    private final int totalNumberOfDays = 300;
+    private final int totalNumberOfDays = 10;
     private int day = 0;
-    private int msBetweenDay = 1500; // Millisecond until next day
+    private int msBetweenDay = 1000; // Millisecond until next day
     private Calendar calendar = Calendar.getInstance();
 	private SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
     private String currentDate = "";  // new date
-    public MainTableModel mainTableModel = new MainTableModel();
+    public MainTableModel mainTableModel;
     public Thread gameThread;
     public boolean gameStop = false;
     private final AtomicBoolean running = new AtomicBoolean(false);
+    public static ArrayList<Country> countries = new ArrayList<Country>();
     
     //UI Components
-    public JLabel mainCurrentDateLabel, mainFinDateLabel; 
+    //Main UI
+    public JLabel mainCurrentDateLabel, mainFinDateLabel, mainTitleLabel, 
+    			  totalInfectLabel, totalDeathLabel; 
     public JTable mainInfoTable; 
     
     
@@ -32,12 +36,140 @@ public class Game {
     	setCurrentDate(getTodayDate());
     }
     
+    /* For UI */
+    public void setLabel(JLabel label, String text) {
+    	try {
+    		label.setText(text);
+    	} catch (Exception e) {
+    		System.out.println("Exception from Game.setLabel: " + e);
+    	}
+    }
+    
+    //Change Infect / Death number
+    public void updateMainCountryVal(String countryName, String colName, int val)
+    {
+    	int row = getRowByCountryName(countryName);
+    	int col = getColByColName(colName);
+    	
+    	if(row != -1 && col != -1) 
+    	{
+        	mainInfoTable.getModel().setValueAt(val, row, col);
+    	}
+    }
+    
+    /* For Virus */
 	public String getVirusName() {
 		return virusName;
 	}
 	
 	public void setVirusName(String virusName) {
 		this.virusName = virusName;
+	}
+	
+	/* For Countries */
+	public void initCountries() {
+		Country c;
+		c = new Country("America", 327508189);
+		countries.add(c);
+		
+		c = new Country("Beligum", 11498519);
+		countries.add(c);
+		
+		c = new Country("China", 1416818963);
+		countries.add(c);
+		
+		c = new Country("Denmark", 5754356);
+		countries.add(c);
+		
+		c = new Country("Egypt", 99375741);
+		countries.add(c);
+		
+		c = new Country("France", 65233271);
+		countries.add(c);
+		
+		c = new Country("Germany", 82353077);
+		countries.add(c);
+		
+		c = new Country("Hong Kong", 7450269);
+		countries.add(c);
+		
+		c = new Country("India", 1354051854);
+		countries.add(c);
+		
+		c = new Country("Japan", 127086134);
+		countries.add(c);
+		
+		c = new Country("Sweden", 10006742);
+		countries.add(c);
+		
+		c = new Country("Thailand", 69231623);
+		countries.add(c);
+	}
+	
+	//Get the sum of dead people for all countries
+	public int getTotalDeathPopulation() {
+		int tmpTotalDeathPop = 0;
+		for (Country c : countries) {
+		   tmpTotalDeathPop += c.getDeathPopulation();
+		}
+		return tmpTotalDeathPop;
+	}
+	
+	//Get the sum of dead people for all countries
+	public int getTotalInfectedPopulation() {
+		int tmpTotalInfectPop = 0;
+		for (Country c : countries) {
+			tmpTotalInfectPop += c.getInfectedPopulation();
+		}
+		return tmpTotalInfectPop;
+	}
+	
+	public int getRowByCountryName(String name) {
+		int i=0;
+		for (Country c : countries) {
+			if(name == c.getName())
+			{
+				return i;
+			}
+			i++;
+		}
+		return -1;
+	}
+	
+	public int getColByColName(String name) {
+		//"Country","Infect","Death" must be the same as the att array in Main 
+		if(name == "Country")
+		{
+			return 0;
+		}
+		else if(name == "Infect")
+		{
+			return 1;
+		}
+		else if(name == "Death")
+		{
+			return 2;
+		}
+		else 
+		{
+			return -1;
+		}
+	}
+	
+	
+	/* For Game System */
+	public void initGameObjects() {
+		//Create Countries
+		initCountries();
+		mainTableModel = new MainTableModel(countries);
+	}
+	
+	public int getMsBetweenDay() {
+		return msBetweenDay;
+	}
+
+	public AtomicBoolean getGameRunning() {
+		return running;
 	}
 	
 	public boolean isEndGame() {
@@ -86,7 +218,6 @@ public class Game {
 	
 	//Get the current date in game
 	public String getCurrentDate() {
-
 		return currentDate;
 	}
 
@@ -100,6 +231,10 @@ public class Game {
 	public void setCurrentDate(String currentDate) {
 		this.currentDate = currentDate;
 	}
+	
+	public static ArrayList<Country> getCountries(){
+		return countries;
+	}
 
 	public void pauseGame() {
 		running.set(false);
@@ -110,72 +245,8 @@ public class Game {
 		gameThread.interrupt();
 	}
 	
-	//The game logic
-	public void gameStart() {
-		running.set(true);
-
-		//Use thread to run so the loop won't block the UI
-		gameThread = new Thread(new Runnable() {
-		    @Override
-		    public void run() {    
-		    	
-	    		 //Loop for each day
-		        while (!isEndGame()) {
-		        	
-		        	//Check if game is paused/resumed
-		        	if(!running.get()) {
-			        	try {
-				             System.out.println("Game Paused");
-				             Thread.sleep(999999);
-			        		 
-			            } catch (InterruptedException ex) {
-			                 //handle the exception
-			            	 Thread.currentThread().interrupt();
-			                 System.out.println("Game Resumed");
-			            }
-			        }
-		        	
-					//Sleep for 1 second before going to next day			
-		        	try{
-		        		Thread.sleep(msBetweenDay);
-		    		} catch(InterruptedException ex){
-		    		  //do stuff
-		    		}
-		        	
-		        	
-		        	//Update the current date in main panel
-		        	try {
-		        		mainCurrentDateLabel.setText("Current Date: " + getCurrentDate());
-		        		//getEndGameDate()
-		        	} catch (Exception e) {
-		        		
-		        	}
-		        	
-		        	
-		        	if(getDay() == 5)
-		        	{
-		        		mainInfoTable.getModel().setValueAt("10", 0, 1);
-		        	}
-		        	
-		        	//Increment 1 day
-					addDayToCalendar(1); 
-					
-	      	
-		        	//Check if the game has ended
-		        	if(getDay() > getTotalNumberOfDays())
-		        	{
-		        		setEndGame(true);
-		        	}
-		        }
-		        
-		       
-		    	
-		       
-		    }
-		});  
-		gameThread.start();
-		
-	}
+	
+	
     
     
 }

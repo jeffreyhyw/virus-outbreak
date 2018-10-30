@@ -16,43 +16,18 @@ public class Main{
 	static String att[]= {"Country","Infect","Death"};
 
     public static Game game;
-   
-	
-	static Object info [][]=
-		{
-			{"China","200000","5000"},
-			{"Africa","1000000","95000"},
-			{"UK","20000","950"},
-			{"UK","20000","950"},
-			{"UK","20000","950"},
-			{"UK","20000","950"},
-			{"UK","20000","950"},
-			{"UK","20000","950"},
-			{"UK","20000","950"},
-			{"UK","20000","950"},
-			{"UK","20000","950"},
-			{"UK","20000","950"},
-			{"UK","20000","950"},
-			{"UK","20000","950"},
-			{"UK","20000","950"},
-			{"UK","20000","950"},
-			{"UK","20000","950"},
-			{"UK","20000","950"},
-			{"UK","20000","950"},
-			{"UK","20000","950"},
-			{"UK","20000","950"}
-		};
+
 
 	public static void BuildTitle(JPanel panel)
 	{
 		GridBagConstraints layout=new GridBagConstraints();
-		JLabel title=new JLabel("This is a message", SwingConstants.CENTER);
-		title.setFont(new Font("sans serif", Font.BOLD, 16));
-		Dimension d = title.getPreferredSize();
-		title.setPreferredSize(new Dimension(d.width+200,d.height));//<-----------
+		game.mainTitleLabel = new JLabel("Game Start!", SwingConstants.CENTER);
+		game.mainTitleLabel.setFont(new Font("sans serif", Font.BOLD, 16));
+		Dimension d = game.mainTitleLabel.getPreferredSize();
+		game.mainTitleLabel.setPreferredSize(new Dimension(d.width+200,d.height));//<-----------
 		layout.gridx=0;
 		layout.gridy=0;
-		panel.add(title,layout);
+		panel.add(game.mainTitleLabel,layout);
 	}
 
 	public static void BuildInfo(JPanel panel)
@@ -60,12 +35,6 @@ public class Main{
 		Main m = new Main();
 		game.mainInfoTable = new JTable(game.mainTableModel);
 		JScrollPane scrollPane = new JScrollPane(game.mainInfoTable);
-
-//		JTable table = new JTable(info, att);
-//		table.setEnabled(false);
-//		JTableHeader TableHeadertable=table.getTableHeader();
-//		TableHeadertable.setReorderingAllowed(false);
-//		JScrollPane scrollPane = new JScrollPane(table);
 
 		scrollPane.setPreferredSize(new Dimension(500, 300));
 		GridBagConstraints layout=new GridBagConstraints();
@@ -81,21 +50,19 @@ public class Main{
 		JPanel Total=new JPanel();
 		Total.setLayout(new GridBagLayout());
 		GridBagConstraints layout=new GridBagConstraints();
-		int total[] = {0,0};
-		for(int i=0;i<info.length;i++)
-		{
-			total[0]+=Integer.parseInt((String) info[i][1]);
-			total[1]+=Integer.parseInt((String) info[i][2]);
-		}
-
-		JLabel TotalInfect = new JLabel("Total Infect: " + Integer.toString(total[0]));
-		JLabel TotalDeath = new JLabel("Total Death: " + Integer.toString(total[1]));
+		
+		
+		game.totalInfectLabel = new JLabel("Total Infect: " + game.getTotalInfectedPopulation());
+		game.totalDeathLabel = new JLabel("Total Death: " + game.getTotalDeathPopulation());
+		
 		layout.gridx=0;
 		layout.gridy=0;
 		layout.anchor=GridBagConstraints.SOUTHWEST;
-		Total.add(TotalInfect,layout);
+		Total.add(game.totalInfectLabel,layout);
+		
 		layout.gridy=1;
-		Total.add(TotalDeath,layout);
+		Total.add(game.totalDeathLabel,layout);
+		
 		layout.gridx=1;
 		layout.gridy=3;
 		layout.insets = new Insets(0,0,10,0);

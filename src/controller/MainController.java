@@ -18,10 +18,11 @@ public class MainController {
 	
 	//Initialize variable
 	public static JFrame frame;
+	static Game game;
 	
 	public static void main(String[] args) {
 		//Create game object
-		 Game game = new Game();
+		 game = new Game();
 		
 
 		//Schedule a job for the event dispatch thread:
@@ -54,6 +55,97 @@ public class MainController {
 
 	}
 	
+	//The game logic
+	public static void gameStart() {
+		game.getGameRunning().set(true);
+		
+		//Initialize game objects
+		game.initGameObjects();
+
+		//Use thread to run so the loop won't block the UI
+		game.gameThread = new Thread(new Runnable() {
+		    @Override
+		    public void run() {    
+		    	
+		    	//Delay a bit so the UI is initialized
+		    	try {
+		    		Thread.sleep(1000);
+		    		game.setLabel(game.mainTitleLabel, "Virus has started to spread");
+	        	} catch (Exception e) {}
+		    	
+		    	
+	    		 //Loop for each day
+		        while (!game.isEndGame()) {
+		        	
+		        	//Check if game is paused/resumed
+		        	if(!game.getGameRunning().get()) {
+			        	try {
+				             System.out.println("Game Paused");
+				             Thread.sleep(999999);
+			        		 
+			            } catch (InterruptedException ex) {
+			            	 Thread.currentThread().interrupt();
+			                 System.out.println("Game Resumed");
+			            }
+			        }
+		        	
+					//Sleep for 1 second before going to next day			
+		        	try{
+		        		Thread.sleep(game.getMsBetweenDay());
+		    		} catch(InterruptedException ex){}
+		        	
+		        	
+		        	//Update the current date in main panel
+		        	game.setLabel(game.mainCurrentDateLabel, "Current Date: " + game.getCurrentDate());
+		   
+		        	//Killing, Infecting logic etc...
+		        	//Testing logic
+		        	if(game.getDay() == 2)
+		        	{
+		        		game.updateMainCountryVal("Hong Kong", "Infect", 100);
+		        	}
+		        	
+		        	if(game.getDay() == 4)
+		        	{
+		        		game.updateMainCountryVal("Hong Kong", "Infect", 100);
+		        		game.updateMainCountryVal("Hong Kong", "Death", 10);
+		        		game.updateMainCountryVal("China", "Infect", 150);
+		        	}
+		        	
+		        	if(game.getDay() == 6)
+		        	{
+		        		game.updateMainCountryVal("Hong Kong", "Infect", 100);
+		        		game.updateMainCountryVal("Hong Kong", "Death", 10);
+		        		game.updateMainCountryVal("China", "Infect", 150);
+		        		game.updateMainCountryVal("Chian", "Death", 50);
+		        	}
+		        	
+		        	//Summary for today
+		        	game.setLabel(game.totalInfectLabel, "Total Infect: " + game.getTotalInfectedPopulation());
+		        	game.setLabel(game.totalDeathLabel, "Total Death: " + game.getTotalDeathPopulation());
+		        	
+		        	//Increment 1 day
+		        	game.addDayToCalendar(1); 
+		        					
+	      	
+		        	//Check if the game has ended
+		        	if(game.getDay() > game.getTotalNumberOfDays())
+		        	{
+		        		game.setLabel(game.mainTitleLabel, "Game Over");
+		        		game.setEndGame(true);
+		        	}
+		        }
+		    }
+		});  
+		game.gameThread.start();
+		
+	}
+	
+	//Print
+	public static void print(Object o) 
+	{
+		System.out.println(o);
+	}
 	
 
 }

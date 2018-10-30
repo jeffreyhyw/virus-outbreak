@@ -1,40 +1,24 @@
 package object;
 
+import java.util.ArrayList;
+
 import javax.swing.table.AbstractTableModel;
 
 public class MainTableModel extends AbstractTableModel {
     private String[] columnNames = {"Country","Infect","Death"};
-    private Object data [][]=
-		{
-				{"China","200000","5000"},
-				{"Africa","1000000","95000"},
-				{"UK","20000","950"},
-				{"UK","20000","950"},
-				{"UK","20000","950"},
-				{"UK","20000","950"},
-				{"UK","20000","950"},
-				{"UK","20000","950"},
-				{"UK","20000","950"},
-				{"UK","20000","950"},
-				{"UK","20000","950"},
-				{"UK","20000","950"},
-				{"UK","20000","950"},
-				{"UK","20000","950"},
-				{"UK","20000","950"},
-				{"UK","20000","950"},
-				{"UK","20000","950"},
-				{"UK","20000","950"},
-				{"UK","20000","950"},
-				{"UK","20000","950"},
-				{"UK","20000","950"}
-			};
+    
+    private ArrayList<Country> countries;
+    
+    public MainTableModel(ArrayList<Country> countries) {
+    	this.countries = countries;
+    }
 
     public int getColumnCount() {
         return columnNames.length;
     }
 
     public int getRowCount() {
-        return data.length;
+        return countries.size();
     }
 
     public String getColumnName(int col) {
@@ -42,7 +26,17 @@ public class MainTableModel extends AbstractTableModel {
     }
 
     public Object getValueAt(int row, int col) {
-        return data[row][col];
+    	Country c = countries.get(row);
+        switch(col) {
+          case 0: 
+        	  return c.getName();
+          case 1:
+        	  return c.getInfectedPopulation();
+          case 2:
+        	  return c.getDeathPopulation();
+        	    
+          default: return null;
+        }
     }
 
     public Class getColumnClass(int c) {
@@ -62,7 +56,21 @@ public class MainTableModel extends AbstractTableModel {
      * data can change.
      */
     public void setValueAt(Object value, int row, int col) {
-        data[row][col] = value;
+    	Country c = countries.get(row);
+        switch(col) {
+          case 0: 
+        	  c.setName((String) value);
+        	  break;
+          case 1:
+        	  c.addInfectedPopulation((int) value);
+        	  break;
+          case 2:
+        	  c.addDeathPopulation((int) value);
+        	  break;
+        	    
+          default:
+        	  break;
+        } 
         fireTableCellUpdated(row, col);
     }
 }

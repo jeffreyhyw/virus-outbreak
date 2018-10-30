@@ -6,13 +6,16 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import controller.MainController;
+import object.Game;
 
 public class GameStart {
     private static JPanel mainPanel = new JPanel();
 
     public static Boolean valid = false; // Hi
+    public static Game game;
 
-    public static JPanel createAndShowGUI() {
+    public static JPanel createAndShowGUI(Game gm) {
+    	game = gm;
         buildUI();
         return mainPanel;
     }
@@ -66,6 +69,7 @@ public class GameStart {
                         //Go to Main UI if valid
                         if(valid) 
                         {
+                        	
                         	EventQueue.invokeLater(new Runnable() {
             				    @Override
             				    public void run() {
@@ -74,6 +78,9 @@ public class GameStart {
             						MainController.frame.revalidate();
             				    }
             				});
+                        	
+                        	//Start the game
+                            MainController.gameStart();
                         }
                     }
                 });

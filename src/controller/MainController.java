@@ -23,7 +23,6 @@ public class MainController {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
             	
-            	//For testing your UI
             	 //Create and set up the window.
                 frame = new JFrame("Virus Outbreak");
                 int height = 540;
@@ -33,11 +32,9 @@ public class MainController {
                 frame.setPreferredSize(new Dimension(width, height));
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setResizable(false);
-                
-                //Change new JPanel() to the UI class you want to try
-//                JPanel panel = Main.createAndShowGUI();
-                JPanel panel = GameStart.createAndShowGUI();
 
+                //Create game start UI
+                JPanel panel = GameStart.createAndShowGUI();
 
                 //Add content to the window
                 frame.add(panel , BorderLayout.CENTER);
@@ -46,9 +43,6 @@ public class MainController {
                 frame.pack();
                 frame.setVisible(true);
 
-                // from Ho
-//                UIManager.put("swing.boldMetal", Boolean.FALSE);
-//                VirusConfigMainPanel.createAndShowGUI();
             }
         });
 	}

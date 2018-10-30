@@ -39,9 +39,11 @@ public class MainController {
                 frame.setPreferredSize(new Dimension(width, height));
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setResizable(false);
-                
-                //Game start Panel
-                JPanel panel = GameStart.createAndShowGUI(game);
+
+
+                //Create game start UI
+                JPanel panel = GameStart.createAndShowGUI();
+
 
                 //Add content to the window
                 frame.add(panel , BorderLayout.CENTER);
@@ -49,7 +51,7 @@ public class MainController {
                 //Display the window.
                 frame.pack();
                 frame.setVisible(true);
-                
+
             }
         });
 

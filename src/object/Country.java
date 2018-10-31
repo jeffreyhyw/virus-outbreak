@@ -3,6 +3,7 @@ package object;
 public class Country {
 	private int population, infectedPopulation, deathPopulation;
 	private String name;
+	private double medicalSystem = 0.5;
 	private CountryClimate climate;
 	private CountryEconomy economy;
 	
@@ -93,5 +94,15 @@ public class Country {
 	public void setEconomy(CountryEconomy economy)
 	{
 		this.economy = economy;
+	}
+
+
+	public double getMedicalSystem() {
+		return medicalSystem;
+	}
+
+
+	public void setMedicalSystem(double medicalSystem) {
+		this.medicalSystem = medicalSystem;
 	}
 }

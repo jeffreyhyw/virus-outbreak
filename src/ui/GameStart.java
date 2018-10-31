@@ -31,10 +31,10 @@ public class GameStart {
 
         int testNumber = 10;
 
-        String[] testData = new String[game.countries.size()+1];
+        String[] testData = new String[game.getCountries().size()+1];
         testData[0] = "--Select--";
-        for (int i = 1; i <= game.countries.size(); i++) {
-        	testData[i] = game.countries.get(i-1).getName();
+        for (int i = 1; i <= game.getCountries().size(); i++) {
+        	testData[i] = game.getCountries().get(i-1).getName();
         }
         
 

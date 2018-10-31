@@ -3,12 +3,14 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
+import object.Country;
 import object.Game;
 import ui.GameStart;
 import ui.Main;
@@ -62,7 +64,7 @@ public class MainController {
 	//The game logic
 	public static void gameStart() {
 		game.getGameRunning().set(true);
-
+		
 		//Use thread to run so the loop won't block the UI
 		game.gameThread = new Thread(new Runnable() {
 		    @Override
@@ -72,6 +74,11 @@ public class MainController {
 		    	try {
 		    		Thread.sleep(1000);
 		    		game.setLabel(game.mainTitleLabel, game.getVirusName() + " has started to spread in " + game.getBornCountry());
+		    		
+		    		//Infect the first country
+		    		game.updateMainCountryVal(game.getBornCountry(), "Infect", 1);
+		    		
+		    		
 	        	} catch (Exception e) {}
 		    	
 		    	
@@ -100,26 +107,39 @@ public class MainController {
 		        	game.setLabel(game.mainCurrentDateLabel, "Current Date: " + game.getCurrentDate());
 		   
 		        	//Killing, Infecting logic etc...
-		        	//Testing logic
-		        	if(game.getDay() == 2)
-		        	{
-		        		game.updateMainCountryVal("Hong Kong", "Infect", 100);
-		        	}
+		        	for (Country c : game.getCountries()) {
+		        		
+		    			//Only infect countries with > 1 infected people
+		        		if(c.getInfectedPopulation() > 0) 
+		        		{
+		        			game.updateMainCountryVal(c.getName(), "Infect", game.getVirus().getInfectPerDay(c));
+		        		}
+		        		
+		        		
+		    		}
 		        	
-		        	if(game.getDay() == 4)
-		        	{
-		        		game.updateMainCountryVal("Hong Kong", "Infect", 100);
-		        		game.updateMainCountryVal("Hong Kong", "Death", 10);
-		        		game.updateMainCountryVal("China", "Infect", 150);
-		        	}
 		        	
-		        	if(game.getDay() == 6)
+		        	//Pick a random country to infect 1 people
+		        	int sizeOfUnifectCountries = game.getUninfectedCountries().size();
+		        	if(sizeOfUnifectCountries > 0)
 		        	{
-		        		game.updateMainCountryVal("Hong Kong", "Infect", 100);
-		        		game.updateMainCountryVal("Hong Kong", "Death", 10);
-		        		game.updateMainCountryVal("China", "Infect", 150);
-		        		game.updateMainCountryVal("Chian", "Death", 50);
-		        	}
+			        	Random r = new Random();
+			        	int index = 0;
+			        	if(sizeOfUnifectCountries != 1) 
+			        	{
+			        		index = r.nextInt(game.getUninfectedCountries().size() - 1);
+			        	}
+			    		double chance = Math.random();
+			    		if(chance < game.infectOtherCountryProbability()) 
+			    		{
+			    			Country c = game.getUninfectedCountries().get(index);
+			    			c.addInfectedPopulation(1);
+			    			game.setLabel(game.mainTitleLabel, game.getVirusName() + " has started to spread in " + c.getName());
+			    		}
+			    		print("chance: " + chance + ", " + " prob: " + game.infectOtherCountryProbability());
+		        	} 
+		        	
+
 		        	
 		        	//Summary for today
 		        	game.setLabel(game.totalInfectLabel, "Total Infect: " + game.getTotalInfectedPopulation());

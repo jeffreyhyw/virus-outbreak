@@ -10,11 +10,10 @@ import javax.swing.JTable;
 
 public class Game {
 	//Initialize variables
-	private String virusName;
 	private String bornCountry;
 	
     private boolean endGame = false;
-    private final int totalNumberOfDays = 10;
+    private final int totalNumberOfDays = 300;
     private int day = 0;
     private int msBetweenDay = 1000; // Millisecond until next day
     private Calendar calendar = Calendar.getInstance();
@@ -24,7 +23,8 @@ public class Game {
     public Thread gameThread;
     public boolean gameStop = false;
     private final AtomicBoolean running = new AtomicBoolean(false);
-    public static ArrayList<Country> countries = new ArrayList<Country>();
+    private ArrayList<Country> countries = new ArrayList<Country>();
+    private Virus virus;
     
     //UI Components
     //Main UI
@@ -60,18 +60,62 @@ public class Game {
     }
     
     /* For Virus */
+    public void initVirus() {
+    	ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>();
+		ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>();
+		ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>();
+		
+		//tmp
+		transmissionList.add(new VirusTransmission("Rodent", 1, "description", 0.0025, 0,30));
+		transmissionList.add(new VirusTransmission("Air I", 2, "description", 0.006, 0,30));
+		transmissionList.add(new VirusTransmission("Air II", 3, "description", 0.007, 0,30));
+		
+//		symptomList.add(new VirusSymptom("Nausea", 1, "description", 0.1, 0.025, 30, false));
+//		symptomList.add(new VirusSymptom("Coughing", 1, "description", 0.2, 0, 30, false));
+		
+		abilityList.add(new VirusAbility("Cold Resistance I", 2, "description", 0.0025, 0, 0, 30));
+		abilityList.add(new VirusAbility("Heat Resistance I", 2, "description", 0.0025, 0, 0, 30));
+		
+    	
+    	virus = new Virus("name", transmissionList, symptomList, abilityList);
+    }
+    
+    public double infectOtherCountryProbability() {
+    	
+    	double infectionProbability = 0; 
+    	
+    	for (VirusTransmission vt : virus.getTransmissionList()) {
+    		infectionProbability += vt.getInfectionRate() * vt.getLevel();
+ 		}
+    	for (VirusAbility va : virus.getAbilityList()) {
+    		infectionProbability += va.getInfectionRate() * va.getLevel();
+ 		}
+    	
+    	return infectionProbability;
+    }
+    
 	public String getVirusName() {
-		return virusName;
+		return virus.getName();
 	}
 	
 	public void setVirusName(String virusName) {
-		this.virusName = virusName;
+		virus.setName(virusName); 
 	}
+	
+	public Virus getVirus() {
+		return virus;
+	}
+
+	public void setVirus(Virus virus) {
+		this.virus = virus;
+	}
+
 	
 	/* For Countries */
 	public void initCountries() {
 		Country c;
 		c = new Country("America", 327508189);
+		c.setMedicalSystem(0.9);
 		countries.add(c);
 		
 		c = new Country("Beligum", 11498519);
@@ -134,6 +178,17 @@ public class Game {
 		return tmpTotalInfectPop;
 	}
 	
+	public ArrayList<Country> getUninfectedCountries() {
+		ArrayList<Country> uninfectedCountries = new ArrayList<Country>();
+		for (Country c : countries) {
+		   if(c.getInfectedPopulation() < 1)
+		   {
+			   uninfectedCountries.add(c);
+		   }
+		}
+		return uninfectedCountries;
+	}
+	
 	public int getRowByCountryName(String name) {
 		int i=0;
 		for (Country c : countries) {
@@ -171,6 +226,9 @@ public class Game {
 	public void initGameObjects() {
 		//Create Countries
 		initCountries();
+		
+		//Create the virus
+		initVirus();
 		mainTableModel = new MainTableModel(countries);
 	}
 	
@@ -242,7 +300,7 @@ public class Game {
 		this.currentDate = currentDate;
 	}
 	
-	public static ArrayList<Country> getCountries(){
+	public ArrayList<Country> getCountries(){
 		return countries;
 	}
 
@@ -254,6 +312,7 @@ public class Game {
 		running.set(true);
 		gameThread.interrupt();
 	}
+
 
 
 	

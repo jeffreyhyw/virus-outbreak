@@ -42,7 +42,7 @@ public class MainController {
 
 
                 //Create game start UI
-                JPanel panel = GameStart.createAndShowGUI();
+                JPanel panel = GameStart.createAndShowGUI(game);
 
 
                 //Add content to the window

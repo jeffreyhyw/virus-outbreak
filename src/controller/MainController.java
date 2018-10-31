@@ -39,7 +39,9 @@ public class MainController {
                 frame.setPreferredSize(new Dimension(width, height));
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setResizable(false);
-
+                
+        		//Initialize game objects
+        		game.initGameObjects();
 
                 //Create game start UI
                 JPanel panel = GameStart.createAndShowGUI(game);
@@ -60,9 +62,6 @@ public class MainController {
 	//The game logic
 	public static void gameStart() {
 		game.getGameRunning().set(true);
-		
-		//Initialize game objects
-		game.initGameObjects();
 
 		//Use thread to run so the loop won't block the UI
 		game.gameThread = new Thread(new Runnable() {
@@ -72,7 +71,7 @@ public class MainController {
 		    	//Delay a bit so the UI is initialized
 		    	try {
 		    		Thread.sleep(1000);
-		    		game.setLabel(game.mainTitleLabel, "Virus has started to spread");
+		    		game.setLabel(game.mainTitleLabel, game.getVirusName() + " has started to spread in " + game.getBornCountry());
 	        	} catch (Exception e) {}
 		    	
 		    	

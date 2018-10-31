@@ -11,6 +11,8 @@ import javax.swing.JTable;
 public class Game {
 	//Initialize variables
 	private String virusName;
+	private String bornCountry;
+	
     private boolean endGame = false;
     private final int totalNumberOfDays = 10;
     private int day = 0;
@@ -104,6 +106,14 @@ public class Game {
 		
 		c = new Country("Thailand", 69231623);
 		countries.add(c);
+	}
+	
+	public String getBornCountry() {
+		return bornCountry;
+	}
+
+	public void setBornCountry(String bornCountry) {
+		this.bornCountry = bornCountry;
 	}
 	
 	//Get the sum of dead people for all countries
@@ -244,6 +254,8 @@ public class Game {
 		running.set(true);
 		gameThread.interrupt();
 	}
+
+
 	
 	
 	

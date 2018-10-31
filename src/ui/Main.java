@@ -23,8 +23,6 @@ public class Main{
 		GridBagConstraints layout=new GridBagConstraints();
 		game.mainTitleLabel = new JLabel("Game Start!", SwingConstants.CENTER);
 		game.mainTitleLabel.setFont(new Font("sans serif", Font.BOLD, 16));
-		Dimension d = game.mainTitleLabel.getPreferredSize();
-		game.mainTitleLabel.setPreferredSize(new Dimension(d.width+200,d.height));//<-----------
 		layout.gridx=0;
 		layout.gridy=0;
 		panel.add(game.mainTitleLabel,layout);

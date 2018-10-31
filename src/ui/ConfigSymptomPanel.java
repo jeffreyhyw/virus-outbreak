@@ -60,23 +60,16 @@ public class ConfigSymptomPanel {
 	
 	void generateDate() {
 		symptom_list = new ArrayList<VirusSymptom>();
-		symptom_list.add(new VirusSymptom("Symptom_1_name", 1, "Symptom_1_decription",30,true));
-		symptom_list.add(new VirusSymptom("Symptom_2_name", 1, "Symptom_2_decription",30,false));
-		symptom_list.add(new VirusSymptom("Symptom_3_name", 1, "Symptom_3_decription",30,false));
-		symptom_list.add(new VirusSymptom("att_4_name", 1, "att_4_decription",30,false));
-		symptom_list.add(new VirusSymptom("att_5_name", 1, "att_5_decription",30,false));
-		symptom_list.add(new VirusSymptom("att_6_name", 1, "att_6_decription",30,false));
-		symptom_list.add(new VirusSymptom("att_7_name", 1, "att_7_decription",30,false));
-		symptom_list.add(new VirusSymptom("att_8_name", 1, "att_8_decription",30,true));
-		symptom_list.add(new VirusSymptom("att_9_name", 1, "att_9_decription",30,false));
-		symptom_list.add(new VirusSymptom("att_10_name", 1, "att_10_decription",30,false));
-		symptom_list.add(new VirusSymptom("att_11_name", 1, "att_11_decription",30,false));
-		symptom_list.add(new VirusSymptom("att_12_name", 1, "att_12_decription",30,false));
-		symptom_list.add(new VirusSymptom("att_13_name", 1, "att_13_decription",30,false));
-		symptom_list.add(new VirusSymptom("att_14_name", 1, "att_14_decription",30,false));
-		symptom_list.add(new VirusSymptom("att_15_name", 1, "att_15_decription",30,false));
-		symptom_list.add(new VirusSymptom("att_16_name", 1, "att_16_decription",30,false));
-		symptom_list.add(new VirusSymptom("att_17_name", 1, "att_17_decription",30,false));
+		symptom_list.add(new VirusSymptom("Nausea", 1, "description", 0.1, 0.025, 30, false));
+		symptom_list.add(new VirusSymptom("Coughing", 1, "description", 0.2, 0, 30, false));
+		symptom_list.add(new VirusSymptom("Cysts", 1, "description", 0.15, 0.025, 30, false));
+		symptom_list.add(new VirusSymptom("Insomnia", 1, "description", 0, 0.025, 30, false));
+		symptom_list.add(new VirusSymptom("Rash", 1, "description", 0.15, 0.05, 30, false));
+		symptom_list.add(new VirusSymptom("Anaemia", 1, "description", 0, 0.05, 30, false));
+		symptom_list.add(new VirusSymptom("Sneezing", 1, "description", 0.2, 0, 30, false));
+		symptom_list.add(new VirusSymptom("Sweating", 1, "description", 0, 0, 30, false));
+		symptom_list.add(new VirusSymptom("Seizures", 1, "description", 0, 0.025, 30, false));
+		
 	}
 	
 	void generateConfigureTitle(JPanel configurePanel) {
@@ -122,7 +115,7 @@ public class ConfigSymptomPanel {
       		
       		JLabel statusLabel;
       		if(symptom_list.get(i).getStatus()) {
-      			statusLabel = new JLabel("✓");
+      			statusLabel = new JLabel("RESEARCHED");
       		}else {
       			statusLabel = new JLabel("X");
       		}
@@ -154,7 +147,7 @@ public class ConfigSymptomPanel {
       		    					updateCurrCost();
       		    					symptom_list.get(pos).setStatus(true);
       		    					if(symptom_list.get(pos).getStatus()) {
-      		    						((JLabel)att_panel.getComponent(k)).setText("✓");
+      		    						((JLabel)att_panel.getComponent(k)).setText("RESEARCHED");
       		    						((JButton) e.getSource()).setEnabled(false);
       		    		      		}
           		    				break;
@@ -221,7 +214,7 @@ public class ConfigSymptomPanel {
 				    @Override
 				    public void run() {
 				    		MainController.frame.getContentPane().removeAll();
-						MainController.frame.getContentPane().add(GameStart.createAndShowGUI(game));
+						MainController.frame.getContentPane().add(Main.createAndShowGUI(game));
 						MainController.frame.revalidate();
 						MainController.frame.repaint();
 				    }

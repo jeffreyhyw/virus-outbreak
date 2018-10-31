@@ -11,7 +11,8 @@ import object.Game;
 public class GameStart {
     private static JPanel mainPanel = new JPanel();
 
-    public static Boolean valid = false; // Hi
+    public static Boolean nameValid = false; 
+    public static Boolean countryValid = false; 
     public static Game game;
 
     public static JPanel createAndShowGUI(Game gm) {
@@ -30,12 +31,12 @@ public class GameStart {
 
         int testNumber = 10;
 
-        String[] testData = new String[testNumber + 1];
-        testData[0] = "---";
-
-        for (int i = 1; i <= testNumber; i++) {
-            testData[i] = "mo_" + String.valueOf(i);
+        String[] testData = new String[game.getCountries().size()+1];
+        testData[0] = "--Select--";
+        for (int i = 1; i <= game.getCountries().size(); i++) {
+        	testData[i] = game.getCountries().get(i-1).getName();
         }
+        
 
         for (int i = 0; i < 6; i++) {
             JPanel rowPanel = new JPanel();
@@ -59,21 +60,23 @@ public class GameStart {
                     public void actionPerformed(ActionEvent e) {
                         for (Component gameStartComponent : gameStartPanel.getComponents()) {
                             Component rowComponent = ((JPanel) gameStartComponent).getComponent(0);
+                        	
                             if (rowComponent.getClass().equals(JTextField.class)) {
-                                valid = checkTextFiled(rowComponent);
+                            	nameValid = checkTextFiled(rowComponent);
                             } else if (rowComponent.getClass().equals(JComboBox.class)) {
-                                valid = checkComboBox(rowComponent);
+                                countryValid = checkComboBox(rowComponent);
                             }
+
                         }
                         
                         //Go to Main UI if valid
-                        if(valid) 
+                        if(nameValid && countryValid) 
                         {
                         	
                         	EventQueue.invokeLater(new Runnable() {
             				    @Override
             				    public void run() {
-            				    		MainController.frame.getContentPane().removeAll();
+            				    	MainController.frame.getContentPane().removeAll();
             						MainController.frame.getContentPane().add(Main.createAndShowGUI(game));
             						MainController.frame.revalidate();
             				    }
@@ -94,10 +97,19 @@ public class GameStart {
     private static boolean checkTextFiled(Component rowComponent){
         JTextField tx = (JTextField) rowComponent;
         if (tx.getText().trim().isEmpty()) {
-            System.out.println("\u001B[31m"+"ERROR : EMPTY STRING"+"\u001B[0m");
+        	JOptionPane.showMessageDialog(null, 
+                    "Please enter a name", 
+                    "Invalid Input", 
+                    JOptionPane.WARNING_MESSAGE);
+            return false;
+        } else if (tx.getText().length() > 15) {
+        	JOptionPane.showMessageDialog(null, 
+                    "Please enter a name within 15 characters", 
+                    "Name is too long", 
+                    JOptionPane.WARNING_MESSAGE);
             return false;
         } else {
-            System.out.println("\u001B[33m"+"DEBUG : Input String is "+"\u001B[36m"+"\""+ tx.getText()+"\""+"\u001B[0m");
+        	game.setVirusName(tx.getText().replaceAll("[^a-zA-Z0-9 ]", "")); 
             return true;
         }
     }
@@ -105,13 +117,18 @@ public class GameStart {
     private static boolean checkComboBox(Component rowComponent){
         JComboBox jComboBox = (JComboBox) rowComponent;
         if (jComboBox.getSelectedIndex() == 0) {
-            System.out.println("\u001B[31m"+"ERROR : DO NOT SELECT ZERO ITEM"+"\u001B[0m");
+        	JOptionPane.showMessageDialog(null, 
+                    "Please select a country to born the virus", 
+                    "Invalid Input", 
+                    JOptionPane.WARNING_MESSAGE);
             return false;
-        } else {
-            System.out.println("\u001B[33m"+"DEBUG : Selected index : "+"\u001B[36m" + String.valueOf(jComboBox.getSelectedIndex())+"\u001B[0m");
-            System.out.println("\u001B[33m"+"DEBUG : Selected item : "+"\u001B[36m" + String.valueOf(jComboBox.getSelectedItem())+"\u001B[0m");
-            return true;
         }
+        else
+        {
+        	 game.setBornCountry(String.valueOf(jComboBox.getSelectedItem()));;
+             return true;
+        }
+       
     }
 
 }

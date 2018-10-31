@@ -3,19 +3,16 @@ package object;
 import java.util.ArrayList;
 
 public class Virus {
-	private String startDate;
-	private String startLocation;
 	private String name;
 	private ArrayList<VirusTransmission> transmissionList;
 	private ArrayList<VirusSymptom> symptomList;
 	private ArrayList<VirusAbility> abilityList;
+	private double virusSpeed = 0.0012;
 	
-	public Virus(String startDate, String startLocation, String name, 
+	public Virus(String name, 
 			ArrayList<VirusTransmission> transmissionList,
 			ArrayList<VirusSymptom> symptomList,
 			ArrayList<VirusAbility> abilityList) {
-		this.startDate = startDate;
-		this.startLocation = startLocation;
 		this.name = name;
 		this.transmissionList = transmissionList;
 		this.symptomList = symptomList;
@@ -23,18 +20,6 @@ public class Virus {
 		
 	}
 	
-	public String getStartDate() {
-		return startDate;
-	}
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;
-	}
-	public String getStartLocation() {
-		return startLocation;
-	}
-	public void setStartLocation(String startLocation) {
-		this.startLocation = startLocation;
-	}
 	public String getName() {
 		return name;
 	}
@@ -69,6 +54,8 @@ public class Virus {
 		this.abilityList.remove(ability);
 	}
 	
-	
+	public int getInfectPerDay(Country c) {
+		return (int) ((c.getPopulation() - (c.getPopulation() * c.getMedicalSystem())) * virusSpeed);
+	}
 
 }

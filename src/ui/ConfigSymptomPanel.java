@@ -214,6 +214,20 @@ public class ConfigSymptomPanel {
 
         JPanel backButtonPanel = new JPanel();
         JButton backButton = new JButton("Back");
+        backButton.addActionListener(new ActionListener() {
+  		    @Override
+  		    public void actionPerformed(ActionEvent e) {
+  		    		EventQueue.invokeLater(new Runnable() {
+				    @Override
+				    public void run() {
+				    		MainController.frame.getContentPane().removeAll();
+						MainController.frame.getContentPane().add(GameStart.createAndShowGUI(game));
+						MainController.frame.revalidate();
+						MainController.frame.repaint();
+				    }
+				});
+  		    }
+  		});
         backButtonPanel.add(backButton);
         backButtonPanel.setPreferredSize(new Dimension(details_item_width, details_height));
         

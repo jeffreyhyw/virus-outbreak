@@ -73,7 +73,7 @@ public class GameStart {
                         	EventQueue.invokeLater(new Runnable() {
             				    @Override
             				    public void run() {
-            				    	MainController.frame.getContentPane().removeAll();
+            				    		MainController.frame.getContentPane().removeAll();
             						MainController.frame.getContentPane().add(Main.createAndShowGUI(game));
             						MainController.frame.revalidate();
             				    }

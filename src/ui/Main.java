@@ -143,6 +143,7 @@ public class Main{
 				    public void run() {
 				    	MainController.frame.getContentPane().removeAll();
 						MainController.frame.getContentPane().add(VirusConfigMainPanel.createAndShowGUI(game));
+
 						MainController.frame.revalidate();
 						
 						

@@ -5,7 +5,7 @@ public class Country {
 	private String name;
 	private CountryClimate climate;
 	private CountryEconomy economy;
-	private Countrytate state;
+	private CountryState state;
 	
 	//Initialize Country
 	public Country(String name, int pop)
@@ -102,7 +102,7 @@ public class Country {
 		return this.state;
 	}
 	
-	public void setState(Countrytate state)
+	public void setState(CountryState state)
 	{
 		this.state = state;
 	}

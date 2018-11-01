@@ -1,5 +1,5 @@
 package object;
 
-public class DieedCountry implements CountryState{
+public class DiedCountry implements CountryState{
 	public void handle(){};
 }

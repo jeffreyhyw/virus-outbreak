@@ -3,6 +3,7 @@ package ui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +18,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
+import controller.MainController;
+import object.Game;
 import object.VirusAbility;
 import object.VirusTransmission;
 
@@ -43,7 +46,11 @@ public class ConfigTransmissionPanel {
 	JLabel currcostLabel;
 	JLabel virusName;
 	
-	public JComponent makeTextPanel() {
+
+	public static Game game;
+	
+	public JComponent makeTextPanel(Game gm) {
+		game = gm;
 		generateDate();
         JPanel panel = new JPanel(false);
 //        JLabel filler = new JLabel("Transmission Panel");
@@ -56,23 +63,14 @@ public class ConfigTransmissionPanel {
 	
 	void generateDate() {
 		att_list = new ArrayList<VirusTransmission>();
-		att_list.add(new VirusTransmission("att_1_name", 1, "att_1_decription",30));
-		att_list.add(new VirusTransmission("att_2_name", 1, "att_2_decription",30));
-		att_list.add(new VirusTransmission("att_3_name", 1, "att_3_decription",30));
-		att_list.add(new VirusTransmission("att_4_name", 1, "att_4_decription",30));
-		att_list.add(new VirusTransmission("att_5_name", 1, "att_5_decription",30));
-		att_list.add(new VirusTransmission("att_6_name", 1, "att_6_decription",30));
-		att_list.add(new VirusTransmission("att_7_name", 1, "att_7_decription",30));
-		att_list.add(new VirusTransmission("att_8_name", 1, "att_8_decription",30));
-		att_list.add(new VirusTransmission("att_9_name", 1, "att_9_decription",30));
-		att_list.add(new VirusTransmission("att_10_name", 1, "att_10_decription",30));
-		att_list.add(new VirusTransmission("att_11_name", 1, "att_11_decription",30));
-		att_list.add(new VirusTransmission("att_12_name", 1, "att_12_decription",30));
-		att_list.add(new VirusTransmission("att_13_name", 1, "att_13_decription",30));
-		att_list.add(new VirusTransmission("att_14_name", 1, "att_14_decription",30));
-		att_list.add(new VirusTransmission("att_15_name", 1, "att_15_decription",30));
-		att_list.add(new VirusTransmission("att_16_name", 1, "att_16_decription",30));
-		att_list.add(new VirusTransmission("att_17_name", 1, "att_17_decription",30));
+		att_list.add(new VirusTransmission("Rodent", 1, "description", 0.15, 0,30));
+		att_list.add(new VirusTransmission("Air I", 1, "description", 0.05, 0,30));
+		att_list.add(new VirusTransmission("Air II", 1, "description", 0.05, 0,30));
+		att_list.add(new VirusTransmission("Water I", 1, "description", 0.05, 0,30));
+		att_list.add(new VirusTransmission("Water II", 1, "description", 0.2, 0,30));
+		att_list.add(new VirusTransmission("Insect", 1, "description", 0.05, 0,30));
+		att_list.add(new VirusTransmission("Blood", 1, "description", 0.15, 0,30));
+		att_list.add(new VirusTransmission("Livestock", 1, "description", 0.75, 0,30));
 	}
 	
 	void generateConfigureTitle(JPanel configurePanel) {
@@ -201,7 +199,15 @@ public class ConfigTransmissionPanel {
         backButton.addActionListener(new ActionListener() {
   		    @Override
   		    public void actionPerformed(ActionEvent e) {
-  		    		
+  		    		EventQueue.invokeLater(new Runnable() {
+				    @Override
+				    public void run() {
+				    		MainController.frame.getContentPane().removeAll();
+						MainController.frame.getContentPane().add(GameStart.createAndShowGUI(game));
+						MainController.frame.revalidate();
+						MainController.frame.repaint();
+				    }
+				});
   		    }
   		});
         backButtonPanel.add(backButton);

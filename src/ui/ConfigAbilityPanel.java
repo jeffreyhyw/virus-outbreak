@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,6 +25,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 
+import controller.MainController;
+import object.Game;
 import object.VirusAbility;
 import object.VirusAttribute;
 
@@ -51,7 +54,10 @@ public class ConfigAbilityPanel {
 	JLabel currcostLabel;
 	JLabel virusName;
 	
-	public JComponent makeTextPanel() {
+	public static Game game;
+	
+	public JComponent makeTextPanel(Game gm) {
+		game = gm;
 		generateDate();
         JPanel panel = new JPanel(false);
 //        JLabel filler = new JLabel("Ability Panel");
@@ -65,23 +71,10 @@ public class ConfigAbilityPanel {
 	
 	void generateDate() {
 		att_list = new ArrayList<VirusAbility>();
-		att_list.add(new VirusAbility("att_1_name", 1, "att_1_decription",30));
-		att_list.add(new VirusAbility("att_2_name", 1, "att_2_decription",30));
-		att_list.add(new VirusAbility("att_3_name", 1, "att_3_decription",30));
-		att_list.add(new VirusAbility("att_4_name", 1, "att_4_decription",30));
-		att_list.add(new VirusAbility("att_5_name", 1, "att_5_decription",30));
-		att_list.add(new VirusAbility("att_6_name", 1, "att_6_decription",30));
-		att_list.add(new VirusAbility("att_7_name", 1, "att_7_decription",30));
-		att_list.add(new VirusAbility("att_8_name", 1, "att_8_decription",30));
-		att_list.add(new VirusAbility("att_9_name", 1, "att_9_decription",30));
-		att_list.add(new VirusAbility("att_10_name", 1, "att_10_decription",30));
-		att_list.add(new VirusAbility("att_11_name", 1, "att_11_decription",30));
-		att_list.add(new VirusAbility("att_12_name", 1, "att_12_decription",30));
-		att_list.add(new VirusAbility("att_13_name", 1, "att_13_decription",30));
-		att_list.add(new VirusAbility("att_14_name", 1, "att_14_decription",30));
-		att_list.add(new VirusAbility("att_15_name", 1, "att_15_decription",30));
-		att_list.add(new VirusAbility("att_16_name", 1, "att_16_decription",30));
-		att_list.add(new VirusAbility("att_17_name", 1, "att_17_decription",30));
+		att_list.add(new VirusAbility("Cold Resistance I", 1, "description", 0.05, 0, 0, 30));
+		att_list.add(new VirusAbility("Heat Resistance I", 1, "description", 0.05, 0, 0, 30));
+		att_list.add(new VirusAbility("Bacterial Resilience I", 1, "description", 0.05, 0, 15, 30));
+		att_list.add(new VirusAbility("Drug Resistance I", 1, "description", 0.05, 0, 25, 30));
 	}
 	
 	void generateConfigureTitle(JPanel configurePanel) {
@@ -207,6 +200,20 @@ public class ConfigAbilityPanel {
 
         JPanel backButtonPanel = new JPanel();
         JButton backButton = new JButton("Back");
+        backButton.addActionListener(new ActionListener() {
+  		    @Override
+  		    public void actionPerformed(ActionEvent e) {
+  		    		EventQueue.invokeLater(new Runnable() {
+				    @Override
+				    public void run() {
+				    		MainController.frame.getContentPane().removeAll();
+						MainController.frame.getContentPane().add(GameStart.createAndShowGUI(game));
+						MainController.frame.revalidate();
+						MainController.frame.repaint();
+				    }
+				});
+  		    }
+  		});
         backButtonPanel.add(backButton);
         backButtonPanel.setPreferredSize(new Dimension(details_item_width, details_height));
         

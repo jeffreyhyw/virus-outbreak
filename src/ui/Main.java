@@ -1,7 +1,8 @@
 package ui;
 
 import javax.swing.*;
-
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.JTableHeader;
 
@@ -41,6 +42,18 @@ public class Main{
 		layout.gridheight=3;
 		layout.insets = new Insets(0,0,0,20);
 		panel.add(scrollPane,layout);
+		
+		//Row click listener
+		game.mainInfoTable.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			@Override
+			public void valueChanged(ListSelectionEvent arg0) {
+				game.setSelectedRowCountryName(game.mainInfoTable.getValueAt(game.mainInfoTable.getSelectedRow(), 0).toString());
+				
+				game.totalCountryPopLabel.setVisible(true);
+				game.totalInfectedLabel.setVisible(true);
+				game.totalDeathPopLabel.setVisible(true);
+			}
+	    });
 
 	}
 	public static void BuildTotal(JPanel panel)
@@ -49,16 +62,43 @@ public class Main{
 		Total.setLayout(new GridBagLayout());
 		GridBagConstraints layout=new GridBagConstraints();
 		
+		game.totalCountryPopLabel = new JLabel("Total Population in Country: " + 0);
+		game.totalInfectedLabel = new JLabel("Infected Population in Country: " + 0);
+		game.totalDeathPopLabel = new JLabel("Death Population in Country: " + 0);
 		
-		game.totalInfectLabel = new JLabel("Total Infect: " + game.getTotalInfectedPopulation());
-		game.totalDeathLabel = new JLabel("Total Death: " + game.getTotalDeathPopulation());
+		JLabel space = new JLabel(" ");
+		game.worldTotalPopulation = new  JLabel("World Total Population: " + game.getWorldTotalPopulation());
+		game.totalInfectLabel = new JLabel("World Total Infect          : " + game.getTotalInfectedPopulation());
+		game.totalDeathLabel = new JLabel("World Total Death         : " + game.getTotalDeathPopulation());
 		
 		layout.gridx=0;
+		
 		layout.gridy=0;
 		layout.anchor=GridBagConstraints.SOUTHWEST;
+		Total.add(game.totalCountryPopLabel,layout);
+		game.totalCountryPopLabel.setVisible(false);
+
+		layout.gridy=1;
+		layout.anchor=GridBagConstraints.SOUTHWEST;
+		Total.add(game.totalInfectedLabel,layout);
+		game.totalInfectedLabel.setVisible(false);
+		
+		layout.gridy=2;
+		layout.anchor=GridBagConstraints.SOUTHWEST;
+		Total.add(game.totalDeathPopLabel,layout);
+		game.totalDeathPopLabel.setVisible(false);
+		
+		layout.gridy=3;
+		layout.anchor=GridBagConstraints.SOUTHWEST;
+		Total.add(space,layout);
+		
+		layout.gridy=4;
+		Total.add(game.worldTotalPopulation,layout);
+		
+		layout.gridy=5;
 		Total.add(game.totalInfectLabel,layout);
 		
-		layout.gridy=1;
+		layout.gridy=6;
 		Total.add(game.totalDeathLabel,layout);
 		
 		layout.gridx=1;

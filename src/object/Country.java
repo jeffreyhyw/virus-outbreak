@@ -76,7 +76,12 @@ public class Country {
 		{
 			deathPopulation = population;
 		}
+		if(deathPopulation > infectedPopulation)
+		{
+			deathPopulation = infectedPopulation;
+		}
 	}
+
 	
 	public CountryClimate getClimate()
 	{

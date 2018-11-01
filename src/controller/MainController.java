@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -65,6 +66,8 @@ public class MainController {
 	public static void gameStart() {
 		game.getGameRunning().set(true);
 		
+		
+		
 		//Use thread to run so the loop won't block the UI
 		game.gameThread = new Thread(new Runnable() {
 		    @Override
@@ -105,19 +108,21 @@ public class MainController {
 		        	
 		        	//Update the current date in main panel
 		        	game.setLabel(game.mainCurrentDateLabel, "Current Date: " + game.getCurrentDate());
-		   
-		        	//Killing, Infecting logic etc...
+		    				   
+		        	//Killing / Infecting logic ...
 		        	for (Country c : game.getCountries()) {
-		        		
-		    			//Only infect countries with > 1 infected people
 		        		if(c.getInfectedPopulation() > 0) 
 		        		{
+		        			//Infect country with at least 1 infected people
+		        			c.addInfectedPopulation(game.getVirus().getInfectPerDay(c));
 		        			game.updateMainCountryVal(c.getName(), "Infect", game.getVirus().getInfectPerDay(c));
+		        		
+		        			
+		        			//Killing people in that country if infected > 0 and deathPopulation != totalPopulation
+		        			c.addDeathPopulation( game.getVirus().getKillPerDay(c));
+	        				game.updateMainCountryVal(c.getName(), "Death", game.getVirus().getKillPerDay(c));
 		        		}
-		        		
-		        		
 		    		}
-		        	
 		        	
 		        	//Pick a random country to infect 1 people
 		        	int sizeOfUnifectCountries = game.getUninfectedCountries().size();
@@ -136,23 +141,57 @@ public class MainController {
 			    			c.addInfectedPopulation(1);
 			    			game.setLabel(game.mainTitleLabel, game.getVirusName() + " has started to spread in " + c.getName());
 			    		}
-			    		print("chance: " + chance + ", " + " prob: " + game.infectOtherCountryProbability());
 		        	} 
 		        	
 
 		        	
 		        	//Summary for today
-		        	game.setLabel(game.totalInfectLabel, "Total Infect: " + game.getTotalInfectedPopulation());
-		        	game.setLabel(game.totalDeathLabel, "Total Death: " + game.getTotalDeathPopulation());
+		        	game.setLabel(game.totalInfectLabel, "World Total Infect         : " + game.getTotalInfectedPopulation());
+		        	game.setLabel(game.totalDeathLabel, "World Total Death         : " + game.getTotalDeathPopulation());
+		        	
+		        	//Check again if half population is dead
+		        	if(!game.isHalfPopulationDead()) 
+		        	{
+		        		game.setHalfPopulationDead(game.checkHalfPopulationDead());
+		        		if(game.isHalfPopulationDead())
+		        		{
+		        			game.setLabel(game.mainTitleLabel, game.getVirusName() + " has killed 50% of people in this world");
+		        		}
+		        	} 
+		        	
+		        	//Display this message once when the virus infected 50% population
+		        	if(!game.isHalfPopulationInfected()) 
+		        	{
+		        		game.setHalfPopulationInfected(game.checkHalfPopulationInfected());
+		        		if(game.isHalfPopulationInfected())
+		        		{
+		        			game.setLabel(game.mainTitleLabel, game.getVirusName() + " has infected 50% of the people in this world");
+		        		}
+		        	}
+		        	
+		        	//Update country info displayed on the right
+		        	try {
+		        		if(game.getSelectedRowCountryName() != "")
+		        		{
+				        	Country countryInfo = game.getCountryByName(game.getSelectedRowCountryName());
+				        	game.setLabel(game.totalCountryPopLabel, "Total Population in "+ countryInfo.getName() +"       : " + countryInfo.getPopulation());
+				        	game.setLabel(game.totalInfectedLabel, "Infected Population in "+ countryInfo.getName() +" : " + countryInfo.getInfectedPopulation());
+				        	game.setLabel(game.totalDeathPopLabel, "Death Population in "+ countryInfo.getName() +"     : " + countryInfo.getDeathPopulation());
+		        		}
+		        	} catch (Exception e) { System.out.println("Country name not found"); }
 		        	
 		        	//Increment 1 day
 		        	game.addDayToCalendar(1); 
 		        					
 	      	
 		        	//Check if the game has ended
-		        	if(game.getDay() > game.getTotalNumberOfDays())
+		        	if (game.getTotalDeathPopulation() >= game.getWorldTotalPopulation()) {
+		        		game.setLabel(game.mainTitleLabel, game.getVirusName() + " has takeover the world! Congratulations!");
+		        		game.setEndGame(true);
+		        	} 
+		        	else if(game.getDay() > game.getTotalNumberOfDays())
 		        	{
-		        		game.setLabel(game.mainTitleLabel, "Game Over");
+		        		game.setLabel(game.mainTitleLabel, "Game over ... " + game.getVirusName() + " has been defeated by WHO");
 		        		game.setEndGame(true);
 		        	}
 		        }

@@ -25,5 +25,20 @@ public class VirusSymptom extends VirusAttribute{
 		this.status = status;
 	}
 
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
 	
+	public double getKillPeopleRate() {
+		return killPeopleRate;
+	}
+
+	public void setKillPeopleRate(double killPeopleRate) {
+		this.killPeopleRate = killPeopleRate;
+	}
+
 }

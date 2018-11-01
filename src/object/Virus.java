@@ -7,8 +7,10 @@ public class Virus {
 	private ArrayList<VirusTransmission> transmissionList;
 	private ArrayList<VirusSymptom> symptomList;
 	private ArrayList<VirusAbility> abilityList;
-	private double virusSpeed = 0.0012;
+	private double virusSpeed = 0.005;
+	private double virusPower = 0;
 	
+
 	public Virus(String name, 
 			ArrayList<VirusTransmission> transmissionList,
 			ArrayList<VirusSymptom> symptomList,
@@ -55,7 +57,35 @@ public class Virus {
 	}
 	
 	public int getInfectPerDay(Country c) {
-		return (int) ((c.getPopulation() - (c.getPopulation() * c.getMedicalSystem())) * virusSpeed);
+		return (int) ((c.getPopulation() * c.getMedicalSystem()) * virusSpeed);
+	}
+	
+	public int getKillPerDay(Country c) {
+		if(c.getDeathPopulation() > c.getInfectedPopulation())
+		{
+			return 0;
+		}
+		else
+		{
+			return (int) ((c.getPopulation() * c.getMedicalSystem()) * (virusPower + getSymptomKillPower()));
+		}
+	}
+	
+	public double getSymptomKillPower() {
+		double killPower = 0;
+		for (VirusSymptom vs : symptomList) {
+			killPower += vs.getKillPeopleRate() * vs.getLevel();
+ 		}
+		return killPower;
+		
+	}
+	
+	public double getVirusPower() {
+		return virusPower;
+	}
+
+	public void setVirusPower(double virusPower) {
+		this.virusPower = virusPower;
 	}
 
 }

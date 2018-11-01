@@ -1,5 +1,6 @@
 package object;
 
+import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -15,7 +16,7 @@ public class Game {
     private boolean endGame = false;
     private final int totalNumberOfDays = 300;
     private int day = 0;
-    private int msBetweenDay = 1000; // Millisecond until next day
+    private int msBetweenDay = 10; // Millisecond until next day
     private Calendar calendar = Calendar.getInstance();
 	private SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
     private String currentDate = "";  // new date
@@ -25,11 +26,16 @@ public class Game {
     private final AtomicBoolean running = new AtomicBoolean(false);
     private ArrayList<Country> countries = new ArrayList<Country>();
     private Virus virus;
+    private boolean halfPopulationDead = false;
+    private boolean halfPopulationInfected = false;
+    
+    private String selectedRowCountryName = "";
     
     //UI Components
     //Main UI
     public JLabel mainCurrentDateLabel, mainFinDateLabel, mainTitleLabel, 
-    			  totalInfectLabel, totalDeathLabel; 
+    			  totalInfectLabel, totalDeathLabel,
+    			  totalCountryPopLabel, totalInfectedLabel, totalDeathPopLabel, worldTotalPopulation; 
     public JTable mainInfoTable; 
     
     
@@ -46,8 +52,26 @@ public class Game {
     		System.out.println("Exception from Game.setLabel: " + e);
     	}
     }
+
+	public Country getCountryByName(String name) {
+		for (Country c : countries) {
+		   if(c.getName() == name)
+		   {
+			   return c;
+		   }
+		}
+		return null;
+	}
     
-    //Change Infect / Death number
+    public String getSelectedRowCountryName() {
+		return selectedRowCountryName;
+	}
+
+	public void setSelectedRowCountryName(String selectedRowCountryName) {
+		this.selectedRowCountryName = selectedRowCountryName;
+	}
+
+	//Change Infect / Death number
     public void updateMainCountryVal(String countryName, String colName, int val)
     {
     	int row = getRowByCountryName(countryName);
@@ -66,15 +90,18 @@ public class Game {
 		ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>();
 		
 		//tmp
-		transmissionList.add(new VirusTransmission("Rodent", 1, "description", 0.0025, 0,30));
-		transmissionList.add(new VirusTransmission("Air I", 2, "description", 0.006, 0,30));
-		transmissionList.add(new VirusTransmission("Air II", 3, "description", 0.007, 0,30));
+		transmissionList.add(new VirusTransmission("Rodent", 1, "description", 1.5, 0,30));
+		transmissionList.add(new VirusTransmission("Air I", 3, "description", 1.5, 0,30));
+		transmissionList.add(new VirusTransmission("Air II", 3, "description", 1.5, 0,30));
+		transmissionList.add(new VirusTransmission("Air II", 3, "description", 1.5, 0,30));
+		transmissionList.add(new VirusTransmission("Air II", 3, "description", 1.5, 0,30));
+		transmissionList.add(new VirusTransmission("Air II", 5, "description",1.5, 0,30));
 		
-//		symptomList.add(new VirusSymptom("Nausea", 1, "description", 0.1, 0.025, 30, false));
-//		symptomList.add(new VirusSymptom("Coughing", 1, "description", 0.2, 0, 30, false));
+		symptomList.add(new VirusSymptom("Nausea", 9, "description", 0.02, 0.00025, 30, false));
+		symptomList.add(new VirusSymptom("Coughing", 9, "description", 0.9, 0, 30, false));
 		
-		abilityList.add(new VirusAbility("Cold Resistance I", 2, "description", 0.0025, 0, 0, 30));
-		abilityList.add(new VirusAbility("Heat Resistance I", 2, "description", 0.0025, 0, 0, 30));
+		abilityList.add(new VirusAbility("Cold Resistance I", 13, "description", 1, 0, 0, 30));
+		abilityList.add(new VirusAbility("Heat Resistance I", 13, "description", 1, 0, 0, 30));
 		
     	
     	virus = new Virus("name", transmissionList, symptomList, abilityList);
@@ -152,6 +179,45 @@ public class Game {
 		countries.add(c);
 	}
 	
+	public boolean checkHalfPopulationDead() {
+		if(getTotalDeathPopulation() >= (getWorldTotalPopulation() / 2))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	
+	public boolean isHalfPopulationDead() {
+		return halfPopulationDead;
+	}
+
+	public void setHalfPopulationDead(boolean halfPopulationDead) {
+		this.halfPopulationDead = halfPopulationDead;
+	}
+	
+	public boolean checkHalfPopulationInfected() {
+		if(getTotalInfectedPopulation() >= (getWorldTotalPopulation() / 2))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public boolean isHalfPopulationInfected() {
+		return halfPopulationInfected;
+	}
+
+	public void setHalfPopulationInfected(boolean halfPopulationInfected) {
+		this.halfPopulationInfected = halfPopulationInfected;
+	}
+
 	public String getBornCountry() {
 		return bornCountry;
 	}
@@ -160,9 +226,17 @@ public class Game {
 		this.bornCountry = bornCountry;
 	}
 	
+	public long getWorldTotalPopulation() {
+		long sum = 0;
+		for (Country c : countries) {
+			sum += c.getPopulation();
+		}
+		return sum;
+	}
+	
 	//Get the sum of dead people for all countries
-	public int getTotalDeathPopulation() {
-		int tmpTotalDeathPop = 0;
+	public long getTotalDeathPopulation() {
+		long tmpTotalDeathPop = 0;
 		for (Country c : countries) {
 		   tmpTotalDeathPop += c.getDeathPopulation();
 		}
@@ -170,8 +244,8 @@ public class Game {
 	}
 	
 	//Get the sum of dead people for all countries
-	public int getTotalInfectedPopulation() {
-		int tmpTotalInfectPop = 0;
+	public long getTotalInfectedPopulation() {
+		long tmpTotalInfectPop = 0;
 		for (Country c : countries) {
 			tmpTotalInfectPop += c.getInfectedPopulation();
 		}

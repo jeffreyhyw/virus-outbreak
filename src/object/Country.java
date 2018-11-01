@@ -6,6 +6,7 @@ public class Country {
 	private double medicalSystem = 0.5;
 	private CountryClimate climate;
 	private CountryEconomy economy;
+	private CountryState state;
 	
 	//Initialize Country
 	public Country(String name, int pop)
@@ -16,6 +17,7 @@ public class Country {
 		this.deathPopulation = 0;
 		climate = new CountryClimate();
 		economy = new CountryEconomy();
+		state = new NormalCountry();
 	}
 	
 	
@@ -95,8 +97,17 @@ public class Country {
 	{
 		this.economy = economy;
 	}
-
-
+	
+	public CountryState getState()
+	{
+		return this.state;
+	}
+	
+	public void setState(CountryState state)
+	{
+		this.state = state;
+	}
+	
 	public double getMedicalSystem() {
 		return medicalSystem;
 	}

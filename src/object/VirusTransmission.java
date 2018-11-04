@@ -5,7 +5,6 @@ public class VirusTransmission extends VirusAttribute{
 	private double infectionRate = 0;
 	private double killPeopleRate = 0;
 	private double affectResearchRate = 0;
-	private int cost;
 	
 	public VirusTransmission(String att_name, int level, String description,
 							double infectionRate, double killPeopleRate, int cost) {
@@ -45,11 +44,5 @@ public class VirusTransmission extends VirusAttribute{
 		this.affectResearchRate = affectResearchRate;
 	}
 
-	public int getCost() {
-		return cost;
-	}
-
-	public void setCost(int cost) {
-		this.cost = cost;
-	}
+	
 }

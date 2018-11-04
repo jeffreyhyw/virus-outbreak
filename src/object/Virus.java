@@ -9,6 +9,7 @@ public class Virus {
 	private ArrayList<VirusAbility> abilityList;
 	private double virusSpeed = 0.003;
 	private double virusPower = 0.01;
+	private boolean researched;
 	
 
 	public Virus(String name, 
@@ -19,7 +20,7 @@ public class Virus {
 		this.transmissionList = transmissionList;
 		this.symptomList = symptomList;
 		this.abilityList = abilityList;
-		
+		this.researched = false;
 	}
 	
 	public String getName() {
@@ -94,6 +95,14 @@ public class Virus {
 
 	public void setVirusPower(double virusPower) {
 		this.virusPower = virusPower;
+	}
+	
+	public void setResearched(boolean status) {
+		researched = status;
+	}
+	
+	public boolean getResearched() {
+		return this.researched;
 	}
 
 }

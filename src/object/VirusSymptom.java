@@ -6,7 +6,7 @@ public class VirusSymptom extends VirusAttribute{
 	private double infectionRate = 0;
 	private double killPeopleRate = 0;
 	private double affectResearchRate = 0;
-	private int cost;
+	private boolean researched;
 	
 	public VirusSymptom(String symptom_name, int level, String description, double infectionRate,
 						 double killPeopleRate, int cost, boolean status) {
@@ -15,6 +15,7 @@ public class VirusSymptom extends VirusAttribute{
 		this.level = level;
 		this.infectionRate = infectionRate;
 		this.killPeopleRate = killPeopleRate;
+		this.researched = false;
 	}
 
 	public boolean getStatus() {
@@ -45,5 +46,14 @@ public class VirusSymptom extends VirusAttribute{
 		// TODO Auto-generated method stub
 		return this.infectionRate;
 	}
+
+	public boolean getResearched() {
+		return researched;
+	}
+
+	public void setResearched(boolean researched) {
+		this.researched = researched;
+	}
+	
 
 }

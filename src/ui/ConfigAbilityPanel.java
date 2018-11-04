@@ -31,7 +31,7 @@ import object.VirusAbility;
 import object.VirusAttribute;
 
 
-public class ConfigAbilityPanel {
+public class ConfigAbilityPanel{
 	
 	ArrayList<VirusAbility> att_list;
 	final int full_width = 960;
@@ -49,10 +49,10 @@ public class ConfigAbilityPanel {
 	final int descriptionView_width = 200;
 	final int descriptionView_height = 410;
 	
-	int curr_cost = 100;
 	JLabel descriptionLabel;
 	JLabel currcostLabel;
 	JLabel virusName;
+	String virusNameStr;
 	
 	public static Game game;
 	
@@ -64,17 +64,15 @@ public class ConfigAbilityPanel {
 //        filler.setHorizontalAlignment(JLabel.CENTER);
 //        panel.setLayout(new GridLayout(1, 1));
         generateAbilityContent(panel);
+		System.out.println("ConfigAbilityPanel");
 //        panel.add(filler);
         
         return panel;
     }
 	
 	void generateDate() {
-		att_list = new ArrayList<VirusAbility>();
-		att_list.add(new VirusAbility("Cold Resistance I", 1, "description", 0.05, 0, 0, 30));
-		att_list.add(new VirusAbility("Heat Resistance I", 1, "description", 0.05, 0, 0, 30));
-		att_list.add(new VirusAbility("Bacterial Resilience I", 1, "description", 0.05, 0, 15, 30));
-		att_list.add(new VirusAbility("Drug Resistance I", 1, "description", 0.05, 0, 25, 30));
+		virusNameStr = game.getVirusName();
+		att_list = game.getVirus().getAbilityList();
 	}
 	
 	void generateConfigureTitle(JPanel configurePanel) {
@@ -98,8 +96,9 @@ public class ConfigAbilityPanel {
 		configurePanel.add(title_panel);
 	}
 	
-	void updateCurrCost() {
-		currcostLabel.setText("Current Cost : " + curr_cost);
+	void updateCurrPoint() {
+		if(currcostLabel != null)
+			currcostLabel.setText("Current Point : " + game.getUpgradePoint());
 	}
 	
 	void generateConfigurePanel(JPanel configurePanel) {
@@ -126,6 +125,9 @@ public class ConfigAbilityPanel {
       		JButton upLevelBtn = new JButton("+");
       		upLevelBtn.setPreferredSize(new Dimension(att_add_field_width, configureView_height));
       		upLevelBtn.setName("" + i);
+      		if(att_list.get(i).getLevel() >= 5) {
+      			upLevelBtn.setEnabled(false);
+      		}
       		upLevelBtn.addActionListener(new ActionListener() {
       		    @Override
       		    public void actionPerformed(ActionEvent e) {
@@ -138,15 +140,20 @@ public class ConfigAbilityPanel {
       		    			}
       		    			else if(att_panel.getComponent(k).getName().equals(checkLabelName)) {
       		    				int pos = Integer.parseInt(o.getName());
-      		    				if(curr_cost - att_list.get(pos).getCost() < 0) {
+      		    				if(!att_list.get(pos).upLevel()) {
+      		    					System.out.println("Max Level");
+      		    					break;
+      		    				}
+      		    				else if(game.getUpgradePoint() - att_list.get(pos).getCost() < 0 ) {
       		    					System.out.println("No enough Cost");
       		    					break;
       		    				}
       		    				else {
-      		    					curr_cost = curr_cost - att_list.get(pos).getCost();
-      		    					updateCurrCost();
-      		    					att_list.get(pos).setLevel(att_list.get(pos).getLevel() + 1);
+      		    					game.calUpgradePoint(1, att_list.get(pos).getCost());
+      		    					updateCurrPoint();
           		    				((JLabel)att_panel.getComponent(k)).setText("Level " + att_list.get(pos).getLevel());
+          		    				if(att_list.get(pos).getLevel() >= 5)
+          		    	      			upLevelBtn.setEnabled(false);
           		    				break;
       		    				}
       		    			}
@@ -189,12 +196,12 @@ public class ConfigAbilityPanel {
         currcostLabel = new JLabel("", SwingConstants.CENTER);
         currcostLabel.setVerticalAlignment(SwingConstants.CENTER);
         currcostLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        updateCurrCost();
+        updateCurrPoint();
         resumPanel.add(currcostLabel);
         resumPanel.setPreferredSize(new Dimension(details_item_width, details_height));
 
         JPanel virusNamePanel = new JPanel();
-        virusName = new JLabel("virusName");
+        virusName = new JLabel(virusNameStr);
         virusNamePanel.add(virusName);
         virusNamePanel.setPreferredSize(new Dimension(details_item_width, details_height));
 
@@ -207,7 +214,7 @@ public class ConfigAbilityPanel {
 				    @Override
 				    public void run() {
 				    		MainController.frame.getContentPane().removeAll();
-						MainController.frame.getContentPane().add(GameStart.createAndShowGUI(game));
+						MainController.frame.getContentPane().add(Main.createAndShowGUI(game));
 						MainController.frame.revalidate();
 						MainController.frame.repaint();
 				    }
@@ -270,4 +277,5 @@ public class ConfigAbilityPanel {
 //        t.setVisible(true);
 		
 	}
+
 }

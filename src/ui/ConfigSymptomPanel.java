@@ -21,7 +21,7 @@ import controller.MainController;
 import object.Game;
 import object.VirusSymptom;
 
-public class ConfigSymptomPanel {
+public class ConfigSymptomPanel{
 	
 	ArrayList<VirusSymptom> symptom_list;
 	final int full_width = 960;
@@ -39,10 +39,10 @@ public class ConfigSymptomPanel {
 	final int descriptionView_width = 200;
 	final int descriptionView_height = 410;
 	
-	int curr_cost = 100;
 	JLabel descriptionLabel;
 	JLabel currcostLabel;
 	JLabel virusName;
+	String virusNameStr;
 	
     public static Game game;
 	
@@ -54,22 +54,15 @@ public class ConfigSymptomPanel {
 //        filler.setHorizontalAlignment(JLabel.CENTER);
 //        panel.setLayout(new GridLayout(1, 1));
         generateSymptomContent(panel);
+
+		System.out.println("ConfigSymptomPanel");
 //        panel.add(filler);
         return panel;
     }
 	
 	void generateDate() {
-		symptom_list = new ArrayList<VirusSymptom>();
-		symptom_list.add(new VirusSymptom("Nausea", 1, "description", 0.1, 0.025, 30, false));
-		symptom_list.add(new VirusSymptom("Coughing", 1, "description", 0.2, 0, 30, false));
-		symptom_list.add(new VirusSymptom("Cysts", 1, "description", 0.15, 0.025, 30, false));
-		symptom_list.add(new VirusSymptom("Insomnia", 1, "description", 0, 0.025, 30, false));
-		symptom_list.add(new VirusSymptom("Rash", 1, "description", 0.15, 0.05, 30, false));
-		symptom_list.add(new VirusSymptom("Anaemia", 1, "description", 0, 0.05, 30, false));
-		symptom_list.add(new VirusSymptom("Sneezing", 1, "description", 0.2, 0, 30, false));
-		symptom_list.add(new VirusSymptom("Sweating", 1, "description", 0, 0, 30, false));
-		symptom_list.add(new VirusSymptom("Seizures", 1, "description", 0, 0.025, 30, false));
-		
+		virusNameStr = game.getVirusName();
+		symptom_list = game.getVirus().getSymptomList();
 	}
 	
 	void generateConfigureTitle(JPanel configurePanel) {
@@ -93,8 +86,9 @@ public class ConfigSymptomPanel {
 		configurePanel.add(title_panel);
 	}
 	
-	void updateCurrCost() {
-		currcostLabel.setText("Current Cost : " + curr_cost);
+	void updateCurrPoint() {
+		if(currcostLabel != null)
+			currcostLabel.setText("Current Point : " + game.getUpgradePoint());
 	}
 	
 	void generateConfigurePanel(JPanel configurePanel) {
@@ -138,13 +132,13 @@ public class ConfigSymptomPanel {
       		    			}
       		    			else if(att_panel.getComponent(k).getName().equals(checkLabelName)) {
       		    				int pos = Integer.parseInt(o.getName());
-      		    				if(curr_cost - symptom_list.get(pos).getCost() < 0) {
+      		    				if(game.getUpgradePoint() - symptom_list.get(pos).getCost() < 0) {
       		    					System.out.println("No enough Cost");
       		    					break;
       		    				}
       		    				else {
-      		    					curr_cost = curr_cost - symptom_list.get(pos).getCost();
-      		    					updateCurrCost();
+      		    					game.calUpgradePoint(1, symptom_list.get(pos).getCost());
+      		    					updateCurrPoint();
       		    					symptom_list.get(pos).setStatus(true);
       		    					if(symptom_list.get(pos).getStatus()) {
       		    						((JLabel)att_panel.getComponent(k)).setText("RESEARCHED");
@@ -196,12 +190,12 @@ public class ConfigSymptomPanel {
         currcostLabel = new JLabel("", SwingConstants.CENTER);
         currcostLabel.setVerticalAlignment(SwingConstants.CENTER);
         currcostLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        updateCurrCost();
+        updateCurrPoint();
         resumPanel.add(currcostLabel);
         resumPanel.setPreferredSize(new Dimension(details_item_width, details_height));
 
         JPanel virusNamePanel = new JPanel();
-        virusName = new JLabel("virusName");
+        virusName = new JLabel(virusNameStr);
         virusNamePanel.add(virusName);
         virusNamePanel.setPreferredSize(new Dimension(details_item_width, details_height));
 
@@ -287,4 +281,5 @@ public class ConfigSymptomPanel {
 
         mainPanel.add(containerPanel);
 	}
+
 }

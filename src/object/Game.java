@@ -28,6 +28,7 @@ public class Game {
     private Virus virus;
     private boolean halfPopulationDead = false;
     private boolean halfPopulationInfected = false;
+    private int upgradePoint = 200;
     
     private String selectedRowCountryName = "";
     
@@ -41,7 +42,7 @@ public class Game {
     
     //Functions
     public Game() {
-    	setCurrentDate(getTodayDate());
+    		setCurrentDate(getTodayDate());
     }
     
     /* For UI */
@@ -85,28 +86,31 @@ public class Game {
     
     /* For Virus */
     public void initVirus() {
-    	ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>();
+    		ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>();
 		ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>();
 		ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>();
 		
 		//tmp
-		transmissionList.add(new VirusTransmission("Rodent", 2, "description", 0.15, 0,30));
-		transmissionList.add(new VirusTransmission("Air I", 2, "description", 0.1, 0,30));
-		transmissionList.add(new VirusTransmission("Air II", 2, "description", 0.25, 0,30));
-		transmissionList.add(new VirusTransmission("Water I", 2, "description", 0.1, 0,30));
-		transmissionList.add(new VirusTransmission("Water II", 2, "description", 0.25, 0,30));
+		transmissionList.add(new VirusTransmission("Rodent", 0, "description", 0.15, 0,30));
+		transmissionList.add(new VirusTransmission("Air I", 0, "description", 0.1, 0,30));
+		transmissionList.add(new VirusTransmission("Air II", 0, "description", 0.25, 0,30));
+		transmissionList.add(new VirusTransmission("Water I", 0, "description", 0.1, 0,30));
+		transmissionList.add(new VirusTransmission("Water II", 0, "description", 0.25, 0,30));
 		
-		symptomList.add(new VirusSymptom("Nausea", 3, "description", 0.1, 0.15, 30, false));
-		symptomList.add(new VirusSymptom("Coughing", 3, "description", 0.2, 0.1, 30, false));
-		symptomList.add(new VirusSymptom("Cysts", 3, "description", 0.15, 0.15, 30, false));
-		symptomList.add(new VirusSymptom("Insomnia", 3, "description", 0, 0.15, 30, false));
-		symptomList.add(new VirusSymptom("Rash", 3, "description", 0.15, 0.05, 30, false));
-		symptomList.add(new VirusSymptom("Anaemia", 3, "description", 0, 0.05, 30, false));
+		symptomList.add(new VirusSymptom("Nausea", 0, "description", 0.1, 0.15, 30, false));
+		symptomList.add(new VirusSymptom("Coughing", 0, "description", 0.2, 0.1, 30, false));
+		symptomList.add(new VirusSymptom("Cysts", 0, "description", 0.15, 0.15, 30, false));
+		symptomList.add(new VirusSymptom("Insomnia", 0, "description", 0, 0.15, 30, false));
+		symptomList.add(new VirusSymptom("Rash", 0, "description", 0.15, 0.05, 30, false));
+		symptomList.add(new VirusSymptom("Anaemia", 0, "description", 0, 0.05, 30, false));
 		
-
+		abilityList.add(new VirusAbility("Cold Resistance I", 0, "description", 0.05, 0, 0, 30));
+		abilityList.add(new VirusAbility("Heat Resistance I", 0, "description", 0.05, 0, 0, 30));
+		abilityList.add(new VirusAbility("Bacterial Resilience I", 0, "description", 0.05, 0, 15, 30));
+		abilityList.add(new VirusAbility("Drug Resistance I", 0, "description", 0.05, 0, 25, 30));
 		
     	
-    	virus = new Virus("name", transmissionList, symptomList, abilityList);
+		virus = new Virus("name", transmissionList, symptomList, abilityList);
     }
     
     public double infectOtherCountryProbability() {
@@ -377,6 +381,7 @@ public class Game {
 		this.currentDate = currentDate;
 	}
 	
+	
 	public ArrayList<Country> getCountries(){
 		return countries;
 	}
@@ -390,6 +395,18 @@ public class Game {
 		gameThread.interrupt();
 	}
 
+	public int getUpgradePoint() {
+		return this.upgradePoint;
+	}
+	
+	public void calUpgradePoint(int type, int calPoint) {
+		// 0 = +
+		// 1 = -
+		if(type == 0)
+			upgradePoint += calPoint;
+		else
+			upgradePoint -= calPoint;
+	}
 
 
 	

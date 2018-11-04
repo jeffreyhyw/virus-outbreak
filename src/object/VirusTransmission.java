@@ -5,7 +5,7 @@ public class VirusTransmission extends VirusAttribute{
 	private double infectionRate = 0;
 	private double killPeopleRate = 0;
 	private double affectResearchRate = 0;
-	private int cost;
+	private boolean researched;
 	
 	public VirusTransmission(String att_name, int level, String description,
 							double infectionRate, double killPeopleRate, int cost) {
@@ -13,6 +13,7 @@ public class VirusTransmission extends VirusAttribute{
 		this.level = level;
 		this.infectionRate = infectionRate;
 		this.killPeopleRate = killPeopleRate;
+		this.researched = false;
 	}
 	
 	public int getLevel() {
@@ -20,6 +21,15 @@ public class VirusTransmission extends VirusAttribute{
 	}
 	public void setLevel(int level) {
 		this.level = level;
+	}
+	public boolean upLevel() {
+		if(level + 1 <= 5) {
+			level += 1;
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	public double getInfectionRate() {
 		return infectionRate;
@@ -45,11 +55,13 @@ public class VirusTransmission extends VirusAttribute{
 		this.affectResearchRate = affectResearchRate;
 	}
 
-	public int getCost() {
-		return cost;
+	public boolean getResearched() {
+		return researched;
 	}
 
-	public void setCost(int cost) {
-		this.cost = cost;
+	public void setResearched(boolean researched) {
+		this.researched = researched;
 	}
+
+	
 }

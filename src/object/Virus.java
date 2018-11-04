@@ -7,8 +7,8 @@ public class Virus {
 	private ArrayList<VirusTransmission> transmissionList;
 	private ArrayList<VirusSymptom> symptomList;
 	private ArrayList<VirusAbility> abilityList;
-	private double virusSpeed = 0.005;
-	private double virusPower = 0;
+	private double virusSpeed = 0.003;
+	private double virusPower = 0.01;
 	
 
 	public Virus(String name, 
@@ -56,19 +56,27 @@ public class Virus {
 		this.abilityList.remove(ability);
 	}
 	
-	public int getInfectPerDay(Country c) {
-		return (int) ((c.getPopulation() * c.getMedicalSystem()) * virusSpeed);
+	public int getInfectPerDay(Country c, int day) {
+		return (int) (day * day * c.getMedicalSystem() + ( c.getUninfectedPopulation() * (1 - c.getMedicalSystem()) * virusSpeed * (1+getInfectionPower()) ));
 	}
 	
-	public int getKillPerDay(Country c) {
-		if(c.getDeathPopulation() > c.getInfectedPopulation())
-		{
-			return 0;
-		}
-		else
-		{
-			return (int) ((c.getPopulation() * c.getMedicalSystem()) * (virusPower + getSymptomKillPower()));
-		}
+	
+	public int getKillPerDay(Country c, int day) {
+		return (int) (c.getInfectedPopulation() * (1 - c.getMedicalSystem()) * virusPower *  (1 + getSymptomKillPower()) );
+	}
+	
+	public double getInfectionPower() {
+		double infectPower = 0;
+		for (VirusSymptom vs : symptomList) {
+			infectPower += vs.getInfectionRate() * vs.getLevel();
+ 		}
+		for (VirusTransmission vt : transmissionList) {
+			infectPower += vt.getInfectionRate() * vt.getLevel();
+ 		}
+		for (VirusAbility va : abilityList) {
+			infectPower += va.getInfectionRate() * va.getLevel();
+ 		}
+		return infectPower;
 	}
 	
 	public double getSymptomKillPower() {

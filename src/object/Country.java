@@ -56,6 +56,7 @@ public class Country {
 		if(infectedPopulation > population)
 		{
 			infectedPopulation = population;
+			setState(new InfectedCountry());
 		}
 	}
 	
@@ -80,6 +81,10 @@ public class Country {
 		{
 			deathPopulation = infectedPopulation;
 		}
+	}
+	
+	public int getUninfectedPopulation() {
+		return population - infectedPopulation;
 	}
 
 	

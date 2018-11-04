@@ -12,7 +12,9 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 import object.Country;
+import object.DeadCountry;
 import object.Game;
+import object.InfectedCountry;
 import ui.GameStart;
 import ui.Main;
 import ui.VirusConfigMainPanel;
@@ -113,14 +115,21 @@ public class MainController {
 		        	for (Country c : game.getCountries()) {
 		        		if(c.getInfectedPopulation() > 0) 
 		        		{
-		        			//Infect country with at least 1 infected people
-		        			c.addInfectedPopulation(game.getVirus().getInfectPerDay(c));
-		        			game.updateMainCountryVal(c.getName(), "Infect", game.getVirus().getInfectPerDay(c));
-		        		
+		        			//If there is still uninfected people
+		        			if(c.getState() instanceof InfectedCountry == false)
+		        			{
+			        			//Infect country with at least 1 infected people
+			        			c.addInfectedPopulation(game.getVirus().getInfectPerDay(c, game.getDay()));
+			        			game.updateMainCountryVal(c.getName(), "Infect", game.getVirus().getInfectPerDay(c,  game.getDay()));
+		        			}
 		        			
-		        			//Killing people in that country if infected > 0 and deathPopulation != totalPopulation
-		        			c.addDeathPopulation( game.getVirus().getKillPerDay(c));
-	        				game.updateMainCountryVal(c.getName(), "Death", game.getVirus().getKillPerDay(c));
+		        			//If there is still people alive
+		        			if(c.getState() instanceof DeadCountry == false)
+		        			{
+			        			//Killing people in that country if infected > 0 and deathPopulation != totalPopulation
+			        			c.addDeathPopulation( game.getVirus().getKillPerDay(c, game.getDay()));
+		        				game.updateMainCountryVal(c.getName(), "Death", game.getVirus().getKillPerDay(c, game.getDay()));
+		        			}
 		        		}
 		    		}
 		        	

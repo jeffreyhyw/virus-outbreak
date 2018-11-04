@@ -41,4 +41,9 @@ public class VirusSymptom extends VirusAttribute{
 		this.killPeopleRate = killPeopleRate;
 	}
 
+	public double getInfectionRate() {
+		// TODO Auto-generated method stub
+		return this.infectionRate;
+	}
+
 }

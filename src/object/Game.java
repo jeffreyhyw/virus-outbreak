@@ -90,18 +90,20 @@ public class Game {
 		ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>();
 		
 		//tmp
-		transmissionList.add(new VirusTransmission("Rodent", 1, "description", 1.5, 0,30));
-		transmissionList.add(new VirusTransmission("Air I", 3, "description", 1.5, 0,30));
-		transmissionList.add(new VirusTransmission("Air II", 3, "description", 1.5, 0,30));
-		transmissionList.add(new VirusTransmission("Air II", 3, "description", 1.5, 0,30));
-		transmissionList.add(new VirusTransmission("Air II", 3, "description", 1.5, 0,30));
-		transmissionList.add(new VirusTransmission("Air II", 5, "description",1.5, 0,30));
+		transmissionList.add(new VirusTransmission("Rodent", 2, "description", 0.15, 0,30));
+		transmissionList.add(new VirusTransmission("Air I", 2, "description", 0.1, 0,30));
+		transmissionList.add(new VirusTransmission("Air II", 2, "description", 0.25, 0,30));
+		transmissionList.add(new VirusTransmission("Water I", 2, "description", 0.1, 0,30));
+		transmissionList.add(new VirusTransmission("Water II", 2, "description", 0.25, 0,30));
 		
-		symptomList.add(new VirusSymptom("Nausea", 9, "description", 0.02, 0.00025, 30, false));
-		symptomList.add(new VirusSymptom("Coughing", 9, "description", 0.9, 0, 30, false));
+		symptomList.add(new VirusSymptom("Nausea", 3, "description", 0.1, 0.15, 30, false));
+		symptomList.add(new VirusSymptom("Coughing", 3, "description", 0.2, 0.1, 30, false));
+		symptomList.add(new VirusSymptom("Cysts", 3, "description", 0.15, 0.15, 30, false));
+		symptomList.add(new VirusSymptom("Insomnia", 3, "description", 0, 0.15, 30, false));
+		symptomList.add(new VirusSymptom("Rash", 3, "description", 0.15, 0.05, 30, false));
+		symptomList.add(new VirusSymptom("Anaemia", 3, "description", 0, 0.05, 30, false));
 		
-		abilityList.add(new VirusAbility("Cold Resistance I", 13, "description", 1, 0, 0, 30));
-		abilityList.add(new VirusAbility("Heat Resistance I", 13, "description", 1, 0, 0, 30));
+
 		
     	
     	virus = new Virus("name", transmissionList, symptomList, abilityList);
@@ -118,7 +120,8 @@ public class Game {
     		infectionProbability += va.getInfectionRate() * va.getLevel();
  		}
     	
-    	return infectionProbability;
+    	//Half the probability to prevent it spreading too fast
+    	return infectionProbability / 45;
     }
     
 	public String getVirusName() {

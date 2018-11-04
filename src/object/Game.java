@@ -28,6 +28,8 @@ public class Game {
     private Virus virus;
     private boolean halfPopulationDead = false;
     private boolean halfPopulationInfected = false;
+    private int evoPoint = 30;
+    public boolean newGame = true;
     
     private String selectedRowCountryName = "";
     
@@ -35,7 +37,8 @@ public class Game {
     //Main UI
     public JLabel mainCurrentDateLabel, mainFinDateLabel, mainTitleLabel, 
     			  totalInfectLabel, totalDeathLabel,
-    			  totalCountryPopLabel, totalInfectedLabel, totalDeathPopLabel, worldTotalPopulation; 
+    			  totalCountryPopLabel, totalInfectedLabel, totalDeathPopLabel, worldTotalPopulation,
+    			  evoPointLabel, researchLabel; 
     public JTable mainInfoTable; 
     
     
@@ -389,8 +392,14 @@ public class Game {
 		running.set(true);
 		gameThread.interrupt();
 	}
+	
+	public void addEvoPoint(int point) {
+		this.evoPoint += point;
+	}
 
-
+	public void deleteEvoPoint(int point) {
+		this.evoPoint -= point;
+	}
 
 	
 	

@@ -76,6 +76,7 @@ public class Country {
 		if(deathPopulation > population)
 		{
 			deathPopulation = population;
+			setState(new DeadCountry());
 		}
 		if(deathPopulation > infectedPopulation)
 		{

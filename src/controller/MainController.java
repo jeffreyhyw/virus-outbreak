@@ -69,7 +69,6 @@ public class MainController {
 		game.getGameRunning().set(true);
 		
 		
-		
 		//Use thread to run so the loop won't block the UI
 		game.gameThread = new Thread(new Runnable() {
 		    @Override
@@ -81,26 +80,15 @@ public class MainController {
 		    		game.setLabel(game.mainTitleLabel, game.getVirusName() + " has started to spread in " + game.getBornCountry());
 		    		
 		    		//Infect the first country
-		    		game.updateMainCountryVal(game.getBornCountry(), "Infect", 1);
-		    		
-		    		
+		    		game.updateMainCountryVal(game.getBornCountry(), "Infect", 1);	 		
 	        	} catch (Exception e) {}
 		    	
 		    	
 	    		 //Loop for each day
 		        while (!game.isEndGame()) {
-		        	
-		        	//Check if game is paused/resumed
-		        	if(!game.getGameRunning().get()) {
-			        	try {
-				             System.out.println("Game Paused");
-				             Thread.sleep(999999);
-			        		 
-			            } catch (InterruptedException ex) {
-			            	 Thread.currentThread().interrupt();
-			                 System.out.println("Game Resumed");
-			            }
-			        }
+
+		    		//Check if game is paused/resumed
+		        	checkGameResumeOrPause();
 		        	
 					//Sleep for 1 second before going to next day			
 		        	try{
@@ -115,99 +103,130 @@ public class MainController {
 		        	for (Country c : game.getCountries()) {
 		        		if(c.getInfectedPopulation() > 0) 
 		        		{
-		        			//If there is still uninfected people
-		        			if(c.getState() instanceof InfectedCountry == false)
-		        			{
-			        			//Infect country with at least 1 infected people
-			        			c.addInfectedPopulation(game.getVirus().getInfectPerDay(c, game.getDay()));
-			        			game.updateMainCountryVal(c.getName(), "Infect", game.getVirus().getInfectPerDay(c,  game.getDay()));
-		        			}
-		        			
-		        			//If there is still people alive
-		        			if(c.getState() instanceof DeadCountry == false)
-		        			{
-			        			//Killing people in that country if infected > 0 and deathPopulation != totalPopulation
-			        			c.addDeathPopulation( game.getVirus().getKillPerDay(c, game.getDay()));
-		        				game.updateMainCountryVal(c.getName(), "Death", game.getVirus().getKillPerDay(c, game.getDay()));
-		        			}
+		        			infectPeople(c);
+		        			killPeople(c);
 		        		}
 		    		}
 		        	
-		        	//Pick a random country to infect 1 people
-		        	int sizeOfUnifectCountries = game.getUninfectedCountries().size();
-		        	if(sizeOfUnifectCountries > 0)
-		        	{
-			        	Random r = new Random();
-			        	int index = 0;
-			        	if(sizeOfUnifectCountries != 1) 
-			        	{
-			        		index = r.nextInt(game.getUninfectedCountries().size() - 1);
-			        	}
-			    		double chance = Math.random();
-			    		if(chance < game.infectOtherCountryProbability()) 
-			    		{
-			    			Country c = game.getUninfectedCountries().get(index);
-			    			c.addInfectedPopulation(1);
-			    			game.setLabel(game.mainTitleLabel, game.getVirusName() + " has started to spread in " + c.getName());
-			    		}
-		        	} 
+		        	//Pick a random country to infect
+		        	pickCountryToInfect();
 		        	
-
-		        	
-		        	//Summary for today
-		        	game.setLabel(game.totalInfectLabel, "World Total Infect         : " + game.getTotalInfectedPopulation());
-		        	game.setLabel(game.totalDeathLabel, "World Total Death         : " + game.getTotalDeathPopulation());
-		        	
-		        	//Check again if half population is dead
-		        	if(!game.isHalfPopulationDead()) 
-		        	{
-		        		game.setHalfPopulationDead(game.checkHalfPopulationDead());
-		        		if(game.isHalfPopulationDead())
-		        		{
-		        			game.setLabel(game.mainTitleLabel, game.getVirusName() + " has killed 50% of people in this world");
-		        		}
-		        	} 
-		        	
-		        	//Display this message once when the virus infected 50% population
-		        	if(!game.isHalfPopulationInfected()) 
-		        	{
-		        		game.setHalfPopulationInfected(game.checkHalfPopulationInfected());
-		        		if(game.isHalfPopulationInfected())
-		        		{
-		        			game.setLabel(game.mainTitleLabel, game.getVirusName() + " has infected 50% of the people in this world");
-		        		}
-		        	}
-		        	
-		        	//Update country info displayed on the right
-		        	try {
-		        		if(game.getSelectedRowCountryName() != "")
-		        		{
-				        	Country countryInfo = game.getCountryByName(game.getSelectedRowCountryName());
-				        	game.setLabel(game.totalCountryPopLabel, "Total Population in "+ countryInfo.getName() +"       : " + countryInfo.getPopulation());
-				        	game.setLabel(game.totalInfectedLabel, "Infected Population in "+ countryInfo.getName() +" : " + countryInfo.getInfectedPopulation());
-				        	game.setLabel(game.totalDeathPopLabel, "Death Population in "+ countryInfo.getName() +"     : " + countryInfo.getDeathPopulation());
-		        		}
-		        	} catch (Exception e) { System.out.println("Country name not found"); }
+		        	//Update corresponding UI with new data
+		        	gameSummary();
 		        	
 		        	//Increment 1 day
 		        	game.addDayToCalendar(1); 
 		        					
-	      	
-		        	//Check if the game has ended
-		        	if (game.getTotalDeathPopulation() >= game.getWorldTotalPopulation()) {
-		        		game.setLabel(game.mainTitleLabel, game.getVirusName() + " has takeover the world! Congratulations!");
-		        		game.setEndGame(true);
-		        	} 
-		        	else if(game.getDay() > game.getTotalNumberOfDays())
-		        	{
-		        		game.setLabel(game.mainTitleLabel, "Game over ... " + game.getVirusName() + " has been defeated by WHO");
-		        		game.setEndGame(true);
-		        	}
+		        	checkEndGame();
 		        }
 		    }
 		});  
 		game.gameThread.start();
 		
+	}
+	
+	public static void checkGameResumeOrPause() {
+    	if(!game.getGameRunning().get()) {
+        	try {
+	             System.out.println("Game Paused");
+	             Thread.sleep(999999);
+        		 
+            } catch (InterruptedException ex) {
+            	 Thread.currentThread().interrupt();
+                 System.out.println("Game Resumed");
+            }
+        }
+	}
+	
+	public static void infectPeople(Country c) {
+		//If there is still uninfected people
+		if(c.getState() instanceof InfectedCountry == false)
+		{
+			//Infect country with at least 1 infected people
+			c.addInfectedPopulation(game.getVirus().getInfectPerDay(c, game.getDay()));
+			game.updateMainCountryVal(c.getName(), "Infect", game.getVirus().getInfectPerDay(c,  game.getDay()));
+		}
+	}
+	
+	public static void killPeople(Country c) {
+		//If there is still people alive
+		if(c.getState() instanceof DeadCountry == false)
+		{
+			//Killing people in that country if infected > 0 and deathPopulation != totalPopulation
+			c.addDeathPopulation( game.getVirus().getKillPerDay(c, game.getDay()));
+			game.updateMainCountryVal(c.getName(), "Death", game.getVirus().getKillPerDay(c, game.getDay()));
+		}
+	}
+	
+	public static void pickCountryToInfect() {
+		//Pick a random country to infect 1 people
+    	int sizeOfUnifectCountries = game.getUninfectedCountries().size();
+    	if(sizeOfUnifectCountries > 0)
+    	{
+        	Random r = new Random();
+        	int index = 0;
+        	if(sizeOfUnifectCountries != 1) 
+        	{
+        		index = r.nextInt(game.getUninfectedCountries().size() - 1);
+        	}
+    		double chance = Math.random();
+    		if(chance < game.infectOtherCountryProbability()) 
+    		{
+    			Country c = game.getUninfectedCountries().get(index);
+    			c.addInfectedPopulation(1);
+    			game.setLabel(game.mainTitleLabel, game.getVirusName() + " has started to spread in " + c.getName());
+    		}
+    	} 
+	}
+	
+	public static void gameSummary() {
+		//Summary for today
+    	game.setLabel(game.totalInfectLabel, "World Total Infect         : " + game.getTotalInfectedPopulation());
+    	game.setLabel(game.totalDeathLabel, "World Total Death         : " + game.getTotalDeathPopulation());
+    	
+    	//Check again if half population is dead
+    	if(!game.isHalfPopulationDead()) 
+    	{
+    		game.setHalfPopulationDead(game.checkHalfPopulationDead());
+    		if(game.isHalfPopulationDead())
+    		{
+    			game.setLabel(game.mainTitleLabel, game.getVirusName() + " has killed 50% of people in this world");
+    		}
+    	} 
+    	
+    	//Display this message once when the virus infected 50% population
+    	if(!game.isHalfPopulationInfected()) 
+    	{
+    		game.setHalfPopulationInfected(game.checkHalfPopulationInfected());
+    		if(game.isHalfPopulationInfected())
+    		{
+    			game.setLabel(game.mainTitleLabel, game.getVirusName() + " has infected 50% of the people in this world");
+    		}
+    	}
+    	
+    	//Update country info displayed on the right
+    	try {
+    		if(game.getSelectedRowCountryName() != "")
+    		{
+	        	Country countryInfo = game.getCountryByName(game.getSelectedRowCountryName());
+	        	game.setLabel(game.totalCountryPopLabel, "Total Population in "+ countryInfo.getName() +"       : " + countryInfo.getPopulation());
+	        	game.setLabel(game.totalInfectedLabel, "Infected Population in "+ countryInfo.getName() +" : " + countryInfo.getInfectedPopulation());
+	        	game.setLabel(game.totalDeathPopLabel, "Death Population in "+ countryInfo.getName() +"     : " + countryInfo.getDeathPopulation());
+    		}
+    	} catch (Exception e) { System.out.println("Country name not found"); }
+	}
+	
+	public static void checkEndGame() {
+		//Check if the game has ended
+    	if (game.getTotalDeathPopulation() >= game.getWorldTotalPopulation()) {
+    		game.setLabel(game.mainTitleLabel, game.getVirusName() + " has takeover the world! Congratulations!");
+    		game.setEndGame(true);
+    	} 
+    	else if(game.getDay() > game.getTotalNumberOfDays())
+    	{
+    		game.setLabel(game.mainTitleLabel, "Game over ... " + game.getVirusName() + " has been defeated by WHO");
+    		game.setEndGame(true);
+    	}
 	}
 	
 	//Print

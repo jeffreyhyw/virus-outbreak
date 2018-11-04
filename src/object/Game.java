@@ -90,26 +90,24 @@ public class Game {
 		ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>();
 		ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>();
 		
-		
-		
 		//tmp
-		transmissionList.add(new VirusTransmission("Rodent", 2, "description", 0.15, 0,30));
-		transmissionList.add(new VirusTransmission("Air I", 2, "description", 0.1, 0,30));
-		transmissionList.add(new VirusTransmission("Air II", 2, "description", 0.25, 0,30));
-		transmissionList.add(new VirusTransmission("Water I", 2, "description", 0.1, 0,30));
-		transmissionList.add(new VirusTransmission("Water II", 2, "description", 0.25, 0,30));
+		transmissionList.add(new VirusTransmission("Rodent", 0, "description", 0.15, 0,30));
+		transmissionList.add(new VirusTransmission("Air I", 0, "description", 0.1, 0,30));
+		transmissionList.add(new VirusTransmission("Air II", 0, "description", 0.25, 0,30));
+		transmissionList.add(new VirusTransmission("Water I", 0, "description", 0.1, 0,30));
+		transmissionList.add(new VirusTransmission("Water II", 0, "description", 0.25, 0,30));
 		
-		symptomList.add(new VirusSymptom("Nausea", 3, "description", 0.1, 0.15, 30, false));
-		symptomList.add(new VirusSymptom("Coughing", 3, "description", 0.2, 0.1, 30, false));
-		symptomList.add(new VirusSymptom("Cysts", 3, "description", 0.15, 0.15, 30, false));
-		symptomList.add(new VirusSymptom("Insomnia", 3, "description", 0, 0.15, 30, false));
-		symptomList.add(new VirusSymptom("Rash", 3, "description", 0.15, 0.05, 30, false));
-		symptomList.add(new VirusSymptom("Anaemia", 3, "description", 0, 0.05, 30, false));
+		symptomList.add(new VirusSymptom("Nausea", 0, "description", 0.1, 0.15, 30, false));
+		symptomList.add(new VirusSymptom("Coughing", 0, "description", 0.2, 0.1, 30, false));
+		symptomList.add(new VirusSymptom("Cysts", 0, "description", 0.15, 0.15, 30, false));
+		symptomList.add(new VirusSymptom("Insomnia", 0, "description", 0, 0.15, 30, false));
+		symptomList.add(new VirusSymptom("Rash", 0, "description", 0.15, 0.05, 30, false));
+		symptomList.add(new VirusSymptom("Anaemia", 0, "description", 0, 0.05, 30, false));
 		
-		abilityList.add(new VirusAbility("Cold Resistance I", 1, "description", 0.05, 0, 0, 30));
-		abilityList.add(new VirusAbility("Heat Resistance I", 1, "description", 0.05, 0, 0, 30));
-		abilityList.add(new VirusAbility("Bacterial Resilience I", 1, "description", 0.05, 0, 15, 30));
-		abilityList.add(new VirusAbility("Drug Resistance I", 1, "description", 0.05, 0, 25, 30));
+		abilityList.add(new VirusAbility("Cold Resistance I", 0, "description", 0.05, 0, 0, 30));
+		abilityList.add(new VirusAbility("Heat Resistance I", 0, "description", 0.05, 0, 0, 30));
+		abilityList.add(new VirusAbility("Bacterial Resilience I", 0, "description", 0.05, 0, 15, 30));
+		abilityList.add(new VirusAbility("Drug Resistance I", 0, "description", 0.05, 0, 25, 30));
 		
     	
 		virus = new Virus("name", transmissionList, symptomList, abilityList);

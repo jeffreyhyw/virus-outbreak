@@ -117,6 +117,9 @@ public class ConfigTransmissionPanel {
       		JButton upLevelBtn = new JButton("+");
       		upLevelBtn.setPreferredSize(new Dimension(att_add_field_width, configureView_height));
       		upLevelBtn.setName("" + i);
+      		if(att_list.get(i).getLevel() >= 5) {
+      			upLevelBtn.setEnabled(false);
+      		}
       		upLevelBtn.addActionListener(new ActionListener() {
       		    @Override
       		    public void actionPerformed(ActionEvent e) {
@@ -129,15 +132,20 @@ public class ConfigTransmissionPanel {
       		    			}
       		    			else if(att_panel.getComponent(k).getName().equals(checkLabelName)) {
       		    				int pos = Integer.parseInt(o.getName());
-      		    				if(game.getUpgradePoint() - att_list.get(pos).getCost() < 0) {
+      		    				if(!att_list.get(pos).upLevel()) {
+      		    					System.out.println("Max Level");
+      		    					break;
+      		    				}
+      		    				else if(game.getUpgradePoint() - att_list.get(pos).getCost() < 0) {
       		    					System.out.println("No enough Cost");
       		    					break;
       		    				}
       		    				else {
       		    					game.calUpgradePoint(1, att_list.get(pos).getCost());
       		    					updateCurrPoint();
-      		    					att_list.get(pos).setLevel(att_list.get(pos).getLevel() + 1);
           		    				((JLabel)att_panel.getComponent(k)).setText("Level " + att_list.get(pos).getLevel());
+          		    				if(att_list.get(pos).getLevel() >= 5)
+          		    	      			upLevelBtn.setEnabled(false);
           		    				break;
       		    				}
       		    			}
@@ -198,7 +206,7 @@ public class ConfigTransmissionPanel {
 				    @Override
 				    public void run() {
 				    		MainController.frame.getContentPane().removeAll();
-						MainController.frame.getContentPane().add(GameStart.createAndShowGUI(game));
+						MainController.frame.getContentPane().add(Main.createAndShowGUI(game));
 						MainController.frame.revalidate();
 						MainController.frame.repaint();
 				    }

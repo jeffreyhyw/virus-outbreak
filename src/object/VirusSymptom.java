@@ -55,5 +55,8 @@ public class VirusSymptom extends VirusAttribute{
 		this.researched = researched;
 	}
 	
-
+	public boolean upLevel() {
+		level = 1;
+		return true;
+	}
 }

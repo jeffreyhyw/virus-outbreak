@@ -95,6 +95,10 @@ public class MainController {
 		        		Thread.sleep(game.getMsBetweenDay());
 		    		} catch(InterruptedException ex){}
 		        	
+		        	//Store current infected & death population
+		        	long currentInfect = game.getTotalInfectedPopulation();
+		        	long currentDeath = game.getTotalDeathPopulation();
+		        	
 		        	
 		        	//Update the current date in main panel
 		        	game.setLabel(game.mainCurrentDateLabel, "Current Date: " + game.getCurrentDate());
@@ -112,7 +116,7 @@ public class MainController {
 		        	pickCountryToInfect();
 		        	
 		        	//Update corresponding UI with new data
-		        	gameSummary();
+		        	daySummary();
 		        	
 		        	//Increment 1 day
 		        	game.addDayToCalendar(1); 
@@ -179,10 +183,14 @@ public class MainController {
     	} 
 	}
 	
-	public static void gameSummary() {
+	public static void daySummary() {
 		//Summary for today
     	game.setLabel(game.totalInfectLabel, "World Total Infect         : " + game.getTotalInfectedPopulation());
     	game.setLabel(game.totalDeathLabel, "World Total Death         : " + game.getTotalDeathPopulation());
+    	
+    	int upgradePointsGained = game.upgradePointGainPerDay();
+    	game.calUpgradePoint(0, upgradePointsGained);
+    	game.setLabel(game.evoPointLabel, "Evo Point: " + game.getUpgradePoint());
     	
     	//Check again if half population is dead
     	if(!game.isHalfPopulationDead()) 

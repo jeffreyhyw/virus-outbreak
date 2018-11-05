@@ -142,6 +142,7 @@ public class ConfigTransmissionPanel {
       		    				}
       		    				else {
       		    					game.calUpgradePoint(1, att_list.get(pos).getCost());
+      		    					att_list.get(pos).setResearched(true);
       		    					updateCurrPoint();
           		    				((JLabel)att_panel.getComponent(k)).setText("Level " + att_list.get(pos).getLevel());
           		    				if(att_list.get(pos).getLevel() >= 5)
@@ -209,6 +210,9 @@ public class ConfigTransmissionPanel {
 						MainController.frame.getContentPane().add(Main.createAndShowGUI(game));
 						MainController.frame.revalidate();
 						MainController.frame.repaint();
+						
+						//resume the game
+						game.resumeGame();
 				    }
 				});
   		    }

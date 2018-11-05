@@ -138,7 +138,7 @@ public class Main{
 	{
 		JPanel bottom=new JPanel();
 		bottom.setLayout(new GridLayout(1,3));
-		game.evoPointLabel = new JLabel("Evo Point: 30", SwingConstants.CENTER);
+		game.evoPointLabel = new JLabel("Evo Point: " + game.getUpgradePoint(), SwingConstants.CENTER);
 		game.evoPointLabel.setFont(new Font("sans serif", Font.BOLD, 16));
 		game.evoPointLabel.setBackground(Color.lightGray);
 		game.evoPointLabel.setOpaque(true);

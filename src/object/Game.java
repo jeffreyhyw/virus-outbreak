@@ -14,7 +14,7 @@ public class Game {
 	private String bornCountry;
 	
     private boolean endGame = false;
-    private final int totalNumberOfDays = 300;
+    private final int totalNumberOfDays = 365;
     private int day = 0;
     private int msBetweenDay = 1000; // Millisecond until next day
     private Calendar calendar = Calendar.getInstance();
@@ -29,7 +29,11 @@ public class Game {
     private boolean halfPopulationDead = false;
     private boolean halfPopulationInfected = false;
     public boolean newGame = true;
-    private int upgradePoint = 200;
+    private int upgradePoint = 60;
+    private int infectPopPerUpgradePoint = 12500;
+    private int gainedInfectUpgradePoint = 0;
+    private int deadPopPerUpgradePoint = 10000;
+    private int gainedDeathUpgradePoint = 0;
     
     private String selectedRowCountryName = "";
     
@@ -94,10 +98,10 @@ public class Game {
 		
 		//tmp
 		transmissionList.add(new VirusTransmission("Rodent", 0, "description", 0.15, 0,30));
-		transmissionList.add(new VirusTransmission("Air I", 0, "description", 0.1, 0,30));
-		transmissionList.add(new VirusTransmission("Air II", 0, "description", 0.25, 0,30));
-		transmissionList.add(new VirusTransmission("Water I", 0, "description", 0.1, 0,30));
-		transmissionList.add(new VirusTransmission("Water II", 0, "description", 0.25, 0,30));
+		transmissionList.add(new VirusTransmission("Air I", 0, "description", 0.2, 0,30));
+		transmissionList.add(new VirusTransmission("Air II", 0, "description", 0.3, 0,30));
+		transmissionList.add(new VirusTransmission("Water I", 0, "description", 0.2, 0,30));
+		transmissionList.add(new VirusTransmission("Water II", 0, "description", 0.3, 0,30));
 		
 		symptomList.add(new VirusSymptom("Nausea", 0, "description", 0.1, 0.15, 30, false));
 		symptomList.add(new VirusSymptom("Coughing", 0, "description", 0.2, 0.1, 30, false));
@@ -411,7 +415,37 @@ public class Game {
 			upgradePoint -= calPoint;
 	}
 
-
+	public int upgradePointGainPerDay() {
+		int totalPoint = 0;
+		
+		int gainedInfectPoint = (int) (getTotalInfectedPopulation() / (infectPopPerUpgradePoint * getDay() *  getDay() + 1));
+		
+		
+		if(gainedInfectPoint > 0) 
+		{
+			totalPoint += gainedInfectPoint - gainedInfectUpgradePoint;
+			
+			if(gainedInfectPoint > gainedInfectUpgradePoint) {
+				gainedInfectUpgradePoint++;
+			}
+		}
+		
+		int gainedDeathPoint = (int) (getTotalInfectedPopulation() / (infectPopPerUpgradePoint * getDay() *  getDay() + 1));
+		
+		
+		if(gainedDeathPoint > 0) 
+		{
+			totalPoint = gainedDeathPoint - gainedDeathUpgradePoint;
+			
+			if(gainedDeathPoint > gainedDeathUpgradePoint) {
+				gainedDeathUpgradePoint++;
+			}
+		}
+		
+	
+		
+		return totalPoint;
+	}
 	
 	
 	

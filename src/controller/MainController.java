@@ -15,6 +15,7 @@ import object.Country;
 import object.DeadCountry;
 import object.Game;
 import object.InfectedCountry;
+import object.Research;
 import ui.GameStart;
 import ui.Main;
 import ui.VirusConfigMainPanel;
@@ -202,6 +203,14 @@ public class MainController {
     		}
     	} 
     	
+    	//Pick a country to research when necessary
+    	if(game.shouldResearchStart())
+    	{
+    		pickCountryToResearch();
+    		researching();
+    	}
+    	
+    	
     	//Display this message once when the virus infected 50% population
     	if(!game.isHalfPopulationInfected()) 
     	{
@@ -235,6 +244,32 @@ public class MainController {
     		game.setLabel(game.mainTitleLabel, "Game over ... " + game.getVirusName() + " has been defeated by WHO");
     		game.setEndGame(true);
     	}
+	}
+	
+	public static void pickCountryToResearch() {
+		if(game.getResearch().getHoldByCountry() == null || game.getResearch().getHoldByCountry().getState() instanceof DeadCountry == true) {
+			game.getResearch().setHoldByCountry(game.getHighestInfectCountry());
+			game.setLabel(game.mainTitleLabel, game.getResearch().getHoldByCountry().getName() + " has started a research!");
+		}
+	}
+	
+	public static void researching() {
+		if(game.getResearch().getHoldByCountry() != null) {
+			
+			Research tmpResearch = game.getResearch();
+			
+			//Increase research a little bit everyday
+			tmpResearch.addResearchPerDay(tmpResearch.getHoldByCountry().getMedicalSystem()); 
+			
+			//Increase the whole research percentage by one if research per day exceeds 1
+			tmpResearch.addCurrentResearch(tmpResearch.getResearchPerDay()); 
+			game.setLabel(game.researchLabel, "Research: "+ tmpResearch.getCurrentResearch() +"%" );
+			
+			if(tmpResearch.getCurrentResearch() >= 100) {
+				game.setLabel(game.mainTitleLabel, "Game over ... " + "WHO has found a cure.");
+				game.setEndGame(true);
+			}
+		}
 	}
 	
 	//Print

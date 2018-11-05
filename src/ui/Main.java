@@ -147,7 +147,7 @@ public class Main{
 		bottom.add(attritube);
 		JButton exit=new JButton("Exit");
 		bottom.add(exit);
-		game.researchLabel = new JLabel("Research: 0%", SwingConstants.CENTER);
+		game.researchLabel = new JLabel("Research: "+ game.getResearch().getCurrentResearch() +"%", SwingConstants.CENTER);
 		game.researchLabel.setFont(new Font("sans serif", Font.BOLD, 16));
 		game.researchLabel.setBackground(Color.lightGray);
 		game.researchLabel.setOpaque(true);

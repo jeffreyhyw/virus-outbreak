@@ -16,7 +16,7 @@ public class Game {
     private boolean endGame = false;
     private final int totalNumberOfDays = 365;
     private int day = 0;
-    private int msBetweenDay = 1000; // Millisecond until next day
+    private int msBetweenDay = 100; // Millisecond until next day
     private Calendar calendar = Calendar.getInstance();
 	private SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
     private String currentDate = "";  // new date
@@ -29,11 +29,12 @@ public class Game {
     private boolean halfPopulationDead = false;
     private boolean halfPopulationInfected = false;
     public boolean newGame = true;
-    private int upgradePoint = 60;
+    private int upgradePoint = 9960;
     private int infectPopPerUpgradePoint = 12500;
     private int gainedInfectUpgradePoint = 0;
     private int deadPopPerUpgradePoint = 10000;
     private int gainedDeathUpgradePoint = 0;
+    private Research research = new Research();
     
     private String selectedRowCountryName = "";
     
@@ -222,10 +223,47 @@ public class Game {
 			return false;
 		}
 	}
+	
+	public boolean shouldResearchStart() {
+		if(getTotalInfectedPopulation() >= (getWorldTotalPopulation() / 2.5))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 	public boolean isHalfPopulationInfected() {
 		return halfPopulationInfected;
 	}
+	
+	public Country getHighestInfectCountry() {
+		int tmpMaxPopulation = 0;
+		Country worstCountry = null;
+		for (Country c : countries) {
+			if(c.getInfectedPopulation() > tmpMaxPopulation) {
+				worstCountry = c;
+				tmpMaxPopulation = c.getInfectedPopulation();
+			}
+		}
+		return worstCountry;
+	}
+	
+	public Country getHighestDeathCountry() {
+		int tmpMaxPopulation = 0;
+		Country worstCountry = null;
+		for (Country c : countries) {
+			if(c.getDeathPopulation() > tmpMaxPopulation) {
+				worstCountry = c;
+				tmpMaxPopulation = c.getDeathPopulation();
+			}
+		}
+		return worstCountry;
+	}
+	
+	
 
 	public void setHalfPopulationInfected(boolean halfPopulationInfected) {
 		this.halfPopulationInfected = halfPopulationInfected;
@@ -446,6 +484,13 @@ public class Game {
 		
 		return totalPoint;
 	}
+
+	public Research getResearch() {
+		return research;
+	}
+
+	
+	
 	
 	
 	

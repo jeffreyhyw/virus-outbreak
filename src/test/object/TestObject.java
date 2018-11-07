@@ -1,4 +1,4 @@
-package testing;
+package test.object;
 
 public class TestObject {
 

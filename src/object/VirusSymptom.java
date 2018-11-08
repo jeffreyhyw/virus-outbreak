@@ -35,7 +35,7 @@ public class VirusSymptom extends VirusAttribute{
 	}
 	
 	public double getKillPeopleRate() {
-		return killPeopleRate;
+		return killPeopleRate * 1.5;
 	}
 
 	public void setKillPeopleRate(double killPeopleRate) {
@@ -55,5 +55,8 @@ public class VirusSymptom extends VirusAttribute{
 		this.researched = researched;
 	}
 	
-
+	public boolean upLevel() {
+		level = 1;
+		return true;
+	}
 }

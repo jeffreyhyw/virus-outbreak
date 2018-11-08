@@ -22,7 +22,11 @@ public class Main{
 	public static void BuildTitle(JPanel panel)
 	{
 		GridBagConstraints layout=new GridBagConstraints();
-		game.mainTitleLabel = new JLabel("Game Start!", SwingConstants.CENTER);
+		if(game.newGame)
+		{
+			game.mainTitleLabel = new JLabel("Game Start!", SwingConstants.CENTER);
+			game.newGame = false;
+		}
 		game.mainTitleLabel.setFont(new Font("sans serif", Font.BOLD, 16));
 		layout.gridx=0;
 		layout.gridy=0;
@@ -134,20 +138,20 @@ public class Main{
 	{
 		JPanel bottom=new JPanel();
 		bottom.setLayout(new GridLayout(1,3));
-		JLabel evopoint= new JLabel("Evo Point: 5", SwingConstants.CENTER);
-		evopoint.setFont(new Font("sans serif", Font.BOLD, 16));
-		evopoint.setBackground(Color.lightGray);
-		evopoint.setOpaque(true);
-		bottom.add(evopoint);
+		game.evoPointLabel = new JLabel("Evo Point: " + game.getUpgradePoint(), SwingConstants.CENTER);
+		game.evoPointLabel.setFont(new Font("sans serif", Font.BOLD, 16));
+		game.evoPointLabel.setBackground(Color.lightGray);
+		game.evoPointLabel.setOpaque(true);
+		bottom.add(game.evoPointLabel);
 		JButton attritube=new JButton("Attritube");
 		bottom.add(attritube);
 		JButton exit=new JButton("Exit");
 		bottom.add(exit);
-		JLabel respoint= new JLabel("Research: 50%", SwingConstants.CENTER);
-		respoint.setFont(new Font("sans serif", Font.BOLD, 16));
-		respoint.setBackground(Color.lightGray);
-		respoint.setOpaque(true);
-		bottom.add(respoint);
+		game.researchLabel = new JLabel("Research: "+ game.getResearch().getCurrentResearch() +"%", SwingConstants.CENTER);
+		game.researchLabel.setFont(new Font("sans serif", Font.BOLD, 16));
+		game.researchLabel.setBackground(Color.lightGray);
+		game.researchLabel.setOpaque(true);
+		bottom.add(game.researchLabel);
 		GridBagConstraints layout=new GridBagConstraints();
 		layout.gridx=0;
 		layout.gridy=4;

@@ -140,6 +140,9 @@ public class ConfigSymptomPanel{
       		    					game.calUpgradePoint(1, symptom_list.get(pos).getCost());
       		    					updateCurrPoint();
       		    					symptom_list.get(pos).setStatus(true);
+      		    					symptom_list.get(pos).setResearched(true);
+      		    					symptom_list.get(pos).upLevel();
+      		    					
       		    					if(symptom_list.get(pos).getStatus()) {
       		    						((JLabel)att_panel.getComponent(k)).setText("RESEARCHED");
       		    						((JButton) e.getSource()).setEnabled(false);

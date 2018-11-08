@@ -1,11 +1,11 @@
 package object;
 
+
 public class Country {
 	private int population, infectedPopulation, deathPopulation;
 	private String name;
 	private double medicalSystem = 0.5;
 	private CountryClimate climate;
-	private CountryEconomy economy;
 	private CountryState state;
 	
 	//Initialize Country
@@ -15,8 +15,6 @@ public class Country {
 		this.population = pop;
 		this.infectedPopulation = 0;
 		this.deathPopulation = 0;
-		climate = new CountryClimate();
-		economy = new CountryEconomy();
 		state = new NormalCountry();
 	}
 	
@@ -76,6 +74,7 @@ public class Country {
 		if(deathPopulation > population)
 		{
 			deathPopulation = population;
+			setState(new DeadCountry());
 		}
 		if(deathPopulation > infectedPopulation)
 		{
@@ -97,16 +96,7 @@ public class Country {
 	{
 		this.climate = climate;
 	}
-	
-	public CountryEconomy getEconomy()
-	{
-		return this.economy;
-	}
-	
-	public void setEconomy(CountryEconomy economy)
-	{
-		this.economy = economy;
-	}
+
 	
 	public CountryState getState()
 	{

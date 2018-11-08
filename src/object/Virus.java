@@ -7,8 +7,10 @@ public class Virus {
 	private ArrayList<VirusTransmission> transmissionList;
 	private ArrayList<VirusSymptom> symptomList;
 	private ArrayList<VirusAbility> abilityList;
-	private double virusSpeed = 0.003;
-	private double virusPower = 0.01;
+//	private double virusSpeed = 0.003;
+//	private double virusPower = 0.01;
+	private double virusSpeed = 0.01;
+	private double virusPower = 0.1;
 	private boolean researched;
 	
 
@@ -58,24 +60,51 @@ public class Virus {
 	}
 	
 	public int getInfectPerDay(Country c, int day) {
-		return (int) (day * day * c.getMedicalSystem() + ( c.getUninfectedPopulation() * (1 - c.getMedicalSystem()) * virusSpeed * (1+getInfectionPower()) ));
+		if(getInfectionPower(c) == 0)
+		{
+			return (int) (day * day * c.getMedicalSystem());
+		}
+		else
+		{
+			return (int) (day * day * c.getMedicalSystem() + ( c.getUninfectedPopulation() * (1 - c.getMedicalSystem()) * virusSpeed * (1+getInfectionPower(c)) ));
+		}
 	}
 	
 	
 	public int getKillPerDay(Country c, int day) {
-		return (int) (c.getInfectedPopulation() * (1 - c.getMedicalSystem()) * virusPower *  (1 + getSymptomKillPower()) );
+		if(getSymptomKillPower() == 0)
+		{
+			return 0;
+		}
+		else
+		{
+			return (int) (c.getInfectedPopulation() * (1 - c.getMedicalSystem()) * virusPower *  (1 + getSymptomKillPower()) );
+		}
 	}
 	
-	public double getInfectionPower() {
+	public double getInfectionPower(Country c) {
 		double infectPower = 0;
 		for (VirusSymptom vs : symptomList) {
-			infectPower += vs.getInfectionRate() * vs.getLevel();
+			if(vs.getResearched())
+				infectPower += vs.getInfectionRate() * vs.getLevel();
  		}
 		for (VirusTransmission vt : transmissionList) {
-			infectPower += vt.getInfectionRate() * vt.getLevel();
+			if(vt.getResearched())
+				infectPower += vt.getInfectionRate() * vt.getLevel();
  		}
 		for (VirusAbility va : abilityList) {
-			infectPower += va.getInfectionRate() * va.getLevel();
+			if(va.getResearched()) 
+			{
+				
+				if(va.getClimateBoost() == c.getClimate())
+				{
+					infectPower += va.getInfectionRate() * va.getLevel() * 2;
+				}
+				else
+				{
+					infectPower += va.getInfectionRate() * va.getLevel();
+				}
+			}
  		}
 		return infectPower;
 	}
@@ -83,7 +112,9 @@ public class Virus {
 	public double getSymptomKillPower() {
 		double killPower = 0;
 		for (VirusSymptom vs : symptomList) {
-			killPower += vs.getKillPeopleRate() * vs.getLevel();
+			if(vs.getResearched())
+				killPower += vs.getKillPeopleRate() * vs.getLevel();
+
  		}
 		return killPower;
 		

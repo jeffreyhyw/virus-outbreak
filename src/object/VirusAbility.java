@@ -6,14 +6,16 @@ public class VirusAbility extends VirusAttribute{
 	private double killPeopleRate = 0;
 	private double affectResearchRate = 0;
 	private boolean researched;
+	private CountryClimate climateBoost;
 	
-	public VirusAbility(String att_name, int level, String description, double infectionRate, double killPeopleRate, double affectResearchRate, int cost) {
+	public VirusAbility(String att_name, int level, String description, double infectionRate, double killPeopleRate, double affectResearchRate, CountryClimate climateBoost, int cost) {
 		super(att_name, description, cost);
 		this.level = level;
 		this.infectionRate = infectionRate;
 		this.killPeopleRate = killPeopleRate;
 		this.affectResearchRate = affectResearchRate;
 		this.researched = false;
+		this.setClimateBoost(climateBoost);
 	}
 	
 	public int getLevel() {
@@ -62,6 +64,14 @@ public class VirusAbility extends VirusAttribute{
 
 	public void setResearched(boolean researched) {
 		this.researched = researched;
+	}
+
+	public CountryClimate getClimateBoost() {
+		return climateBoost;
+	}
+
+	public void setClimateBoost(CountryClimate climateBoost) {
+		this.climateBoost = climateBoost;
 	}
 	
 	

@@ -35,7 +35,7 @@ public class VirusSymptom extends VirusAttribute{
 	}
 	
 	public double getKillPeopleRate() {
-		return killPeopleRate;
+		return killPeopleRate * 1.5;
 	}
 
 	public void setKillPeopleRate(double killPeopleRate) {

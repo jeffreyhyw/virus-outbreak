@@ -10,7 +10,7 @@ public class Virus {
 //	private double virusSpeed = 0.003;
 //	private double virusPower = 0.01;
 	private double virusSpeed = 0.01;
-	private double virusPower = 0.001;
+	private double virusPower = 0.1;
 	private boolean researched;
 	
 
@@ -60,13 +60,13 @@ public class Virus {
 	}
 	
 	public int getInfectPerDay(Country c, int day) {
-		if(getInfectionPower() == 0)
+		if(getInfectionPower(c) == 0)
 		{
 			return (int) (day * day * c.getMedicalSystem());
 		}
 		else
 		{
-			return (int) (day * day * c.getMedicalSystem() + ( c.getUninfectedPopulation() * (1 - c.getMedicalSystem()) * virusSpeed * (1+getInfectionPower()) ));
+			return (int) (day * day * c.getMedicalSystem() + ( c.getUninfectedPopulation() * (1 - c.getMedicalSystem()) * virusSpeed * (1+getInfectionPower(c)) ));
 		}
 	}
 	
@@ -82,7 +82,7 @@ public class Virus {
 		}
 	}
 	
-	public double getInfectionPower() {
+	public double getInfectionPower(Country c) {
 		double infectPower = 0;
 		for (VirusSymptom vs : symptomList) {
 			if(vs.getResearched())
@@ -93,8 +93,18 @@ public class Virus {
 				infectPower += vt.getInfectionRate() * vt.getLevel();
  		}
 		for (VirusAbility va : abilityList) {
-			if(va.getResearched())
-				infectPower += va.getInfectionRate() * va.getLevel();
+			if(va.getResearched()) 
+			{
+				
+				if(va.getClimateBoost() == c.getClimate())
+				{
+					infectPower += va.getInfectionRate() * va.getLevel() * 2;
+				}
+				else
+				{
+					infectPower += va.getInfectionRate() * va.getLevel();
+				}
+			}
  		}
 		return infectPower;
 	}

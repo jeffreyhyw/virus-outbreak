@@ -192,6 +192,7 @@ public class MainController {
     	int upgradePointsGained = game.upgradePointGainPerDay();
     	game.calUpgradePoint(0, upgradePointsGained);
     	game.setLabel(game.evoPointLabel, "Evo Point: " + game.getUpgradePoint());
+    	game.makeInfectGainPointHarder();
     	
     	//Check again if half population is dead
     	if(!game.isHalfPopulationDead()) 

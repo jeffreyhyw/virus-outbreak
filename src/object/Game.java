@@ -18,7 +18,7 @@ public class Game {
     private boolean endGame = false;
     private final int totalNumberOfDays = 365;
     private int day = 0;
-    private int msBetweenDay = 100; // Millisecond until next day
+    private int msBetweenDay = 1000; // Millisecond until next day
     private Calendar calendar = Calendar.getInstance();
 	private SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
     private String currentDate = "";  // new date

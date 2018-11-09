@@ -24,9 +24,13 @@ public class VirusAbility extends VirusAttribute{
 	public void setLevel(int level) {
 		this.level = level;
 	}
-	public boolean upLevel() {
-		if(level + 1 < 5) {
+	public void upLevel() {
+		if(level + 1 <= 5) {
 			level += 1;
+		}
+	}
+	public boolean checkLevel() {
+		if(level + 1 <= 5) {
 			return true;
 		}
 		else {

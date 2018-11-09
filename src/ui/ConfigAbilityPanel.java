@@ -140,7 +140,7 @@ public class ConfigAbilityPanel{
       		    			}
       		    			else if(att_panel.getComponent(k).getName().equals(checkLabelName)) {
       		    				int pos = Integer.parseInt(o.getName());
-      		    				if(!att_list.get(pos).upLevel()) {
+      		    				if(!att_list.get(pos).checkLevel()) {
       		    					System.out.println("Max Level");
       		    					break;
       		    				}
@@ -152,6 +152,7 @@ public class ConfigAbilityPanel{
       		    					game.calUpgradePoint(1, att_list.get(pos).getCost());
       		    					att_list.get(pos).setResearched(true);
       		    					updateCurrPoint();
+      		    					att_list.get(pos).upLevel();
           		    				((JLabel)att_panel.getComponent(k)).setText("Level " + att_list.get(pos).getLevel());
           		    				if(att_list.get(pos).getLevel() >= 5)
           		    	      			upLevelBtn.setEnabled(false);

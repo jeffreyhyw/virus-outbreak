@@ -10,7 +10,7 @@ public class Virus {
 //	private double virusSpeed = 0.003;
 //	private double virusPower = 0.01;
 	private double virusSpeed = 0.01;
-	private double virusPower = 0.1;
+	private double virusPower = 0.01;
 	private boolean researched;
 	
 
@@ -95,7 +95,7 @@ public class Virus {
 		for (VirusAbility va : abilityList) {
 			if(va.getResearched()) 
 			{
-				
+				//Bost virus power if the climate of the place suitable for virus
 				if(va.getClimateBoost() == c.getClimate())
 				{
 					infectPower += va.getInfectionRate() * va.getLevel() * 2;

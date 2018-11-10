@@ -117,6 +117,7 @@ public class MainController {
 		        			}
 		        		}
 		    		}
+		        	//If all people is dead in that country, virus cannot spread anymore.
 		        	if(!canVirusStillSpread) {
 		        		game.setEndGame(true);
 		        		game.setLabel(game.mainTitleLabel,  "Game Over! " + game.getVirusName() + " has failed to spread all over the world");
@@ -169,6 +170,11 @@ public class MainController {
 			
 			//Killing people in that country if infected > 0 and deathPopulation != totalPopulation
 			c.addDeathPopulation( game.getVirus().getKillPerDay(c, game.getDay()));
+			game.updateMainCountryVal(c.getName(), "Death", game.getVirus().getKillPerDay(c, game.getDay()));
+		}
+		else
+		{
+
 			game.updateMainCountryVal(c.getName(), "Death", game.getVirus().getKillPerDay(c, game.getDay()));
 		}
 	}
@@ -252,15 +258,22 @@ public class MainController {
     	} 
     	else if(game.getDay() > game.getTotalNumberOfDays())
     	{
-    		game.setLabel(game.mainTitleLabel, "Game over ... " + game.getVirusName() + " has been defeated by WHO");
+    		game.setLabel(game.mainTitleLabel, "Game over ... " + game.getVirusName() + " has failed to kill all population within " + game.getTotalNumberOfDays() + " days");
     		game.setEndGame(true);
     	}
 	}
 	
 	public static void pickCountryToResearch() {
-		if(game.getResearch().getHoldByCountry() == null || game.getResearch().getHoldByCountry().getState() instanceof DeadCountry == true) {
+		if(game.getResearch().getHoldByCountry() == null) {
 			game.getResearch().setHoldByCountry(game.getHighestInfectCountry());
 			game.setLabel(game.mainTitleLabel, game.getResearch().getHoldByCountry().getName() + " has started a research!");
+		}
+		if(game.getResearch().getHoldByCountry().getState() instanceof DeadCountry) {
+			game.getResearch().setHoldByCountry(game.getHighestInfectCountry());
+			if(game.getResearch().getHoldByCountry() != null)
+			{
+				game.setLabel(game.mainTitleLabel, game.getResearch().getHoldByCountry().getName() + " has started a new research!");
+			}
 		}
 	}
 	
@@ -269,18 +282,31 @@ public class MainController {
 			
 			Research tmpResearch = game.getResearch();
 			
-			//Increase research a little bit everyday
-			tmpResearch.addResearchPerDay(tmpResearch.getHoldByCountry().getMedicalSystem()); 
+			//Calculate research to increase per day
+			double researchPoint = tmpResearch.getHoldByCountry().getMedicalSystem() - decreaseCountryResearchRate(tmpResearch.getHoldByCountry());
+			
+			//Add research point
+			tmpResearch.addResearchPerDay(researchPoint); 
 			
 			//Increase the whole research percentage by one if research per day exceeds 1
 			tmpResearch.addCurrentResearch(tmpResearch.getResearchPerDay()); 
 			game.setLabel(game.researchLabel, "Research: "+ tmpResearch.getCurrentResearch() +"%" );
 			
 			if(tmpResearch.getCurrentResearch() >= 100) {
-				game.setLabel(game.mainTitleLabel, "Game over ... " + "WHO has found a cure.");
+				game.setLabel(game.mainTitleLabel, "Game over :( " + "WHO has found a cure.");
 				game.setEndGame(true);
 			}
 		}
+	}
+	
+	//Decrease rate if there are more and more dead people in that country
+	public static double decreaseCountryResearchRate(Country c) {
+		double decreaseRate = c.getDeathPopulation() / c.getPopulation();
+		if(decreaseRate > c.getMedicalSystem())
+		{
+			decreaseRate = c.getMedicalSystem() * 0.5;
+		}
+		return decreaseRate;
 	}
 	
 	//Print

@@ -81,7 +81,7 @@ public class Country {
 		{
 			deathPopulation = infectedPopulation;
 		}
-		if(deathPopulation > population)
+		if(deathPopulation >= infectedPopulation && deathPopulation > population)
 		{
 			deathPopulation = population;
 			setState(new DeadCountry());

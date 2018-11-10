@@ -23,9 +23,12 @@ public class Research {
 	
 	public void setHoldByCountry(Country holdByCountry) {
 		this.holdByCountry = holdByCountry;
-		researchPerDay = (int) (holdByCountry.getMedicalSystem() - (holdByCountry.getDeathPopulation() / holdByCountry.getPopulation()));
-		if(researchPerDay < 0) {
-			researchPerDay = 0;
+		if(holdByCountry != null)
+		{
+			researchPerDay = (int) (holdByCountry.getMedicalSystem() - (holdByCountry.getDeathPopulation() / holdByCountry.getPopulation()));
+			if(researchPerDay < 0) {
+				researchPerDay = 0;
+			}
 		}
 	}
 

@@ -16,9 +16,9 @@ public class Game {
 	private String bornCountry;
 	
     private boolean endGame = false;
-    private final int totalNumberOfDays = 365;
+    private final int totalNumberOfDays = 520;
     private int day = 0;
-    private int msBetweenDay = 1000; // Millisecond until next day
+    private int msBetweenDay = 100; // Millisecond until next day
     private Calendar calendar = Calendar.getInstance();
 	private SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
     private String currentDate = "";  // new date
@@ -159,7 +159,7 @@ public class Game {
 	public void initCountries() {
 		Country c;
 		c = new Country("America", 327508189);
-		c.setMedicalSystem(0.9);
+		c.setMedicalSystem(0.8);
 		c.setClimate(CountryClimate.Cold);
 		countries.add(c);
 		
@@ -247,7 +247,7 @@ public class Game {
 	}
 	
 	public boolean shouldResearchStart() {
-		if(getTotalInfectedPopulation() >= (getWorldTotalPopulation() / 2.5))
+		if(getTotalInfectedPopulation() >= (getWorldTotalPopulation() / 2))
 		{
 			return true;
 		}
@@ -265,7 +265,7 @@ public class Game {
 		int tmpMaxPopulation = 0;
 		Country worstCountry = null;
 		for (Country c : countries) {
-			if(c.getInfectedPopulation() > tmpMaxPopulation) {
+			if(c.getInfectedPopulation() > tmpMaxPopulation && (c.getState() instanceof DeadCountry == false)) {
 				worstCountry = c;
 				tmpMaxPopulation = c.getInfectedPopulation();
 			}

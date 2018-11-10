@@ -51,10 +51,15 @@ public class Country {
 	public void addInfectedPopulation(int pop)
 	{
 		infectedPopulation += pop;
-		if(infectedPopulation > population)
+		if(infectedPopulation > population && infectedPopulation < deathPopulation)
 		{
 			infectedPopulation = population;
 			setState(new InfectedCountry());
+		}
+		else if(infectedPopulation > population && infectedPopulation >= deathPopulation)
+		{
+			infectedPopulation = population;
+			setState(new DeadCountry());
 		}
 	}
 	
@@ -71,14 +76,15 @@ public class Country {
 	public void addDeathPopulation(int pop)
 	{
 		deathPopulation += pop;
+
+		if(deathPopulation > infectedPopulation)
+		{
+			deathPopulation = infectedPopulation;
+		}
 		if(deathPopulation > population)
 		{
 			deathPopulation = population;
 			setState(new DeadCountry());
-		}
-		if(deathPopulation > infectedPopulation)
-		{
-			deathPopulation = infectedPopulation;
 		}
 	}
 	

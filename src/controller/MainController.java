@@ -15,6 +15,7 @@ import object.Country;
 import object.DeadCountry;
 import object.Game;
 import object.InfectedCountry;
+import object.NormalCountry;
 import object.Research;
 import ui.GameStart;
 import ui.Main;
@@ -105,13 +106,21 @@ public class MainController {
 		        	game.setLabel(game.mainCurrentDateLabel, "Current Date: " + game.getCurrentDate());
 		    				   
 		        	//Killing / Infecting logic ...
+		        	boolean canVirusStillSpread = false;
 		        	for (Country c : game.getCountries()) {
 		        		if(c.getInfectedPopulation() > 0) 
 		        		{
 		        			infectPeople(c);
 		        			killPeople(c);
+		        			if(c.getState() instanceof NormalCountry) {
+		        				canVirusStillSpread = true;
+		        			}
 		        		}
 		    		}
+		        	if(!canVirusStillSpread) {
+		        		game.setEndGame(true);
+		        		game.setLabel(game.mainTitleLabel,  "Game Over! " + game.getVirusName() + " has failed to spread all over the world");
+		        	}
 		        	
 		        	//Pick a random country to infect
 		        	pickCountryToInfect();
@@ -157,6 +166,7 @@ public class MainController {
 		//If there is still people alive
 		if(c.getState() instanceof DeadCountry == false)
 		{
+			
 			//Killing people in that country if infected > 0 and deathPopulation != totalPopulation
 			c.addDeathPopulation( game.getVirus().getKillPerDay(c, game.getDay()));
 			game.updateMainCountryVal(c.getName(), "Death", game.getVirus().getKillPerDay(c, game.getDay()));

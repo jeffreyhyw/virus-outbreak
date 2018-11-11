@@ -276,17 +276,17 @@ public class Game {
         return worstCountry;
     }
 
-    public Country getHighestDeathCountry() {
-        int tmpMaxPopulation = 0;
-        Country worstCountry = null;
-        for (Country c : countries) {
-            if (c.getDeathPopulation() > tmpMaxPopulation) {
-                worstCountry = c;
-                tmpMaxPopulation = c.getDeathPopulation();
-            }
-        }
-        return worstCountry;
-    }
+//    public Country getHighestDeathCountry() {
+//        int tmpMaxPopulation = 0;
+//        Country worstCountry = null;
+//        for (Country c : countries) {
+//            if (c.getDeathPopulation() > tmpMaxPopulation) {
+//                worstCountry = c;
+//                tmpMaxPopulation = c.getDeathPopulation();
+//            }
+//        }
+//        return worstCountry;
+//    }
 
 
     public void setHalfPopulationInfected(boolean halfPopulationInfected) {

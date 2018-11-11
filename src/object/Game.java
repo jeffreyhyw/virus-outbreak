@@ -49,6 +49,9 @@ public class Game {
     			  evoPointLabel, researchLabel; 
     public JTable mainInfoTable; 
     
+    public JLabel transmission_currcostLabel;
+    public JLabel symptom_currcostLabel;
+    public JLabel ability_currcostLabel;
     
     //Functions
     public Game() {
@@ -489,11 +492,47 @@ public class Game {
 		return research;
 	}
 
+	public JLabel getTransmission_currcostLabel() {
+		return transmission_currcostLabel;
+	}
+
+	public void setTransmission_currcostLabel(JLabel transmission_currcostLabel) {
+		this.transmission_currcostLabel = transmission_currcostLabel;
+	}
+
+	public JLabel getSymptom_currcostLabel() {
+		return symptom_currcostLabel;
+	}
+
+	public void setSymptom_currcostLabel(JLabel symptom_currcostLabel) {
+		this.symptom_currcostLabel = symptom_currcostLabel;
+	}
+
+	public JLabel getAbility_currcostLabel() {
+		return ability_currcostLabel;
+	}
+
+	public void setAbility_currcostLabel(JLabel ability_currcostLabel) {
+		this.ability_currcostLabel = ability_currcostLabel;
+	}
+
+	public void updateCurrentPoint() {
+		if(ability_currcostLabel != null) {
+			ability_currcostLabel.setText("Current Point : " + getUpgradePoint());
+		}
+		if(symptom_currcostLabel != null) {
+			symptom_currcostLabel.setText("Current Point : " + getUpgradePoint());
+		}
+		if(transmission_currcostLabel != null) {
+			transmission_currcostLabel.setText("Current Point : " + getUpgradePoint());
+		}
+	}
 	
+	public void initPointLabel() {
+		ability_currcostLabel =  null;
+		symptom_currcostLabel = null;
+		transmission_currcostLabel = null;
+	}
 	
-	
-	
-	
-    
     
 }

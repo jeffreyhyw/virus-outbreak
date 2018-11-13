@@ -87,4 +87,62 @@ public class TestCountry {
         StubCountry stubCountry = new StubCountry();
 
     }
+
+    /* TEST: getDeathPopulation */
+    @Test
+    public void TestGetDeathPopulation() {
+        Country country = new Country("test", 1234, 0, CountryClimate.Hot);
+        int result = country.getDeathPopulation();
+        assertEquals(0, result);
+    }
+
+    /* TEST: setDeathPopulation */
+    @Test
+    public void TestSetDeathPopulation() {
+        Country country = new Country("test", 1234, 0, CountryClimate.Hot);
+        country.setDeathPopulation(1234);
+        int result = country.getDeathPopulation();
+        assertEquals(1234, result);
+    }
+
+    /* TEST : addDeathPopulation */
+    @Test
+    public void TestAddDeathPopulation() {
+
+    }
+
+    /* TEST : getUninfectedPopulation */
+    @Test
+    public void TestGetUninfectedPopulation(){
+        Country country = new Country("test", 1234, 0, CountryClimate.Hot);
+        int result = country.getUninfectedPopulation();
+        assertEquals(1234, result);
+    }
+
+    /* TEST : getClimate */
+    @Test
+    public void TestGetClimate() {
+        Country country = new Country("test", 1234, 0, CountryClimate.Hot);
+        CountryClimate result = country.getClimate();
+        assertEquals(CountryClimate.Hot, result);
+    }
+
+    /* TEST : setState */
+    @Test
+    public void TestSetState(){
+        Country country = new Country("test", 1234, 0, CountryClimate.Hot);
+        CountryState countryState = new NormalCountry();
+        country.setState(countryState);
+        CountryState result = country.getState();
+        assertEquals(countryState, result);
+    }
+
+    /* TEST : getMedicalSystem */
+    @Test
+    public void TestGetMedicalSystem() {
+        Country country = new Country("test", 1234, 1234.1234, CountryClimate.Hot);
+        double result = country.getMedicalSystem();
+        assertEquals(1234.1234, result);
+    }
+
 }

@@ -19,6 +19,7 @@ public class VirusSymptom extends VirusAttribute {
     public boolean getStatus() {
         return status;
     }
+
     public void setStatus(boolean status) {
         this.status = status;
     }
@@ -26,6 +27,7 @@ public class VirusSymptom extends VirusAttribute {
     public int getLevel() {
         return level;
     }
+
     public void setLevel(int level) {
         this.level = level;
     }
@@ -33,6 +35,7 @@ public class VirusSymptom extends VirusAttribute {
     public double getKillPeopleRate() {
         return killPeopleRate * 1.5;
     }
+
     public void setKillPeopleRate(double killPeopleRate) {
         this.killPeopleRate = killPeopleRate;
     }
@@ -44,6 +47,7 @@ public class VirusSymptom extends VirusAttribute {
     public boolean getResearched() {
         return researched;
     }
+
     public void setResearched(boolean researched) {
         this.researched = researched;
     }

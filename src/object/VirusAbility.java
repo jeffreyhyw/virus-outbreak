@@ -15,7 +15,8 @@ public class VirusAbility extends VirusAttribute {
 //        this.killPeopleRate = 0;
         this.affectResearchRate = affectResearchRate;
         this.researched = false;
-        this.setClimateBoost(climateBoost);
+        this.climateBoost = climateBoost;
+        //this.setClimateBoost(climateBoost);
     }
 
     public int getLevel() {
@@ -48,9 +49,7 @@ public class VirusAbility extends VirusAttribute {
         return climateBoost;
     }
 
-    public void setClimateBoost(CountryClimate climateBoost) {
-        this.climateBoost = climateBoost;
-    }
-
-
+//    public void setClimateBoost(CountryClimate climateBoost) {
+//        this.climateBoost = climateBoost;
+//    }
 }

@@ -3,7 +3,6 @@ package test.object;
 import object.Country;
 import object.CountryClimate;
 import object.Research;
-import org.junit.Assert;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
@@ -51,7 +50,7 @@ public class TestResearch {
 
     @Test
     public void TestGetHoldByCountry() {
-        Country country = new Country("test", 1234, 10, CountryClimate.Hot);
+        Country country = new Country("test", 1234, 10.0, CountryClimate.Hot);
         Research research = new Research();
         research.setHoldByCountry(country);
         Country result = research.getHoldByCountry();
@@ -78,7 +77,7 @@ public class TestResearch {
                 return researchPerDay;
             }
         }
-        Country country = new Country("test", 1234, 10, CountryClimate.Hot);
+        Country country = new Country("test", 1234, 10.0, CountryClimate.Hot);
         StubResearch stubResearch = new StubResearch();
         int result = stubResearch.setHoldByCountry(country);
         assertEquals(10, result);
@@ -99,7 +98,7 @@ public class TestResearch {
                 return researchPerDay;
             }
         }
-        Country country = new Country("test", 1234, 10, CountryClimate.Hot);
+        Country country = new Country("test", 1234, 10.0, CountryClimate.Hot);
         country.setDeathPopulation(1200);
         StubResearch stubResearch = new StubResearch();
         int result = stubResearch.setHoldByCountry(country);
@@ -121,7 +120,7 @@ public class TestResearch {
                 return researchPerDay;
             }
         }
-        Country country = new Country("test", 1234, 0, CountryClimate.Hot);
+        Country country = new Country("test", 1234, 0.0, CountryClimate.Hot);
         country.setDeathPopulation(1200);
         StubResearch stubResearch = new StubResearch();
         int result = stubResearch.setHoldByCountry(country);
@@ -150,7 +149,7 @@ public class TestResearch {
 
     @Test
     public void TestGetResearchPerDayC1() {
-        Country country = new Country("test", 1234, 10, CountryClimate.Hot);
+        Country country = new Country("test", 1234, 10.0, CountryClimate.Hot);
         Research research = new Research();
         research.setHoldByCountry(country);
         int result = research.getResearchPerDay();
@@ -159,7 +158,7 @@ public class TestResearch {
 
     @Test
     public void TestGetResearchPerDayC2() {
-        Country country = new Country("test", 1234, 0, CountryClimate.Hot);
+        Country country = new Country("test", 1234, 0.0, CountryClimate.Hot);
         Research research = new Research();
         research.setHoldByCountry(country);
         int result = research.getResearchPerDay();

@@ -29,11 +29,6 @@ public class VirusAbility extends VirusAttribute {
     }
 
     public boolean checkLevel() {
-//        if (level + 1 <= 5) {
-//            return true;
-//        } else {
-//            return false;
-//        }
         return level + 1 <= 5;
     }
 

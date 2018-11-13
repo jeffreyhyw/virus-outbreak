@@ -81,55 +81,6 @@ public class TestVirus {
         }
     }
 
-    /* TEST: addTransmissionList */
-
-//    @Test
-//    public void TestAddTransmissionList() {
-//        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>(){{
-//            add(new VirusTransmission("tran1", "dTran1", 1.0));
-//            add(new VirusTransmission("tran2", "dTran2", 2.0));
-//        }};
-//        ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{
-//            add(new VirusSymptom("symp1", "dSymp1", 1.0, 0.1));
-//            add(new VirusSymptom("symp2", "dSymp2", 2.0, 0.2));
-//        }};
-//        ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
-//            add(new VirusAbility("abi1", "dAbi1", 1.0, CountryClimate.Hot));
-//            add(new VirusAbility("abi2", "dAbi2", 2.0, CountryClimate.Cold));
-//        }};
-//
-//        Virus virus = new Virus("test", transmissionList, symptomList, abilityList);
-//        virus.addTransmissionList(new VirusTransmission("tran3", "dTran3", 3.0));
-//        ArrayList<VirusTransmission> result = virus.getTransmissionList();
-//        assertEquals(3, result.size());
-//        assertEquals("tran3", result.get(2).getAtt_name());
-//        assertEquals("dTran3", result.get(2).getDescription());
-//        assertEquals(3.0, result.get(2).getInfectionRate());
-//    }
-
-    /* TEST: removeTransmissionList */
-
-//    @Test
-//    public void TestRemoveTransmissionList() {
-//        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>(){{
-//            add(new VirusTransmission("tran1", "dTran1", 1.0));
-//            add(new VirusTransmission("tran2", "dTran2", 2.0));
-//        }};
-//        ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{
-//            add(new VirusSymptom("symp1", "dSymp1", 1.0, 0.1));
-//            add(new VirusSymptom("symp2", "dSymp2", 2.0, 0.2));
-//        }};
-//        ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
-//            add(new VirusAbility("abi1", "dAbi1", 1.0, CountryClimate.Hot));
-//            add(new VirusAbility("abi2", "dAbi2", 2.0, CountryClimate.Cold));
-//        }};
-//
-//        Virus virus = new Virus("test", transmissionList, symptomList, abilityList);
-//        virus.removeTransmissionList(transmissionList.get(1));
-//        ArrayList<VirusTransmission> result = virus.getTransmissionList();
-//        assertEquals(1, result.size());
-//    }
-
     /* TEST: getSymptomList */
 
     @Test
@@ -157,55 +108,6 @@ public class TestVirus {
         }
     }
 
-    /* TEST: addSymptomList */
-
-//    @Test
-//    public void TestAddSymptomList() {
-//        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>(){{
-//            add(new VirusTransmission("tran1", "dTran1", 1.0));
-//            add(new VirusTransmission("tran2", "dTran2", 2.0));
-//        }};
-//        ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{
-//            add(new VirusSymptom("symp1", "dSymp1", 1.0, 0.1));
-//            add(new VirusSymptom("symp2", "dSymp2", 2.0, 0.2));
-//        }};
-//        ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
-//            add(new VirusAbility("abi1", "dAbi1", 1.0, CountryClimate.Hot));
-//            add(new VirusAbility("abi2", "dAbi2", 2.0, CountryClimate.Cold));
-//        }};
-//
-//        Virus virus = new Virus("test", transmissionList, symptomList, abilityList);
-//        virus.addSymptomList(new VirusSymptom("symp3", "dSymp3", 3.0, 0.3));
-//        ArrayList<VirusSymptom> result = virus.getSymptomList();
-//        assertEquals(3, result.size());
-//        assertEquals("symp2", result.get(2).getAtt_name());
-//        assertEquals("dSymp3", result.get(2).getDescription());
-//        assertEquals(3.0, result.get(2).getInfectionRate());
-//    }
-
-    /* TEST: removeSymptomList */
-
-//    @Test
-//    public void TestRemoveSymptomList() {
-//        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>(){{
-//            add(new VirusTransmission("tran1", "dTran1", 1.0));
-//            add(new VirusTransmission("tran2", "dTran2", 2.0));
-//        }};
-//        ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{
-//            add(new VirusSymptom("symp1", "dSymp1", 1.0, 0.1));
-//            add(new VirusSymptom("symp2", "dSymp2", 2.0, 0.2));
-//        }};
-//        ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
-//            add(new VirusAbility("abi1", "dAbi1", 1.0, CountryClimate.Hot));
-//            add(new VirusAbility("abi2", "dAbi2", 2.0, CountryClimate.Cold));
-//        }};
-//
-//        Virus virus = new Virus("test", transmissionList, symptomList, abilityList);
-//        virus.removeSymptomList(symptomList.get(1));
-//        ArrayList<VirusSymptom> result = virus.getSymptomList();
-//        assertEquals(1, result.size());
-//    }
-
     /* TEST: getAbilityList */
 
     @Test
@@ -232,56 +134,6 @@ public class TestVirus {
             assertEquals(abilityList.get(i).getInfectionRate(), result.get(i).getInfectionRate());
         }
     }
-
-    /* TEST: addSymptomList */
-
-//    @Test
-//    public void TestAddAbilityList() {
-//        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>(){{
-//            add(new VirusTransmission("tran1", "dTran1", 1.0));
-//            add(new VirusTransmission("tran2", "dTran2", 2.0));
-//        }};
-//        ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{
-//            add(new VirusSymptom("symp1", "dSymp1", 1.0, 0.1));
-//            add(new VirusSymptom("symp2", "dSymp2", 2.0, 0.2));
-//        }};
-//        ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
-//            add(new VirusAbility("abi1", "dAbi1", 1.0, CountryClimate.Hot));
-//            add(new VirusAbility("abi2", "dAbi2", 2.0, CountryClimate.Cold));
-//        }};
-//
-//        Virus virus = new Virus("test", transmissionList, symptomList, abilityList);
-//        virus.addAbilityList(new VirusAbility("abi3", "dAbi3", 3.0, CountryClimate.Wet));
-//        ArrayList<VirusAbility> result = virus.getAbilityList();
-//        assertEquals(3, result.size());
-//        assertEquals("abi3", result.get(2).getAtt_name());
-//        assertEquals("dAbi3", result.get(2).getDescription());
-//        assertEquals(3.0, result.get(2).getInfectionRate());
-//        assertEquals(CountryClimate.Wet, result.get(2).getClimateBoost());
-//    }
-
-    /* TEST: removeSymptomList */
-
-//    @Test
-//    public void TestRemoveAbilityList() {
-//        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>(){{
-//            add(new VirusTransmission("tran1", "dTran1", 1.0));
-//            add(new VirusTransmission("tran2", "dTran2", 2.0));
-//        }};
-//        ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{
-//            add(new VirusSymptom("symp1", "dSymp1", 1.0, 0.1));
-//            add(new VirusSymptom("symp2", "dSymp2", 2.0, 0.2));
-//        }};
-//        ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
-//            add(new VirusAbility("abi1", "dAbi1", 1.0, CountryClimate.Hot));
-//            add(new VirusAbility("abi2", "dAbi2", 2.0, CountryClimate.Cold));
-//        }};
-//
-//        Virus virus = new Virus("test", transmissionList, symptomList, abilityList);
-//        virus.removeAbilityList(abilityList.get(1));
-//        ArrayList<VirusAbility> result = virus.getAbilityList();
-//        assertEquals(1, result.size());
-//    }
 
     /* getInfectPerDay */
 

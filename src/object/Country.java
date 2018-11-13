@@ -21,6 +21,7 @@ public class Country {
     public void setName(String name) {
         this.name = name;
     }
+
     public String getName() {
         return this.name;
     }
@@ -28,6 +29,7 @@ public class Country {
     public int getPopulation() {
         return this.population;
     }
+
     public void setPopulation(int pop) {
         this.population = pop;
     }
@@ -35,6 +37,7 @@ public class Country {
     public int getInfectedPopulation() {
         return this.infectedPopulation;
     }
+
     public void setInfectedPopulation(int pop) {
         this.infectedPopulation = pop;
     }
@@ -53,6 +56,7 @@ public class Country {
     public int getDeathPopulation() {
         return this.deathPopulation;
     }
+
     public void setDeathPopulation(int pop) {
         this.deathPopulation = pop;
     }
@@ -68,6 +72,7 @@ public class Country {
             setState(new DeadCountry());
         }
     }
+
     public int getUninfectedPopulation() {
         return population - infectedPopulation;
     }

@@ -13,7 +13,7 @@ public class TestVirus {
 
     @Test
     public void TestGetName() {
-        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>(){{
+        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
             add(new VirusTransmission("tran1", "dTran1", 1.0));
             add(new VirusTransmission("tran2", "dTran2", 2.0));
         }};
@@ -35,7 +35,7 @@ public class TestVirus {
 
     @Test
     public void TestSetName() {
-        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>(){{
+        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
             add(new VirusTransmission("tran1", "dTran1", 1.0));
             add(new VirusTransmission("tran2", "dTran2", 2.0));
         }};
@@ -58,7 +58,7 @@ public class TestVirus {
 
     @Test
     public void TestGetTransmissionList() {
-        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>(){{
+        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
             add(new VirusTransmission("tran1", "dTran1", 1.0));
             add(new VirusTransmission("tran2", "dTran2", 2.0));
         }};
@@ -74,7 +74,7 @@ public class TestVirus {
         Virus virus = new Virus("test", transmissionList, symptomList, abilityList);
         ArrayList<VirusTransmission> result = virus.getTransmissionList();
         assertEquals(transmissionList.size(), result.size());
-        for (int i = 0; i < result.size() ; i++){
+        for (int i = 0; i < result.size(); i++) {
             assertEquals(transmissionList.get(i).getAtt_name(), result.get(i).getAtt_name());
             assertEquals(transmissionList.get(i).getDescription(), result.get(i).getDescription());
             assertEquals(transmissionList.get(i).getInfectionRate(), result.get(i).getInfectionRate());
@@ -85,7 +85,7 @@ public class TestVirus {
 
     @Test
     public void TestGetSymptomList() {
-        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>(){{
+        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
             add(new VirusTransmission("tran1", "dTran1", 1.0));
             add(new VirusTransmission("tran2", "dTran2", 2.0));
         }};
@@ -101,7 +101,7 @@ public class TestVirus {
         Virus virus = new Virus("test", transmissionList, symptomList, abilityList);
         ArrayList<VirusSymptom> result = virus.getSymptomList();
         assertEquals(symptomList.size(), result.size());
-        for (int i = 0; i < result.size() ; i++){
+        for (int i = 0; i < result.size(); i++) {
             assertEquals(symptomList.get(i).getAtt_name(), result.get(i).getAtt_name());
             assertEquals(symptomList.get(i).getDescription(), result.get(i).getDescription());
             assertEquals(symptomList.get(i).getInfectionRate(), result.get(i).getInfectionRate());
@@ -112,7 +112,7 @@ public class TestVirus {
 
     @Test
     public void TestGetAbilityList() {
-        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>(){{
+        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
             add(new VirusTransmission("tran1", "dTran1", 1.0));
             add(new VirusTransmission("tran2", "dTran2", 2.0));
         }};
@@ -128,7 +128,7 @@ public class TestVirus {
         Virus virus = new Virus("test", transmissionList, symptomList, abilityList);
         ArrayList<VirusAbility> result = virus.getAbilityList();
         assertEquals(abilityList.size(), result.size());
-        for (int i = 0; i < result.size() ; i++){
+        for (int i = 0; i < result.size(); i++) {
             assertEquals(abilityList.get(i).getAtt_name(), result.get(i).getAtt_name());
             assertEquals(abilityList.get(i).getDescription(), result.get(i).getDescription());
             assertEquals(abilityList.get(i).getInfectionRate(), result.get(i).getInfectionRate());
@@ -139,7 +139,7 @@ public class TestVirus {
 
     @Test
     public void TestGetInfectPerDayC1() {
-        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>(){{
+        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
         }};
         ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{
         }};
@@ -154,7 +154,7 @@ public class TestVirus {
 
     @Test
     public void TestGetInfectPerDayC2() {
-        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>(){{
+        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
             add(new VirusTransmission("tran1", "dTran1", 1.0));
             add(new VirusTransmission("tran2", "dTran2", 2.0));
         }};
@@ -175,7 +175,7 @@ public class TestVirus {
 
     @Test
     public void TestGetInfectPerDayC3() {
-        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>(){{
+        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
             add(new VirusTransmission("tran1", "dTran1", 1.0));
             add(new VirusTransmission("tran2", "dTran2", 2.0));
         }};
@@ -197,7 +197,7 @@ public class TestVirus {
         Country country = new Country("test", 1234, 10.0, CountryClimate.Hot);
         int result = virus.getInfectPerDay(country, 10);
         assertEquals(8.0, virus.getInfectionPower(country));
-        assertEquals(-999.54, country.getUninfectedPopulation() * (1 - country.getMedicalSystem()) * 0.01 * (1 + virus.getInfectionPower(country)) );
+        assertEquals(-999.54, country.getUninfectedPopulation() * (1 - country.getMedicalSystem()) * 0.01 * (1 + virus.getInfectionPower(country)));
         assertEquals(0, result);
     }
 
@@ -205,7 +205,7 @@ public class TestVirus {
 
     @Test
     public void TestGetKillPerDayC1() {
-        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>(){{
+        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
         }};
         ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{
         }};
@@ -220,7 +220,7 @@ public class TestVirus {
 
     @Test
     public void TestGetKillPerDayC2() {
-        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>(){{
+        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
             add(new VirusTransmission("tran1", "dTran1", 1.0));
             add(new VirusTransmission("tran2", "dTran2", 2.0));
         }};
@@ -241,7 +241,7 @@ public class TestVirus {
 
     @Test
     public void TestGetKillPerDayC3() {
-        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>(){{
+        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
             add(new VirusTransmission("tran1", "dTran1", 1.0));
             add(new VirusTransmission("tran2", "dTran2", 2.0));
         }};
@@ -265,7 +265,7 @@ public class TestVirus {
         Country country = new Country("test", 1234, 0.0593, CountryClimate.Hot);
         country.setInfectedPopulation(1080);
         int result = virus.getKillPerDay(country, 10);
-        assertEquals(97.5,virus.getSymptomKillPower());
+        assertEquals(97.5, virus.getSymptomKillPower());
         assertEquals(1000, result);
     }
 }

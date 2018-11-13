@@ -2,6 +2,7 @@ package test.object;
 
 import object.*;
 import org.junit.Test;
+
 import static junit.framework.TestCase.assertEquals;
 
 
@@ -71,6 +72,7 @@ public class TestCountry {
         class StubCountry {
             private int population = 1000, infectedPopulation = 0, deathPopulation = 0;
             private CountryState state;
+
             public int addInfectedPopulation(int pop) {
                 infectedPopulation += pop;
                 if (infectedPopulation > population && infectedPopulation < deathPopulation) {
@@ -80,6 +82,7 @@ public class TestCountry {
                 }
                 return infectedPopulation;
             }
+
             public int getPopulation() {
                 return this.population;
             }
@@ -89,6 +92,7 @@ public class TestCountry {
     }
 
     /* TEST: getDeathPopulation */
+
     @Test
     public void TestGetDeathPopulation() {
         Country country = new Country("test", 1234, 0, CountryClimate.Hot);
@@ -97,6 +101,7 @@ public class TestCountry {
     }
 
     /* TEST: setDeathPopulation */
+
     @Test
     public void TestSetDeathPopulation() {
         Country country = new Country("test", 1234, 0, CountryClimate.Hot);
@@ -106,20 +111,23 @@ public class TestCountry {
     }
 
     /* TEST : addDeathPopulation */
+
     @Test
     public void TestAddDeathPopulation() {
 
     }
 
     /* TEST : getUninfectedPopulation */
+
     @Test
-    public void TestGetUninfectedPopulation(){
+    public void TestGetUninfectedPopulation() {
         Country country = new Country("test", 1234, 0, CountryClimate.Hot);
         int result = country.getUninfectedPopulation();
         assertEquals(1234, result);
     }
 
     /* TEST : getClimate */
+
     @Test
     public void TestGetClimate() {
         Country country = new Country("test", 1234, 0, CountryClimate.Hot);
@@ -128,8 +136,9 @@ public class TestCountry {
     }
 
     /* TEST : setState */
+
     @Test
-    public void TestSetState(){
+    public void TestSetState() {
         Country country = new Country("test", 1234, 0, CountryClimate.Hot);
         CountryState countryState = new NormalCountry();
         country.setState(countryState);
@@ -138,6 +147,7 @@ public class TestCountry {
     }
 
     /* TEST : getMedicalSystem */
+
     @Test
     public void TestGetMedicalSystem() {
         Country country = new Country("test", 1234, 1234.1234, CountryClimate.Hot);

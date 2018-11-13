@@ -77,6 +77,7 @@ public class Game {
     public String getSelectedRowCountryName() {
         return selectedRowCountryName;
     }
+
     public void setSelectedRowCountryName(String selectedRowCountryName) {
         this.selectedRowCountryName = selectedRowCountryName;
     }
@@ -93,46 +94,27 @@ public class Game {
 
     /* For Virus */
     public void initVirus() {
-        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>(){{
+        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
             add(new VirusTransmission("Rodent", "description", 0.15));
             add(new VirusTransmission("Air I", "description", 0.2));
             add(new VirusTransmission("Air II", "description", 0.3));
             add(new VirusTransmission("Water I", "description", 0.2));
             add(new VirusTransmission("Water II", "description", 0.3));
         }};
-        ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>(){{
+        ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{
             add(new VirusSymptom("Nausea", "description", 0.1, 0.6));
             add(new VirusSymptom("Coughing", "description", 0.2, 0.8));
-            add(new VirusSymptom("Cysts","description", 0.15, 0.4));
+            add(new VirusSymptom("Cysts", "description", 0.15, 0.4));
             add(new VirusSymptom("Insomnia", "description", 0, 0.6));
             add(new VirusSymptom("Rash", "description", 0.15, 0.4));
-            add(new VirusSymptom("Anaemia",  "description", 0, 0.5));
+            add(new VirusSymptom("Anaemia", "description", 0, 0.5));
         }};
-        ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>(){{
-            add(new VirusAbility("Cold Resistance I", "description",0, CountryClimate.Cold));
-            add(new VirusAbility("Heat Resistance I", "description",0, CountryClimate.Hot));
-            add(new VirusAbility("Bacterial Resilience I", "description",15, CountryClimate.Wet));
+        ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
+            add(new VirusAbility("Cold Resistance I", "description", 0, CountryClimate.Cold));
+            add(new VirusAbility("Heat Resistance I", "description", 0, CountryClimate.Hot));
+            add(new VirusAbility("Bacterial Resilience I", "description", 15, CountryClimate.Wet));
             add(new VirusAbility("Drug Resistance I", "description", 25, CountryClimate.Dry));
         }};
-
-        //tmp
-//        transmissionList.add(new VirusTransmission("Rodent", 0, "description", 0.15, 0, 30));
-//        transmissionList.add(new VirusTransmission("Air I", 0, "description", 0.2, 0, 30));
-//        transmissionList.add(new VirusTransmission("Air II", 0, "description", 0.3, 0, 30));
-//        transmissionList.add(new VirusTransmission("Water I", 0, "description", 0.2, 0, 30));
-//        transmissionList.add(new VirusTransmission("Water II", 0, "description", 0.3, 0, 30));
-
-//        symptomList.add(new VirusSymptom("Nausea", 0, "description", 0.1, 0.6, 30, false));
-//        symptomList.add(new VirusSymptom("Coughing", 0, "description", 0.2, 0.8, 30, false));
-//        symptomList.add(new VirusSymptom("Cysts", 0, "description", 0.15, 0.4, 30, false));
-//        symptomList.add(new VirusSymptom("Insomnia", 0, "description", 0, 0.6, 30, false));
-//        symptomList.add(new VirusSymptom("Rash", 0, "description", 0.15, 0.4, 30, false));
-//        symptomList.add(new VirusSymptom("Anaemia", 0, "description", 0, 0.5, 30, false));
-
-//        abilityList.add(new VirusAbility("Cold Resistance I", 0, "description", 0.05, 0, 0, CountryClimate.Cold, 30));
-//        abilityList.add(new VirusAbility("Heat Resistance I", 0, "description", 0.05, 0, 0, CountryClimate.Hot, 30));
-//        abilityList.add(new VirusAbility("Bacterial Resilience I", 0, "description", 0.05, 0, 15, CountryClimate.Wet, 30));
-//        abilityList.add(new VirusAbility("Drug Resistance I", 0, "description", 0.05, 0, 25, CountryClimate.Dry, 30));
 
         virus = new Virus("name", transmissionList, symptomList, abilityList);
     }
@@ -155,6 +137,7 @@ public class Game {
     public String getVirusName() {
         return virus.getName();
     }
+
     public void setVirusName(String virusName) {
         virus.setName(virusName);
     }
@@ -162,6 +145,7 @@ public class Game {
     public Virus getVirus() {
         return virus;
     }
+
     public void setVirus(Virus virus) {
         this.virus = virus;
     }
@@ -169,82 +153,26 @@ public class Game {
 
     /* For Countries */
     public void initCountries() {
-        countries = new ArrayList<Country>(){{
+        countries = new ArrayList<Country>() {{
             add(new Country("America", 327508189, 0.8, CountryClimate.Cold));
-            add(new Country("Beligum", 11498519, 0.5,CountryClimate.Dry));
+            add(new Country("Beligum", 11498519, 0.5, CountryClimate.Dry));
             add(new Country("China", 1416818963, 0.4, CountryClimate.Wet));
-            add(new Country("Denmark", 5754356, 0.5,CountryClimate.Cold));
+            add(new Country("Denmark", 5754356, 0.5, CountryClimate.Cold));
             add(new Country("Egypt", 99375741, 0.3, CountryClimate.Hot));
-            add(new Country("France", 65233271, 0.7,CountryClimate.Cold));
+            add(new Country("France", 65233271, 0.7, CountryClimate.Cold));
             add(new Country("Germany", 82353077, 0.5, CountryClimate.Dry));
-            add(new Country("Hong Kong", 7450269, 0.9,CountryClimate.Wet));
+            add(new Country("Hong Kong", 7450269, 0.9, CountryClimate.Wet));
             add(new Country("India", 1354051854, 0.1, CountryClimate.Hot));
-            add(new Country("Japan", 127086134, 0.8,CountryClimate.Cold));
+            add(new Country("Japan", 127086134, 0.8, CountryClimate.Cold));
             add(new Country("Sweden", 10006742, 0.5, CountryClimate.Cold));
-            add(new Country("Thailand", 69231623, 0.6,CountryClimate.Hot));
+            add(new Country("Thailand", 69231623, 0.6, CountryClimate.Hot));
         }};
-
-//        Country c;
-//        c = new Country("America", 327508189);
-//        c.setMedicalSystem(0.8);
-//        c.setClimate(CountryClimate.Cold);
-//        countries.add(c);
-
-//        c = new Country("Beligum", 11498519);
-//        c.setClimate(CountryClimate.Dry);
-//        countries.add(c);
-
-//        c = new Country("China", 1416818963);
-//        c.setClimate(CountryClimate.Wet);
-//        c.setMedicalSystem(0.4);
-//        countries.add(c);
-
-//        c = new Country("Denmark", 5754356);
-//        c.setClimate(CountryClimate.Cold);
-//        countries.add(c);
-
-//        c = new Country("Egypt", 99375741);
-//        c.setClimate(CountryClimate.Hot);
-//        c.setMedicalSystem(0.3);
-//        countries.add(c);
-
-//        c = new Country("France", 65233271);
-//        c.setClimate(CountryClimate.Cold);
-//        c.setMedicalSystem(0.7);
-//        countries.add(c);
-
-//        c = new Country("Germany", 82353077);
-//        c.setClimate(CountryClimate.Dry);
-//        countries.add(c);
-
-//        c = new Country("Hong Kong", 7450269);
-//        c.setClimate(CountryClimate.Wet);
-//        c.setMedicalSystem(0.9);
-//        countries.add(c);
-
-//        c = new Country("India", 1354051854);
-//        c.setClimate(CountryClimate.Hot);
-//        c.setMedicalSystem(0.1);
-//        countries.add(c);
-
-//        c = new Country("Japan", 127086134);
-//        c.setClimate(CountryClimate.Cold);
-//        c.setMedicalSystem(0.8);
-//        countries.add(c);
-
-//        c = new Country("Sweden", 10006742);
-//        c.setClimate(CountryClimate.Cold);
-//        countries.add(c);
-
-//        c = new Country("Thailand", 69231623);
-//        c.setClimate(CountryClimate.Hot);
-//        c.setMedicalSystem(0.6);
-//        countries.add(c);
     }
 
     public boolean checkHalfPopulationDead() {
         return getTotalDeathPopulation() >= (getWorldTotalPopulation() / 2);
     }
+
     public boolean isHalfPopulationDead() {
         return halfPopulationDead;
     }
@@ -252,6 +180,7 @@ public class Game {
     public void setHalfPopulationDead(boolean halfPopulationDead) {
         this.halfPopulationDead = halfPopulationDead;
     }
+
     public boolean checkHalfPopulationInfected() {
         return getTotalInfectedPopulation() >= (getWorldTotalPopulation() / 2);
     }
@@ -384,6 +313,7 @@ public class Game {
     public boolean isEndGame() {
         return endGame;
     }
+
     public void setEndGame(boolean endGame) {
         this.endGame = endGame;
     }
@@ -391,6 +321,7 @@ public class Game {
     public int getDay() {
         return day;
     }
+
     public void setDay(int day) {
         this.day = day;
     }
@@ -407,6 +338,7 @@ public class Game {
     public Calendar getCalendar() {
         return calendar;
     }
+
     public void setCalendar(Calendar cal) {
         this.calendar = cal;
     }
@@ -425,6 +357,7 @@ public class Game {
     public String getCurrentDate() {
         return currentDate;
     }
+
     public String getEndGameDate() {
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, getTotalNumberOfDays());
@@ -453,6 +386,7 @@ public class Game {
     public int getUpgradePoint() {
         return this.upgradePoint;
     }
+
     public void calUpgradePoint(int type, int calPoint) {
         // 0 = +
         // 1 = -

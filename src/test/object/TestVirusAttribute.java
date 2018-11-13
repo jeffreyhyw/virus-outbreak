@@ -11,40 +11,40 @@ public class TestVirusAttribute {
 
     /* TEST : getAtt_name */
     @Test
-    public void TestGetAtt_name(){
-        VirusAttribute virusAttribute = new VirusAttribute("att","desc",30);
+    public void TestGetAtt_name() {
+        VirusAttribute virusAttribute = new VirusAttribute("att", "desc", 30);
         String result = virusAttribute.getAtt_name();
-        assertEquals("att",result);
+        assertEquals("att", result);
     }
 
     /* TEST : getDescription */
     @Test
-    public void TestGetDescription(){
-        VirusAttribute virusAttribute = new VirusAttribute("att","desc",30);
+    public void TestGetDescription() {
+        VirusAttribute virusAttribute = new VirusAttribute("att", "desc", 30);
         String result = virusAttribute.getDescription();
-        assertEquals("desc",result);
+        assertEquals("desc", result);
     }
 
     /* TEST : getCost */
     @Test
-    public void TestGetCost(){
-        VirusAttribute virusAttribute = new VirusAttribute("att","desc",30);
+    public void TestGetCost() {
+        VirusAttribute virusAttribute = new VirusAttribute("att", "desc", 30);
         int result = virusAttribute.getCost();
         assertEquals(30, result);
     }
 
     /* TEST : isResearched */
     @Test
-    public void TestGetResearched(){
-        VirusAttribute virusAttribute = new VirusAttribute("att","desc",30);
+    public void TestGetResearched() {
+        VirusAttribute virusAttribute = new VirusAttribute("att", "desc", 30);
         boolean result = virusAttribute.isResearched();
         assertFalse(result);
     }
 
     /* TEST : setResearched */
     @Test
-    public void TestSetResearched(){
-        VirusAttribute virusAttribute = new VirusAttribute("att","desc",30);
+    public void TestSetResearched() {
+        VirusAttribute virusAttribute = new VirusAttribute("att", "desc", 30);
         virusAttribute.setResearched(true);
         boolean result = virusAttribute.isResearched();
         assertTrue(result);

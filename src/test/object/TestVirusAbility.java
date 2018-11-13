@@ -11,16 +11,18 @@ import static junit.framework.TestCase.assertTrue;
 public class TestVirusAbility {
 
     /* TEST : getLevel */
+
     @Test
-    public void TestGetLevel(){
+    public void TestGetLevel() {
         VirusAbility virusAbility = new VirusAbility("attName", "desc", 0.1, CountryClimate.Hot);
         int result = virusAbility.getLevel();
         assertEquals(0, result);
     }
 
     /* TEST : upLevel */
+
     @Test
-    public void TestUpLevel(){
+    public void TestUpLevel() {
         VirusAbility virusAbility = new VirusAbility("attName", "desc", 0.1, CountryClimate.Hot);
         virusAbility.upLevel();
         int result = virusAbility.getLevel();
@@ -28,32 +30,36 @@ public class TestVirusAbility {
     }
 
     /* TEST : checkLevel */
+
     @Test
-    public void TestCheckLevel(){
+    public void TestCheckLevel() {
         VirusAbility virusAbility = new VirusAbility("attName", "desc", 0.1, CountryClimate.Hot);
         boolean result = virusAbility.checkLevel();
         assertTrue(result);
     }
 
     /* TEST : getInfectionRate */
+
     @Test
-    public void TestGetInfectionRate(){
+    public void TestGetInfectionRate() {
         VirusAbility virusAbility = new VirusAbility("attName", "desc", 0.1, CountryClimate.Hot);
         double result = virusAbility.getInfectionRate();
         assertEquals(0.05, result);
     }
 
     /* TEST : isResearched */
+
     @Test
-    public void TestGetResearched(){
+    public void TestGetResearched() {
         VirusAbility virusAbility = new VirusAbility("attName", "desc", 0.1, CountryClimate.Hot);
         boolean result = virusAbility.isResearched();
         assertFalse(result);
     }
 
     /* TEST : setResearched */
+
     @Test
-    public void TestSetResearched(){
+    public void TestSetResearched() {
         VirusAbility virusAbility = new VirusAbility("attName", "desc", 0.1, CountryClimate.Hot);
         virusAbility.setResearched(true);
         boolean result = virusAbility.isResearched();
@@ -61,8 +67,9 @@ public class TestVirusAbility {
     }
 
     /* TEST : getClimateBoost */
+
     @Test
-    public void TestGetClimateBoost(){
+    public void TestGetClimateBoost() {
         VirusAbility virusAbility = new VirusAbility("attName", "desc", 0.1, CountryClimate.Hot);
         CountryClimate result = virusAbility.getClimateBoost();
         assertEquals(CountryClimate.Hot, result);

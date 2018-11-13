@@ -67,6 +67,7 @@ public class TestResearch {
         // DeathPopulation is 0
         class StubResearch {
             private int researchPerDay = 0;     // should int in the orig class
+
             public int setHoldByCountry(Country holdByCountry) {
                 if (holdByCountry != null) {
                     researchPerDay = (int) (holdByCountry.getMedicalSystem() - (holdByCountry.getDeathPopulation() / holdByCountry.getPopulation()));
@@ -88,6 +89,7 @@ public class TestResearch {
         // DeathPopulation is 1200
         class StubResearch {
             private int researchPerDay = 0;
+
             public int setHoldByCountry(Country holdByCountry) {
                 if (holdByCountry != null) {
                     researchPerDay = (int) (holdByCountry.getMedicalSystem() - (holdByCountry.getDeathPopulation() / holdByCountry.getPopulation()));
@@ -110,6 +112,7 @@ public class TestResearch {
         // DeathPopulation is 1200, medicalSystem is 0
         class StubResearch {
             private int researchPerDay = 0;
+
             public int setHoldByCountry(Country holdByCountry) {
                 if (holdByCountry != null) {
                     researchPerDay = (int) (holdByCountry.getMedicalSystem() - (holdByCountry.getDeathPopulation() / holdByCountry.getPopulation()));
@@ -153,7 +156,7 @@ public class TestResearch {
         Research research = new Research();
         research.setHoldByCountry(country);
         int result = research.getResearchPerDay();
-        assertEquals(1,result);
+        assertEquals(1, result);
     }
 
     @Test
@@ -162,6 +165,6 @@ public class TestResearch {
         Research research = new Research();
         research.setHoldByCountry(country);
         int result = research.getResearchPerDay();
-        assertEquals(0,result);
+        assertEquals(0, result);
     }
 }

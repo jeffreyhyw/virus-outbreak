@@ -9,7 +9,7 @@ public class TestVirusSymptom {
 
     /* TEST : getStatus */
     @Test
-    public void TestGetStatus(){
+    public void TestGetStatus() {
         VirusSymptom virusSymptom = new VirusSymptom("symp", "desc", 0.5, 0.1);
         boolean result = virusSymptom.getStatus();
         assertFalse(result);
@@ -17,7 +17,7 @@ public class TestVirusSymptom {
 
     /* TEST : setStatus */
     @Test
-    public void TestSetStatus(){
+    public void TestSetStatus() {
         VirusSymptom virusSymptom = new VirusSymptom("symp", "desc", 0.5, 0.1);
         virusSymptom.setStatus(true);
         boolean result = virusSymptom.getStatus();
@@ -26,7 +26,7 @@ public class TestVirusSymptom {
 
     /* TEST : getLevel */
     @Test
-    public void TestGetLevel(){
+    public void TestGetLevel() {
         VirusSymptom virusSymptom = new VirusSymptom("symp", "desc", 0.5, 0.1);
         int result = virusSymptom.getLevel();
         assertEquals(0, result);
@@ -34,7 +34,7 @@ public class TestVirusSymptom {
 
     /* TEST : getKillPeopleRate */
     @Test
-    public void TestGetKillPeopleRate(){
+    public void TestGetKillPeopleRate() {
         VirusSymptom virusSymptom = new VirusSymptom("symp", "desc", 0.5, 0.1);
         double result = virusSymptom.getKillPeopleRate();
         assertEquals(0.15000000000000002, result);
@@ -42,7 +42,7 @@ public class TestVirusSymptom {
 
     /* TEST : setKillPeopleRate */
     @Test
-    public void TestSetKillPeopleRate(){
+    public void TestSetKillPeopleRate() {
         VirusSymptom virusSymptom = new VirusSymptom("symp", "desc", 0.5, 0.1);
         virusSymptom.setKillPeopleRate(0.33);
         double result = virusSymptom.getKillPeopleRate();
@@ -51,7 +51,7 @@ public class TestVirusSymptom {
 
     /* TEST : getInfectionRate */
     @Test
-    public void TestGetInfectionRate(){
+    public void TestGetInfectionRate() {
         VirusSymptom virusSymptom = new VirusSymptom("symp", "desc", 0.5, 0.1);
         double result = virusSymptom.getInfectionRate();
         assertEquals(0.5, result);
@@ -59,7 +59,7 @@ public class TestVirusSymptom {
 
     /* TEST : isResearched */
     @Test
-    public void TestGetResearched(){
+    public void TestGetResearched() {
         VirusSymptom virusSymptom = new VirusSymptom("symp", "desc", 0.5, 0.1);
         boolean result = virusSymptom.isResearched();
         assertFalse(result);
@@ -67,7 +67,7 @@ public class TestVirusSymptom {
 
     /* TEST : setResearched */
     @Test
-    public void TestSetResearched(){
+    public void TestSetResearched() {
         VirusSymptom virusSymptom = new VirusSymptom("symp", "desc", 0.5, 0.1);
         virusSymptom.setResearched(true);
         boolean result = virusSymptom.isResearched();
@@ -76,12 +76,11 @@ public class TestVirusSymptom {
 
     /* TEST : upLevel */
     @Test
-    public void TestUpLevel(){
+    public void TestUpLevel() {
         VirusSymptom virusSymptom = new VirusSymptom("symp", "desc", 0.5, 0.1);
         boolean result = virusSymptom.upLevel();
         assertTrue(result);
     }
-
 
 
 }

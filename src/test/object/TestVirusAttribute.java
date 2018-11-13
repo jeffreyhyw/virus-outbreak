@@ -33,11 +33,11 @@ public class TestVirusAttribute {
         assertEquals(30, result);
     }
 
-    /* TEST : getResearched */
+    /* TEST : isResearched */
     @Test
     public void TestGetResearched(){
         VirusAttribute virusAttribute = new VirusAttribute("att","desc",30);
-        boolean result = virusAttribute.getResearched();
+        boolean result = virusAttribute.isResearched();
         assertFalse(result);
     }
 
@@ -46,7 +46,7 @@ public class TestVirusAttribute {
     public void TestSetResearched(){
         VirusAttribute virusAttribute = new VirusAttribute("att","desc",30);
         virusAttribute.setResearched(true);
-        boolean result = virusAttribute.getResearched();
+        boolean result = virusAttribute.isResearched();
         assertTrue(result);
     }
 

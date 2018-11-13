@@ -37,7 +37,7 @@ public class VirusAbility extends VirusAttribute {
         return infectionRate;
     }
 
-    public boolean getResearched() {
+    public boolean isResearched() {
         return researched;
     }
 

@@ -43,11 +43,11 @@ public class TestVirusAbility {
         assertEquals(0.05, result);
     }
 
-    /* TEST : getResearched */
+    /* TEST : isResearched */
     @Test
     public void TestGetResearched(){
         VirusAbility virusAbility = new VirusAbility("attName", "desc", 0.1, CountryClimate.Hot);
-        boolean result = virusAbility.getResearched();
+        boolean result = virusAbility.isResearched();
         assertFalse(result);
     }
 
@@ -56,7 +56,7 @@ public class TestVirusAbility {
     public void TestSetResearched(){
         VirusAbility virusAbility = new VirusAbility("attName", "desc", 0.1, CountryClimate.Hot);
         virusAbility.setResearched(true);
-        boolean result = virusAbility.getResearched();
+        boolean result = virusAbility.isResearched();
         assertTrue(result);
     }
 

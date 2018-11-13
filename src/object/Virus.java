@@ -63,15 +63,15 @@ public class Virus {
     public double getInfectionPower(Country c) {
         double infectPower = 0;
         for (VirusSymptom vs : symptomList) {
-            if (vs.getResearched())
+            if (vs.isResearched())
                 infectPower += vs.getInfectionRate() * vs.getLevel();
         }
         for (VirusTransmission vt : transmissionList) {
-            if (vt.getResearched())
+            if (vt.isResearched())
                 infectPower += vt.getInfectionRate() * vt.getLevel();
         }
         for (VirusAbility va : abilityList) {
-            if (va.getResearched()) {
+            if (va.isResearched()) {
                 //Bost virus power if the climate of the place suitable for virus
                 if (va.getClimateBoost() == c.getClimate()) {
                     infectPower += va.getInfectionRate() * va.getLevel() * 2;
@@ -86,7 +86,7 @@ public class Virus {
     public double getSymptomKillPower() {
         double killPower = 0;
         for (VirusSymptom vs : symptomList) {
-            if (vs.getResearched())
+            if (vs.isResearched())
                 killPower += vs.getKillPeopleRate() * vs.getLevel();
 
         }

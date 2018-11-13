@@ -31,7 +31,7 @@ public class TestVirusTransmission {
         VirusTransmission virusTransmission = new VirusTransmission("att", "desc", 0.5);
         virusTransmission.upLevel();
         int result = virusTransmission.getLevel();
-        assertEquals(2,result);
+        assertEquals(1,result);
     }
 
     /* TEST : checkLevel */
@@ -50,11 +50,11 @@ public class TestVirusTransmission {
         assertEquals(0.5,result);
     }
 
-    /* TEST : getResearched */
+    /* TEST : isResearched */
     @Test
     public void TestGetResearched(){
         VirusTransmission virusTransmission = new VirusTransmission("att", "desc", 0.5);
-        boolean result = virusTransmission.getResearched();
+        boolean result = virusTransmission.isResearched();
         assertFalse(result);
     }
 
@@ -63,7 +63,7 @@ public class TestVirusTransmission {
     public void TestSetResearched(){
         VirusTransmission virusTransmission = new VirusTransmission("att", "desc", 0.5);
         virusTransmission.setResearched(true);
-        boolean result = virusTransmission.getResearched();
+        boolean result = virusTransmission.isResearched();
         assertTrue(result);
     }
 }

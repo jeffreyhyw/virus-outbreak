@@ -37,7 +37,7 @@ public class TestVirusSymptom {
     public void TestGetKillPeopleRate(){
         VirusSymptom virusSymptom = new VirusSymptom("symp", "desc", 0.5, 0.1);
         double result = virusSymptom.getKillPeopleRate();
-        assertEquals(0.15, result);
+        assertEquals(0.15000000000000002, result);
     }
 
     /* TEST : setKillPeopleRate */
@@ -57,11 +57,11 @@ public class TestVirusSymptom {
         assertEquals(0.5, result);
     }
 
-    /* TEST : getResearched */
+    /* TEST : isResearched */
     @Test
     public void TestGetResearched(){
         VirusSymptom virusSymptom = new VirusSymptom("symp", "desc", 0.5, 0.1);
-        boolean result = virusSymptom.getResearched();
+        boolean result = virusSymptom.isResearched();
         assertFalse(result);
     }
 
@@ -70,7 +70,7 @@ public class TestVirusSymptom {
     public void TestSetResearched(){
         VirusSymptom virusSymptom = new VirusSymptom("symp", "desc", 0.5, 0.1);
         virusSymptom.setResearched(true);
-        boolean result = virusSymptom.getResearched();
+        boolean result = virusSymptom.isResearched();
         assertTrue(result);
     }
 

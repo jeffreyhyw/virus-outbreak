@@ -44,7 +44,7 @@ public class VirusSymptom extends VirusAttribute {
         return this.infectionRate;
     }
 
-    public boolean getResearched() {
+    public boolean isResearched() {
         return researched;
     }
 
@@ -56,4 +56,5 @@ public class VirusSymptom extends VirusAttribute {
         level = 1;
         return true;
     }
+
 }

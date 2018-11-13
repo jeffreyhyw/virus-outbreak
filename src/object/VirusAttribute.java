@@ -25,9 +25,14 @@ public class VirusAttribute {
         return cost;
     }
 
-    public boolean getResearched() {
+//    public boolean isResearched() {
+//        return researched;
+//    }
+
+    public boolean isResearched() {
         return researched;
     }
+
 
     public void setResearched(boolean researched) {
         this.researched = researched;

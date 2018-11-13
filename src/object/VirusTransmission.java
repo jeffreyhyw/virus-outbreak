@@ -43,23 +43,23 @@ public class VirusTransmission extends VirusAttribute {
     public double getInfectionRate() {
         return infectionRate;
     }
-    public void setInfectionRate(double infectionRate) {
-        this.infectionRate = infectionRate;
-    }
+//    public void setInfectionRate(double infectionRate) {
+//        this.infectionRate = infectionRate;
+//    }
 
-    public double getKillPeopleRate() {
-        return killPeopleRate;
-    }
-    public void setKillPeopleRate(double killPeopleRate) {
-        this.killPeopleRate = killPeopleRate;
-    }
+//    public double getKillPeopleRate() {
+//        return killPeopleRate;
+//    }
+//    public void setKillPeopleRate(double killPeopleRate) {
+//        this.killPeopleRate = killPeopleRate;
+//    }
 
-    public double getAffectResearchRate() {
-        return affectResearchRate;
-    }
-    public void setAffectResearchRate(double affectResearchRate) {
-        this.affectResearchRate = affectResearchRate;
-    }
+//    public double getAffectResearchRate() {
+//        return affectResearchRate;
+//    }
+//    public void setAffectResearchRate(double affectResearchRate) {
+//        this.affectResearchRate = affectResearchRate;
+//    }
 
     public boolean getResearched() {
         return researched;

@@ -75,9 +75,9 @@ public class Country {
     public CountryClimate getClimate() {
         return this.climate;
     }
-    public void setClimate(CountryClimate climate) {
-        this.climate = climate;
-    }
+//    public void setClimate(CountryClimate climate) {
+//        this.climate = climate;
+//    }
 
     public CountryState getState() {
         return this.state;
@@ -89,7 +89,7 @@ public class Country {
     public double getMedicalSystem() {
         return medicalSystem;
     }
-    public void setMedicalSystem(double medicalSystem) {
-        this.medicalSystem = medicalSystem;
-    }
+//    public void setMedicalSystem(double medicalSystem) {
+//        this.medicalSystem = medicalSystem;
+//    }
 }

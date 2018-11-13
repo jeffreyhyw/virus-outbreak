@@ -17,25 +17,25 @@ public class VirusAttribute {
         return att_name;
     }
 
-    public void setAtt_name(String att_name) {
-        this.att_name = att_name;
-    }
+//    public void setAtt_name(String att_name) {
+//        this.att_name = att_name;
+//    }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+//    public void setDescription(String description) {
+//        this.description = description;
+//    }
 
     public int getCost() {
         return cost;
     }
 
-    public void setCost(int cost) {
-        this.cost = cost;
-    }
+//    public void setCost(int cost) {
+//        this.cost = cost;
+//    }
 
     public boolean getResearched() {
         return researched;

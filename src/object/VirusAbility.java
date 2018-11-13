@@ -32,9 +32,9 @@ public class VirusAbility extends VirusAttribute {
         return level;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
-    }
+//    public void setLevel(int level) {
+//        this.level = level;
+//    }
 
     public void upLevel() {
         if (level + 1 <= 5) {
@@ -54,25 +54,25 @@ public class VirusAbility extends VirusAttribute {
         return infectionRate;
     }
 
-    public void setInfectionRate(double infectionRate) {
-        this.infectionRate = infectionRate;
-    }
+//    public void setInfectionRate(double infectionRate) {
+//        this.infectionRate = infectionRate;
+//    }
 
-    public double getKillPeopleRate() {
-        return killPeopleRate;
-    }
+//    public double getKillPeopleRate() {
+//        return killPeopleRate;
+//    }
 
-    public void setKillPeopleRate(double killPeopleRate) {
-        this.killPeopleRate = killPeopleRate;
-    }
+//    public void setKillPeopleRate(double killPeopleRate) {
+//        this.killPeopleRate = killPeopleRate;
+//    }
 
-    public double getAffectResearchRate() {
-        return affectResearchRate;
-    }
+//    public double getAffectResearchRate() {
+//        return affectResearchRate;
+//    }
 
-    public void setAffectResearchRate(double affectResearchRate) {
-        this.affectResearchRate = affectResearchRate;
-    }
+//    public void setAffectResearchRate(double affectResearchRate) {
+//        this.affectResearchRate = affectResearchRate;
+//    }
 
     public boolean getResearched() {
         return researched;

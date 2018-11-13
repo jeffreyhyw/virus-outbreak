@@ -22,11 +22,21 @@ public class TestVirusAbility {
     /* TEST : upLevel */
 
     @Test
-    public void TestUpLevel() {
+    public void TestUpLevelC1() {
         VirusAbility virusAbility = new VirusAbility("attName", "desc", 0.1, CountryClimate.Hot);
         virusAbility.upLevel();
         int result = virusAbility.getLevel();
         assertEquals(1, result);
+    }
+
+    @Test
+    public void TestUpLevelC2() {
+        VirusAbility virusAbility = new VirusAbility("attName", "desc", 0.1, CountryClimate.Hot);
+        for (int i=0;i<6;i++) {
+            virusAbility.upLevel();
+        }
+        int result = virusAbility.getLevel();
+        assertEquals(5, result);
     }
 
     /* TEST : checkLevel */
@@ -34,6 +44,7 @@ public class TestVirusAbility {
     @Test
     public void TestCheckLevel() {
         VirusAbility virusAbility = new VirusAbility("attName", "desc", 0.1, CountryClimate.Hot);
+        virusAbility.upLevel();
         boolean result = virusAbility.checkLevel();
         assertTrue(result);
     }

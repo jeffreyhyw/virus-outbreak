@@ -70,9 +70,21 @@ public class TestCountry {
     @Test
     public void TestAddInfectedPopulationC1() {
         class StubCountry {
-            private int population = 1000, infectedPopulation = 0, deathPopulation = 0;
-            private CountryState state;
+            private int population = 1234, infectedPopulation = 0, deathPopulation = 0;
+            public int addInfectedPopulation(int pop) {
+                infectedPopulation += pop;
+                return infectedPopulation;
+            }
+        }
+        StubCountry stubCountry = new StubCountry();
+        int result = stubCountry.addInfectedPopulation(1000);
+        assertEquals(1000,result);
+    }
 
+    @Test
+    public void TestAddInfectedPopulationC2() {  // ERROR
+        class StubCountry {
+            private int population = 1234, infectedPopulation = 0, deathPopulation = 0;
             public int addInfectedPopulation(int pop) {
                 infectedPopulation += pop;
                 if (infectedPopulation > population && infectedPopulation < deathPopulation) {
@@ -82,13 +94,29 @@ public class TestCountry {
                 }
                 return infectedPopulation;
             }
+        }
+        StubCountry stubCountry = new StubCountry();
+        int result = stubCountry.addInfectedPopulation(1000);
+        assertEquals(1000,result);
+    }
 
-            public int getPopulation() {
-                return this.population;
+    @Test
+    public void TestAddInfectedPopulationC3() {  // ERROR
+        class StubCountry {
+            private int population = 1234, infectedPopulation = 0, deathPopulation = 0;
+            public int addInfectedPopulation(int pop) {
+                infectedPopulation += pop;
+                if (infectedPopulation > population && infectedPopulation < deathPopulation) {
+                    infectedPopulation = population;
+                } else if (infectedPopulation > population && infectedPopulation >= deathPopulation) {
+                    infectedPopulation = population;
+                }
+                return infectedPopulation;
             }
         }
         StubCountry stubCountry = new StubCountry();
-
+        int result = stubCountry.addInfectedPopulation(1000);
+        assertEquals(1000,result);
     }
 
     /* TEST: getDeathPopulation */
@@ -113,8 +141,71 @@ public class TestCountry {
     /* TEST : addDeathPopulation */
 
     @Test
-    public void TestAddDeathPopulation() {
+    public void TestAddDeathPopulationC1() {
+        class StubCountry {
+            private int population = 1234, infectedPopulation = 0, deathPopulation = 0;
+            public int addDeathPopulation(int pop) {
+                deathPopulation += pop;
+                return deathPopulation;
+            }
+        }
+        StubCountry stubCountry = new StubCountry();
+        int result = stubCountry.addDeathPopulation(1000);
+        assertEquals(1000, result);
+    }
 
+    @Test
+    public void TestAddDeathPopulationC2() {
+        class StubCountry {
+            private int population = 1234, infectedPopulation = 0, deathPopulation = 0;
+            public int addDeathPopulation(int pop) {
+                deathPopulation += pop;
+                if (deathPopulation > infectedPopulation) {
+                    deathPopulation = infectedPopulation;
+                }
+                return deathPopulation;
+            }
+        }
+        StubCountry stubCountry = new StubCountry();
+        int result = stubCountry.addDeathPopulation(1000);
+        assertEquals(0, result);
+    }
+
+    @Test
+    public void TestAddDeathPopulationC3() { // ERROR
+        class StubCountry {
+            private int population = 1234, infectedPopulation = 0, deathPopulation = 0;
+            public int addDeathPopulation(int pop) {
+                deathPopulation += pop;
+                if (deathPopulation >= infectedPopulation && deathPopulation > population) {
+                    deathPopulation = population;
+                }
+                return deathPopulation;
+            }
+        }
+        StubCountry stubCountry = new StubCountry();
+        int result = stubCountry.addDeathPopulation(1300);
+        assertEquals(1234, result);
+    }
+
+    @Test
+    public void TestAddDeathPopulationC4() {
+        class StubCountry {
+            private int population = 1234, infectedPopulation = 0, deathPopulation = 0;
+            public int addDeathPopulation(int pop) {
+                deathPopulation += pop;
+                if (deathPopulation > infectedPopulation) {
+                    deathPopulation = infectedPopulation;
+                }
+                if (deathPopulation >= infectedPopulation && deathPopulation > population) {
+                    deathPopulation = population;
+                }
+                return deathPopulation;
+            }
+        }
+        StubCountry stubCountry = new StubCountry();
+        int result = stubCountry.addDeathPopulation(1000);
+        assertEquals(0, result);
     }
 
     /* TEST : getUninfectedPopulation */
@@ -135,12 +226,21 @@ public class TestCountry {
         assertEquals(CountryClimate.Hot, result);
     }
 
+    /* TEST: getState */
+
+    @Test
+    public void TestGetState() {
+        Country country = new Country("test", 1234, 0, CountryClimate.Hot);
+        CountryState result = country.getState();
+        assertEquals(new NormalCountry().getClass(), result.getClass());
+    }
+
     /* TEST : setState */
 
     @Test
     public void TestSetState() {
         Country country = new Country("test", 1234, 0, CountryClimate.Hot);
-        CountryState countryState = new NormalCountry();
+        CountryState countryState = new DeadCountry();
         country.setState(countryState);
         CountryState result = country.getState();
         assertEquals(countryState, result);

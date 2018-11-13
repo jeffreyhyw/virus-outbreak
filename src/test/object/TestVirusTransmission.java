@@ -27,12 +27,23 @@ public class TestVirusTransmission {
 
     /* TEST : upLevel */
     @Test
-    public void TestUpLevel() {
+    public void TestUpLevelC1() {
         VirusTransmission virusTransmission = new VirusTransmission("att", "desc", 0.5);
         virusTransmission.upLevel();
         int result = virusTransmission.getLevel();
         assertEquals(1, result);
     }
+
+    @Test
+    public void TestUpLevelC2() {
+        VirusTransmission virusTransmission = new VirusTransmission("att", "desc", 0.5);
+        for (int i=0;i<7;i++) {
+            virusTransmission.upLevel();
+        }
+        int result = virusTransmission.getLevel();
+        assertEquals(5, result);
+    }
+
 
     /* TEST : checkLevel */
     @Test

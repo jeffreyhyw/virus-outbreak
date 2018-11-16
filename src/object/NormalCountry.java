@@ -1,5 +1,6 @@
 package object;
 
-public class NormalCountry implements CountryState{
-	public void handle(){};
+public class NormalCountry implements CountryState {
+    public void handle() {
+    }
 }

@@ -1,5 +1,5 @@
 package object;
 
-public interface CountryState{
-	public void handle();
+public interface CountryState {
+    public void handle();
 }

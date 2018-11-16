@@ -26,12 +26,12 @@ public class VirusConfigMainPanel extends JPanel implements ChangeListener {
 	 */
 	private static final long serialVersionUID = 6208462680830995778L;
 	
-
+	UIFactory uiFactory;
 
 	public VirusConfigMainPanel(Game gm) {
         super(new GridLayout(1, 1));
         JTabbedPane tabbedPane = new JTabbedPane();
-        UIFactory uiFactory = new UIFactory();
+        uiFactory = new UIFactory();
         uiFactory.game = gm;
         
         //Add the panel into tab
@@ -117,9 +117,6 @@ public class VirusConfigMainPanel extends JPanel implements ChangeListener {
 		// TODO Auto-generated method stub
 		JTabbedPane sourceTabbedPane = (JTabbedPane) changeEvent.getSource();
 		JPanel selectedObject = (JPanel) sourceTabbedPane.getSelectedComponent();
-		System.out.println("stateChanged");
-		sourceTabbedPane.getSelectedComponent().revalidate();
-		sourceTabbedPane.getSelectedComponent().repaint();
 		
 	}
     

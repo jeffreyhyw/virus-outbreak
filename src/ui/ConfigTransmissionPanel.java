@@ -88,11 +88,6 @@ public class ConfigTransmissionPanel {
 		configurePanel.add(title_panel);
 	}
 	
-	void updateCurrPoint() {
-		if(currcostLabel != null)
-			currcostLabel.setText("Current Point : " + game.getUpgradePoint());
-	}
-	
 	void generateConfigurePanel(JPanel configurePanel) {
 		configurePanel.setLayout(new BoxLayout(configurePanel, BoxLayout.PAGE_AXIS));
 		generateConfigureTitle(configurePanel);
@@ -141,7 +136,7 @@ public class ConfigTransmissionPanel {
       		    				else {
       		    					game.calUpgradePoint(1, att_list.get(pos).getCost());
       		    					att_list.get(pos).setResearched(true);
-      		    					updateCurrPoint();
+      		    					game.updateCurrentPoint();
       		    					att_list.get(pos).upLevel();
           		    				((JLabel)att_panel.getComponent(k)).setText("Level " + att_list.get(pos).getLevel());
           		    				if(att_list.get(pos).getLevel() >= 5)
@@ -188,9 +183,10 @@ public class ConfigTransmissionPanel {
         currcostLabel = new JLabel("", SwingConstants.CENTER);
         currcostLabel.setVerticalAlignment(SwingConstants.CENTER);
         currcostLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        updateCurrPoint();
         resumPanel.add(currcostLabel);
         resumPanel.setPreferredSize(new Dimension(details_item_width, details_height));
+        game.setTransmission_currcostLabel(currcostLabel);
+        game.updateCurrentPoint();
 
         JPanel virusNamePanel = new JPanel();
         virusName = new JLabel(virusNameStr);

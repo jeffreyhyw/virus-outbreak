@@ -86,10 +86,7 @@ public class ConfigSymptomPanel{
 		configurePanel.add(title_panel);
 	}
 	
-	void updateCurrPoint() {
-		if(currcostLabel != null)
-			currcostLabel.setText("Current Point : " + game.getUpgradePoint());
-	}
+	
 	
 	void generateConfigurePanel(JPanel configurePanel) {
 		configurePanel.setLayout(new BoxLayout(configurePanel, BoxLayout.PAGE_AXIS));
@@ -138,7 +135,7 @@ public class ConfigSymptomPanel{
       		    				}
       		    				else {
       		    					game.calUpgradePoint(1, symptom_list.get(pos).getCost());
-      		    					updateCurrPoint();
+      		    					game.updateCurrentPoint();
       		    					symptom_list.get(pos).setStatus(true);
       		    					symptom_list.get(pos).setResearched(true);
       		    					symptom_list.get(pos).upLevel();
@@ -193,10 +190,11 @@ public class ConfigSymptomPanel{
         currcostLabel = new JLabel("", SwingConstants.CENTER);
         currcostLabel.setVerticalAlignment(SwingConstants.CENTER);
         currcostLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        updateCurrPoint();
         resumPanel.add(currcostLabel);
         resumPanel.setPreferredSize(new Dimension(details_item_width, details_height));
-
+        game.setSymptom_currcostLabel(currcostLabel);
+        game.updateCurrentPoint();
+        
         JPanel virusNamePanel = new JPanel();
         virusName = new JLabel(virusNameStr);
         virusNamePanel.add(virusName);

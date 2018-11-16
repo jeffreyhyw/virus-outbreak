@@ -92,7 +92,7 @@ public class TestResearch {
 
             public int setHoldByCountry(Country holdByCountry) {
                 if (holdByCountry != null) {
-                    researchPerDay = (int) (holdByCountry.getMedicalSystem() - (holdByCountry.getDeathPopulation() / holdByCountry.getPopulation()));
+                    researchPerDay = (int) (holdByCountry.getMedicalSystem() - (((double)holdByCountry.getDeathPopulation()) / holdByCountry.getPopulation()));
                     if (researchPerDay < 0) {
                         researchPerDay = 0;
                     }

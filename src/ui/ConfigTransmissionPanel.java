@@ -19,6 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 import controller.MainController;
+import object.Constants;
 import object.Game;
 import object.VirusAbility;
 import object.VirusTransmission;
@@ -70,21 +71,16 @@ public class ConfigTransmissionPanel {
 	void generateConfigureTitle(JPanel configurePanel) {
 		JPanel title_panel = new JPanel();
 		title_panel.setPreferredSize(new Dimension(configureView_width, configureView_height));
-		JLabel name_title_label = new JLabel("Attributes Name");
-		name_title_label.setPreferredSize(new Dimension(att_name_field_width, configureView_height));
-		JLabel cost_title_label = new JLabel("Cost");
-		cost_title_label.setPreferredSize(new Dimension(att_cost_field_width, configureView_height));
-		JLabel level_title_label = new JLabel("Level");
-		level_title_label.setPreferredSize(new Dimension(att_level_field_width, configureView_height));
-		JLabel upLevel_title_label = new JLabel("Up Level");
-		upLevel_title_label.setPreferredSize(new Dimension(att_add_field_width, configureView_height));
-		JLabel info_title_label = new JLabel("Info");
-		info_title_label.setPreferredSize(new Dimension(att_info_field_width, configureView_height));
-		title_panel.add(name_title_label);
-		title_panel.add(cost_title_label);
-		title_panel.add(level_title_label);
-		title_panel.add(upLevel_title_label);
-		title_panel.add(info_title_label);
+		
+		String label_arr [] = { Constants.att_name, Constants.cost, Constants.lv, Constants.up_lv, Constants.info };
+		int widths [] = { att_name_field_width, att_cost_field_width, att_level_field_width, att_add_field_width, att_info_field_width };
+		
+		for(int i = 0; i < label_arr.length; i ++) {
+			JLabel label = new JLabel(label_arr[i]);
+			label.setPreferredSize(new Dimension(widths[i], configureView_height));
+			title_panel.add(label);
+		}
+		
 		configurePanel.add(title_panel);
 	}
 	

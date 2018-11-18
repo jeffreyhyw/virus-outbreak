@@ -23,6 +23,7 @@ public class Constants {
 	public static String att_name = "Attributes Name";
 	public static String cost = "Cost";
 	public static String lv = "Level";
+	public static String status = "Status";
 	public static String up_lv = "Up Level";
 	public static String info = "Info";
 	public static String desc = "Description";

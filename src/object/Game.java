@@ -95,25 +95,25 @@ public class Game {
     /* For Virus */
     public void initVirus() {
         ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
-            add(new VirusTransmission("Rodent", "description", 0.15));
-            add(new VirusTransmission("Air I", "description", 0.2));
-            add(new VirusTransmission("Air II", "description", 0.3));
-            add(new VirusTransmission("Water I", "description", 0.2));
-            add(new VirusTransmission("Water II", "description", 0.3));
+            add(new VirusTransmission("Rodent", "Factors Affecting the Transmission of Rodent Ultrasounds in Natural Environments.", 0.15));
+            add(new VirusTransmission("Air I", "Airborne transmission occurs when bacteria or viruses travel on dust particles.", 0.2));
+            add(new VirusTransmission("Air II", "Power up the air transimission.", 0.3));
+            add(new VirusTransmission("Water I", "Water transmission occurs from water pollution.", 0.2));
+            add(new VirusTransmission("Water II", "Power up the water transimission.", 0.3));
         }};
         ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{
-            add(new VirusSymptom("Nausea", "description", 0.1, 0.6));
-            add(new VirusSymptom("Coughing", "description", 0.2, 0.8));
-            add(new VirusSymptom("Cysts", "description", 0.15, 0.4));
-            add(new VirusSymptom("Insomnia", "description", 0, 0.6));
-            add(new VirusSymptom("Rash", "description", 0.15, 0.4));
-            add(new VirusSymptom("Anaemia", "description", 0, 0.5));
+            add(new VirusSymptom("Nausea", "Nausea is pronounced stomach discomfort and the sensation of wanting to vomit.", 0.1, 0.6));
+            add(new VirusSymptom("Coughing", "A cough is a common reflex action that clears the throat of mucus or foreign irritants.", 0.2, 0.8));
+            add(new VirusSymptom("Cysts", "A cyst is a sac-like pocket of membranous tissue that contains fluid, air, or other substances.", 0.15, 0.4));
+            add(new VirusSymptom("Insomnia", "Insomnia can be caused by psychiatric and medical conditions, unhealthy sleep habits, specific substances, and/or certain biological factors.", 0, 0.6));
+            add(new VirusSymptom("Rash", "A rash is a change of the human skin which affects its color, appearance, or texture. ", 0.15, 0.4));
+            add(new VirusSymptom("Anaemia", "Anaemia is a condition in which the blood has a decreased number of red blood cells.", 0, 0.5));
         }};
         ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
-            add(new VirusAbility("Cold Resistance I", "description", 0, CountryClimate.Cold));
-            add(new VirusAbility("Heat Resistance I", "description", 0, CountryClimate.Hot));
-            add(new VirusAbility("Bacterial Resilience I", "description", 15, CountryClimate.Wet));
-            add(new VirusAbility("Drug Resistance I", "description", 25, CountryClimate.Dry));
+            add(new VirusAbility("Cold Resistance I", "The virus can alive at cold environment.", 0, CountryClimate.Cold));
+            add(new VirusAbility("Heat Resistance I", "The virus can alive at hot environment.", 0, CountryClimate.Hot));
+            add(new VirusAbility("Bacterial Resilience I", "Make the virus stronger.", 15, CountryClimate.Wet));
+            add(new VirusAbility("Drug Resistance I", "Increase the alive rate facing the research increasing.", 25, CountryClimate.Dry));
         }};
 
         virus = new Virus("name", transmissionList, symptomList, abilityList);

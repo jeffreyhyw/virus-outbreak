@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import controller.MainController;
+import object.Constants;
 import object.Game;
 
 public class GameStart {
@@ -98,14 +99,14 @@ public class GameStart {
         JTextField tx = (JTextField) rowComponent;
         if (tx.getText().trim().isEmpty()) {
         	JOptionPane.showMessageDialog(null, 
-                    "Please enter a name", 
-                    "Invalid Input", 
+                    Constants.input_name_remind, 
+                    Constants.invaild_input, 
                     JOptionPane.WARNING_MESSAGE);
             return false;
         } else if (tx.getText().length() > 15) {
         	JOptionPane.showMessageDialog(null, 
-                    "Please enter a name within 15 characters", 
-                    "Name is too long", 
+                    Constants.text_limit, 
+                    Constants.name_too_long, 
                     JOptionPane.WARNING_MESSAGE);
             return false;
         } else {
@@ -118,8 +119,8 @@ public class GameStart {
         JComboBox jComboBox = (JComboBox) rowComponent;
         if (jComboBox.getSelectedIndex() == 0) {
         	JOptionPane.showMessageDialog(null, 
-                    "Please select a country to born the virus", 
-                    "Invalid Input", 
+                    Constants.select_country, 
+                    Constants.invaild_input, 
                     JOptionPane.WARNING_MESSAGE);
             return false;
         }

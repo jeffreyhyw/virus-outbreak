@@ -109,7 +109,7 @@ public class ConfigAbilityPanel{
       		cost_label.setPreferredSize(new Dimension(att_cost_field_width, configureView_height));
       		att_panel.add(cost_label);
       		
-      		JLabel levelLabel = new JLabel("Level " + att_list.get(i).getLevel());
+      		JLabel levelLabel = new JLabel(Constants.lv + att_list.get(i).getLevel());
       		levelLabel.setName("label"+i);
       		levelLabel.setPreferredSize(new Dimension(att_level_field_width, configureView_height));
       		att_panel.add(levelLabel);

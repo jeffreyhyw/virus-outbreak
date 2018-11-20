@@ -102,7 +102,7 @@ public class ConfigSymptomPanel{
       		
       		JLabel statusLabel;
       		if(symptom_list.get(i).getStatus()) {
-      			statusLabel = new JLabel("RESEARCHED");
+      			statusLabel = new JLabel(Constants.researched);
       		}else {
       			statusLabel = new JLabel("X");
       		}
@@ -137,7 +137,7 @@ public class ConfigSymptomPanel{
       		    					symptom_list.get(pos).upLevel();
       		    					
       		    					if(symptom_list.get(pos).getStatus()) {
-      		    						((JLabel)att_panel.getComponent(k)).setText("RESEARCHED");
+      		    						((JLabel)att_panel.getComponent(k)).setText(Constants.researched);
       		    						((JButton) e.getSource()).setEnabled(false);
       		    		      		}
           		    				break;
@@ -197,7 +197,7 @@ public class ConfigSymptomPanel{
         virusNamePanel.setPreferredSize(new Dimension(details_item_width, details_height));
 
         JPanel backButtonPanel = new JPanel();
-        JButton backButton = new JButton("Back");
+        JButton backButton = new JButton(Constants.back);
         backButton.addActionListener(new ActionListener() {
   		    @Override
   		    public void actionPerformed(ActionEvent e) {
@@ -239,7 +239,7 @@ public class ConfigSymptomPanel{
         
 	}
 	void generateDescriptionPanel(JPanel descriptionPanel) {
-		descriptionLabel = new JLabel("Description", SwingConstants.CENTER);
+		descriptionLabel = new JLabel(Constants.desc, SwingConstants.CENTER);
 		descriptionLabel.setVerticalAlignment(SwingConstants.CENTER);
 		descriptionLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		descriptionPanel.add(descriptionLabel);

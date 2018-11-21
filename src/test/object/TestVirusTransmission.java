@@ -10,7 +10,7 @@ import static junit.framework.TestCase.assertTrue;
 public class TestVirusTransmission {
     /* TEST : getLevel */
     @Test
-    public void TestGetLevel() {
+    public void testGetLevel() {
         VirusTransmission virusTransmission = new VirusTransmission("att", "desc", 0.5);
         int result = virusTransmission.getLevel();
         assertEquals(0, result);
@@ -18,7 +18,7 @@ public class TestVirusTransmission {
 
     /* TEST : setLevel */
     @Test
-    public void TestSetLevel() {
+    public void testSetLevel() {
         VirusTransmission virusTransmission = new VirusTransmission("att", "desc", 0.5);
         virusTransmission.setLevel(3);
         int result = virusTransmission.getLevel();
@@ -27,7 +27,7 @@ public class TestVirusTransmission {
 
     /* TEST : upLevel */
     @Test
-    public void TestUpLevelC1() {
+    public void testUpLevelC1() {
         VirusTransmission virusTransmission = new VirusTransmission("att", "desc", 0.5);
         virusTransmission.upLevel();
         int result = virusTransmission.getLevel();
@@ -35,7 +35,7 @@ public class TestVirusTransmission {
     }
 
     @Test
-    public void TestUpLevelC2() {
+    public void testUpLevelC2() {
         VirusTransmission virusTransmission = new VirusTransmission("att", "desc", 0.5);
         for (int i=0;i<7;i++) {
             virusTransmission.upLevel();
@@ -47,7 +47,7 @@ public class TestVirusTransmission {
 
     /* TEST : checkLevel */
     @Test
-    public void TestCheckLevel() {
+    public void testCheckLevel() {
         VirusTransmission virusTransmission = new VirusTransmission("att", "desc", 0.5);
         boolean result = virusTransmission.checkLevel();
         assertTrue(result);
@@ -55,7 +55,7 @@ public class TestVirusTransmission {
 
     /* TEST : getInfectionRate */
     @Test
-    public void TestGetInfectionRate() {
+    public void testGetInfectionRate() {
         VirusTransmission virusTransmission = new VirusTransmission("att", "desc", 0.5);
         double result = virusTransmission.getInfectionRate();
         assertEquals(0.5, result);
@@ -63,7 +63,7 @@ public class TestVirusTransmission {
 
     /* TEST : isResearched */
     @Test
-    public void TestGetResearched() {
+    public void testGetResearched() {
         VirusTransmission virusTransmission = new VirusTransmission("att", "desc", 0.5);
         boolean result = virusTransmission.isResearched();
         assertFalse(result);
@@ -71,7 +71,7 @@ public class TestVirusTransmission {
 
     /* TEST : setResearched */
     @Test
-    public void TestSetResearched() {
+    public void testSetResearched() {
         VirusTransmission virusTransmission = new VirusTransmission("att", "desc", 0.5);
         virusTransmission.setResearched(true);
         boolean result = virusTransmission.isResearched();

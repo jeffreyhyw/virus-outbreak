@@ -11,7 +11,7 @@ public class TestCountry {
     /* TEST: setName */
 
     @Test
-    public void TestSetName() {
+    public void testSetName() {
         Country country = new Country("test", 1234, 0, CountryClimate.Hot);
         country.setName("changedName");
         String result = country.getName();
@@ -21,7 +21,7 @@ public class TestCountry {
     /* TEST: getName */
 
     @Test
-    public void TestGetName() {
+    public void testGetName() {
         Country country = new Country("test", 1234, 0, CountryClimate.Hot);
         String result = country.getName();
         assertEquals("test", result);
@@ -30,7 +30,7 @@ public class TestCountry {
     /* TEST: getPopulation */
 
     @Test
-    public void TestGetPopulation() {
+    public void testGetPopulation() {
         Country country = new Country("test", 1234, 0, CountryClimate.Hot);
         int result = country.getPopulation();
         assertEquals(1234, result);
@@ -39,7 +39,7 @@ public class TestCountry {
     /* TEST: setPopulation */
 
     @Test
-    public void TestSetPopulation() {
+    public void testSetPopulation() {
         Country country = new Country("test", 1234, 0, CountryClimate.Hot);
         country.setPopulation(1500);
         int result = country.getPopulation();
@@ -49,7 +49,7 @@ public class TestCountry {
     /* TEST: getInfectedPopulation */
 
     @Test
-    public void TestGetInfectedPopulation() {
+    public void testGetInfectedPopulation() {
         Country country = new Country("test", 1234, 0, CountryClimate.Hot);
         int result = country.getInfectedPopulation();
         assertEquals(0, result);
@@ -58,7 +58,7 @@ public class TestCountry {
     /* TEST: setInfectedPopulation */
 
     @Test
-    public void TestSetInfectedPopulation() {
+    public void testSetInfectedPopulation() {
         Country country = new Country("test", 1234, 0, CountryClimate.Hot);
         country.setInfectedPopulation(999);
         int result = country.getInfectedPopulation();
@@ -68,7 +68,7 @@ public class TestCountry {
     /* TEST: addInfectedPopulation */
 
     @Test
-    public void TestAddInfectedPopulationC1() {
+    public void testAddInfectedPopulationC1() {
         class StubCountry {
             private int population = 1234, infectedPopulation = 0, deathPopulation = 0;
             public int addInfectedPopulation(int pop) {
@@ -82,7 +82,7 @@ public class TestCountry {
     }
 
     @Test
-    public void TestAddInfectedPopulationC2() {  // ERROR
+    public void testAddInfectedPopulationC2() {  // ERROR
         class StubCountry {
             private int population = 1234, infectedPopulation = 0, deathPopulation = 0;
             public int addInfectedPopulation(int pop) {
@@ -101,7 +101,7 @@ public class TestCountry {
     }
 
     @Test
-    public void TestAddInfectedPopulationC3() {  // ERROR
+    public void testAddInfectedPopulationC3() {  // ERROR
         class StubCountry {
             private int population = 1234, infectedPopulation = 0, deathPopulation = 0;
             public int addInfectedPopulation(int pop) {
@@ -122,7 +122,7 @@ public class TestCountry {
     /* TEST: getDeathPopulation */
 
     @Test
-    public void TestGetDeathPopulation() {
+    public void testGetDeathPopulation() {
         Country country = new Country("test", 1234, 0, CountryClimate.Hot);
         int result = country.getDeathPopulation();
         assertEquals(0, result);
@@ -131,7 +131,7 @@ public class TestCountry {
     /* TEST: setDeathPopulation */
 
     @Test
-    public void TestSetDeathPopulation() {
+    public void testSetDeathPopulation() {
         Country country = new Country("test", 1234, 0, CountryClimate.Hot);
         country.setDeathPopulation(1234);
         int result = country.getDeathPopulation();
@@ -141,7 +141,7 @@ public class TestCountry {
     /* TEST : addDeathPopulation */
 
     @Test
-    public void TestAddDeathPopulationC1() {
+    public void testAddDeathPopulationC1() {
         class StubCountry {
             private int population = 1234, infectedPopulation = 0, deathPopulation = 0;
             public int addDeathPopulation(int pop) {
@@ -155,7 +155,7 @@ public class TestCountry {
     }
 
     @Test
-    public void TestAddDeathPopulationC2() {
+    public void testAddDeathPopulationC2() {
         class StubCountry {
             private int population = 1234, infectedPopulation = 0, deathPopulation = 0;
             public int addDeathPopulation(int pop) {
@@ -172,7 +172,7 @@ public class TestCountry {
     }
 
     @Test
-    public void TestAddDeathPopulationC3() { // ERROR
+    public void testAddDeathPopulationC3() { // ERROR
         class StubCountry {
             private int population = 1234, infectedPopulation = 0, deathPopulation = 0;
             public int addDeathPopulation(int pop) {
@@ -189,7 +189,7 @@ public class TestCountry {
     }
 
     @Test
-    public void TestAddDeathPopulationC4() {
+    public void testAddDeathPopulationC4() {
         class StubCountry {
             private int population = 1234, infectedPopulation = 0, deathPopulation = 0;
             public int addDeathPopulation(int pop) {
@@ -211,7 +211,7 @@ public class TestCountry {
     /* TEST : getUninfectedPopulation */
 
     @Test
-    public void TestGetUninfectedPopulation() {
+    public void testGetUninfectedPopulation() {
         Country country = new Country("test", 1234, 0, CountryClimate.Hot);
         int result = country.getUninfectedPopulation();
         assertEquals(1234, result);
@@ -220,7 +220,7 @@ public class TestCountry {
     /* TEST : getClimate */
 
     @Test
-    public void TestGetClimate() {
+    public void testGetClimate() {
         Country country = new Country("test", 1234, 0, CountryClimate.Hot);
         CountryClimate result = country.getClimate();
         assertEquals(CountryClimate.Hot, result);
@@ -229,7 +229,7 @@ public class TestCountry {
     /* TEST: getState */
 
     @Test
-    public void TestGetState() {
+    public void testGetState() {
         Country country = new Country("test", 1234, 0, CountryClimate.Hot);
         CountryState result = country.getState();
         assertEquals(new NormalCountry().getClass(), result.getClass());
@@ -238,7 +238,7 @@ public class TestCountry {
     /* TEST : setState */
 
     @Test
-    public void TestSetState() {
+    public void testSetState() {
         Country country = new Country("test", 1234, 0, CountryClimate.Hot);
         CountryState countryState = new DeadCountry();
         country.setState(countryState);
@@ -249,7 +249,7 @@ public class TestCountry {
     /* TEST : getMedicalSystem */
 
     @Test
-    public void TestGetMedicalSystem() {
+    public void testGetMedicalSystem() {
         Country country = new Country("test", 1234, 1234.1234, CountryClimate.Hot);
         double result = country.getMedicalSystem();
         assertEquals(1234.1234, result);

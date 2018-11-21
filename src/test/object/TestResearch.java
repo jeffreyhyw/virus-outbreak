@@ -12,7 +12,7 @@ public class TestResearch {
     /* TEST: getCurrentResearch */
 
     @Test
-    public void TestGetCurrentResearch() {
+    public void testGetCurrentResearch() {
         Research research = new Research();
         int result = research.getCurrentResearch();
         assertEquals(0, result);
@@ -21,7 +21,7 @@ public class TestResearch {
     /* TEST: addCurrentResearch */
 
     @Test
-    public void TestAddCurrentResearchC1() {
+    public void testAddCurrentResearchC1() {
         Research research = new Research();
         research.addCurrentResearch(-1);
         int result = research.getCurrentResearch();
@@ -30,7 +30,7 @@ public class TestResearch {
     }
 
     @Test
-    public void TestAddCurrentResearchC2() {
+    public void testAddCurrentResearchC2() {
         Research research = new Research();
         research.addCurrentResearch(50);
         int result = research.getCurrentResearch();
@@ -38,7 +38,7 @@ public class TestResearch {
     }
 
     @Test
-    public void TestAddCurrentResearchC3() {
+    public void testAddCurrentResearchC3() {
         Research research = new Research();
         research.addCurrentResearch(150);
         int result = research.getCurrentResearch();
@@ -49,7 +49,7 @@ public class TestResearch {
     /* TEST: getHoldByCountry */
 
     @Test
-    public void TestGetHoldByCountry() {
+    public void testGetHoldByCountry() {
         Country country = new Country("test", 1234, 10.0, CountryClimate.Hot);
         Research research = new Research();
         research.setHoldByCountry(country);
@@ -63,7 +63,7 @@ public class TestResearch {
     /* TEST: setHoldByCountry */
 
     @Test
-    public void TestSetHoldByCountryC1() {
+    public void testSetHoldByCountryC1() {
         // DeathPopulation is 0
         class StubResearch {
             private int researchPerDay = 0;     // should int in the orig class
@@ -85,14 +85,14 @@ public class TestResearch {
     }
 
     @Test
-    public void TestSetHoldByCountryC2() {
+    public void testSetHoldByCountryC2() {
         // DeathPopulation is 1200
         class StubResearch {
             private int researchPerDay = 0;
 
             public int setHoldByCountry(Country holdByCountry) {
                 if (holdByCountry != null) {
-                    researchPerDay = (int) (holdByCountry.getMedicalSystem() - (((double)holdByCountry.getDeathPopulation()) / holdByCountry.getPopulation()));
+                    researchPerDay = (int) (holdByCountry.getMedicalSystem() - ((holdByCountry.getDeathPopulation()) / holdByCountry.getPopulation()));
                     if (researchPerDay < 0) {
                         researchPerDay = 0;
                     }
@@ -108,7 +108,7 @@ public class TestResearch {
     }
 
     @Test
-    public void TestSetHoldByCountryC3() {
+    public void testSetHoldByCountryC3() {
         // DeathPopulation is 1200, medicalSystem is 0
         class StubResearch {
             private int researchPerDay = 0;
@@ -133,7 +133,7 @@ public class TestResearch {
     /* TEST: addResearchPerDay */
 
     @Test
-    public void TestAddResearchPerDayC1() {
+    public void testAddResearchPerDayC1() {
         Research research = new Research();
         research.addResearchPerDay(50.0);
         double result = research.getResearchPerDay();
@@ -141,7 +141,7 @@ public class TestResearch {
     }
 
     @Test
-    public void TestAddResearchPerDayC2() {
+    public void testAddResearchPerDayC2() {
         Research research = new Research();
         research.addResearchPerDay(-50.0);
         double result = research.getResearchPerDay();
@@ -151,7 +151,7 @@ public class TestResearch {
     /* TEST: getResearchPerDay */
 
     @Test
-    public void TestGetResearchPerDayC1() {
+    public void testGetResearchPerDayC1() {
         Country country = new Country("test", 1234, 10.0, CountryClimate.Hot);
         Research research = new Research();
         research.setHoldByCountry(country);
@@ -160,7 +160,7 @@ public class TestResearch {
     }
 
     @Test
-    public void TestGetResearchPerDayC2() {
+    public void testGetResearchPerDayC2() {
         Country country = new Country("test", 1234, 0.0, CountryClimate.Hot);
         Research research = new Research();
         research.setHoldByCountry(country);

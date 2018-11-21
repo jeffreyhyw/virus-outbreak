@@ -12,7 +12,7 @@ public class TestVirus {
     /* TEST: getName */
 
     @Test
-    public void TestGetName() {
+    public void testGetName() {
         ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
             add(new VirusTransmission("tran1", "dTran1", 1.0));
             add(new VirusTransmission("tran2", "dTran2", 2.0));
@@ -34,7 +34,7 @@ public class TestVirus {
     /* TEST: setName */
 
     @Test
-    public void TestSetName() {
+    public void testSetName() {
         ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
             add(new VirusTransmission("tran1", "dTran1", 1.0));
             add(new VirusTransmission("tran2", "dTran2", 2.0));
@@ -57,7 +57,7 @@ public class TestVirus {
     /* TEST: getTransmissionList */
 
     @Test
-    public void TestGetTransmissionList() {
+    public void testGetTransmissionList() {
         ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
             add(new VirusTransmission("tran1", "dTran1", 1.0));
             add(new VirusTransmission("tran2", "dTran2", 2.0));
@@ -84,7 +84,7 @@ public class TestVirus {
     /* TEST: getSymptomList */
 
     @Test
-    public void TestGetSymptomList() {
+    public void testGetSymptomList() {
         ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
             add(new VirusTransmission("tran1", "dTran1", 1.0));
             add(new VirusTransmission("tran2", "dTran2", 2.0));
@@ -111,7 +111,7 @@ public class TestVirus {
     /* TEST: getAbilityList */
 
     @Test
-    public void TestGetAbilityList() {
+    public void testGetAbilityList() {
         ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
             add(new VirusTransmission("tran1", "dTran1", 1.0));
             add(new VirusTransmission("tran2", "dTran2", 2.0));
@@ -138,7 +138,7 @@ public class TestVirus {
     /* getInfectPerDay */
 
     @Test
-    public void TestGetInfectPerDayC1() {
+    public void testGetInfectPerDayC1() {
         ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
         }};
         ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{
@@ -153,7 +153,7 @@ public class TestVirus {
     }
 
     @Test
-    public void TestGetInfectPerDayC2() {
+    public void testGetInfectPerDayC2() {
         ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
             add(new VirusTransmission("tran1", "dTran1", 1.0));
             add(new VirusTransmission("tran2", "dTran2", 2.0));
@@ -174,7 +174,7 @@ public class TestVirus {
     }
 
     @Test
-    public void TestGetInfectPerDayC3() {
+    public void testGetInfectPerDayC3() {
         ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
             add(new VirusTransmission("tran1", "dTran1", 1.0));
             add(new VirusTransmission("tran2", "dTran2", 2.0));
@@ -204,7 +204,7 @@ public class TestVirus {
     /* getKillPerDay */
 
     @Test
-    public void TestGetKillPerDayC1() {
+    public void testGetKillPerDayC1() {
         ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
         }};
         ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{
@@ -219,7 +219,7 @@ public class TestVirus {
     }
 
     @Test
-    public void TestGetKillPerDayC2() {
+    public void testGetKillPerDayC2() {
         ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
             add(new VirusTransmission("tran1", "dTran1", 1.0));
             add(new VirusTransmission("tran2", "dTran2", 2.0));
@@ -240,7 +240,7 @@ public class TestVirus {
     }
 
     @Test
-    public void TestGetKillPerDayC3() {
+    public void testGetKillPerDayC3() {
         ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
             add(new VirusTransmission("tran1", "dTran1", 1.0));
             add(new VirusTransmission("tran2", "dTran2", 2.0));

@@ -7,6 +7,7 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.JTableHeader;
 
 import controller.MainController;
+import object.Constants;
 import object.Game;
 
 import java.awt.*;
@@ -24,7 +25,7 @@ public class Main{
 		GridBagConstraints layout=new GridBagConstraints();
 		if(game.newGame)
 		{
-			game.mainTitleLabel = new JLabel("Game Start!", SwingConstants.CENTER);
+			game.mainTitleLabel = new JLabel(Constants.game_start, SwingConstants.CENTER);
 			game.newGame = false;
 		}
 		game.mainTitleLabel.setFont(new Font("sans serif", Font.BOLD, 16));
@@ -66,14 +67,14 @@ public class Main{
 		Total.setLayout(new GridBagLayout());
 		GridBagConstraints layout=new GridBagConstraints();
 		
-		game.totalCountryPopLabel = new JLabel("Total Population in Country: " + 0);
-		game.totalInfectedLabel = new JLabel("Infected Population in Country: " + 0);
-		game.totalDeathPopLabel = new JLabel("Death Population in Country: " + 0);
+		game.totalCountryPopLabel = new JLabel(Constants.total_pop_country + 0);
+		game.totalInfectedLabel = new JLabel(Constants.infected_pop_country + 0);
+		game.totalDeathPopLabel = new JLabel(Constants.death_pop_country + 0);
 		
 		JLabel space = new JLabel(" ");
-		game.worldTotalPopulation = new  JLabel("World Total Population: " + game.getWorldTotalPopulation());
-		game.totalInfectLabel = new JLabel("World Total Infect          : " + game.getTotalInfectedPopulation());
-		game.totalDeathLabel = new JLabel("World Total Death         : " + game.getTotalDeathPopulation());
+		game.worldTotalPopulation = new  JLabel(Constants.world_total_pop + game.getWorldTotalPopulation());
+		game.totalInfectLabel = new JLabel(Constants.world_total_infect + game.getTotalInfectedPopulation());
+		game.totalDeathLabel = new JLabel(Constants.world_total_death + game.getTotalDeathPopulation());
 		
 		layout.gridx=0;
 		
@@ -117,9 +118,9 @@ public class Main{
 		Date.setLayout(new GridBagLayout());
 		GridBagConstraints layout=new GridBagConstraints();
 
-		game.mainCurrentDateLabel = new JLabel("Current Date: " + game.getCurrentDate());
-		game.mainFinDateLabel= new JLabel("Finish Date: " + game.getEndGameDate());
-		JLabel resDate= new JLabel("Research Date: Not Started");
+		game.mainCurrentDateLabel = new JLabel(Constants.curr_dt + game.getCurrentDate());
+		game.mainFinDateLabel= new JLabel(Constants.finish_dt + game.getEndGameDate());
+		JLabel resDate= new JLabel(Constants.not_start_r_dt);
 		layout.gridx=0;
 		layout.gridy=0;
 		layout.anchor=GridBagConstraints.NORTHWEST;
@@ -138,16 +139,16 @@ public class Main{
 	{
 		JPanel bottom=new JPanel();
 		bottom.setLayout(new GridLayout(1,3));
-		game.evoPointLabel = new JLabel("Evo Point: " + game.getUpgradePoint(), SwingConstants.CENTER);
+		game.evoPointLabel = new JLabel(Constants.evo_pt + game.getUpgradePoint(), SwingConstants.CENTER);
 		game.evoPointLabel.setFont(new Font("sans serif", Font.BOLD, 16));
 		game.evoPointLabel.setBackground(Color.lightGray);
 		game.evoPointLabel.setOpaque(true);
 		bottom.add(game.evoPointLabel);
-		JButton attritube=new JButton("Attritube");
+		JButton attritube=new JButton(Constants.att);
 		bottom.add(attritube);
-		JButton exit=new JButton("Exit");
+		JButton exit=new JButton(Constants.exit);
 		bottom.add(exit);
-		game.researchLabel = new JLabel("Research: "+ game.getResearch().getCurrentResearch() +"%", SwingConstants.CENTER);
+		game.researchLabel = new JLabel(Constants.research+ game.getResearch().getCurrentResearch() +"%", SwingConstants.CENTER);
 		game.researchLabel.setFont(new Font("sans serif", Font.BOLD, 16));
 		game.researchLabel.setBackground(Color.lightGray);
 		game.researchLabel.setOpaque(true);

@@ -5,11 +5,9 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 
-
 public class TestCountry {
 
     /* TEST: setName */
-
     @Test
     public void testSetName() {
         Country country = new Country("test", 1234, 0, CountryClimate.Hot);
@@ -19,7 +17,6 @@ public class TestCountry {
     }
 
     /* TEST: getName */
-
     @Test
     public void testGetName() {
         Country country = new Country("test", 1234, 0, CountryClimate.Hot);
@@ -28,7 +25,6 @@ public class TestCountry {
     }
 
     /* TEST: getPopulation */
-
     @Test
     public void testGetPopulation() {
         Country country = new Country("test", 1234, 0, CountryClimate.Hot);
@@ -36,18 +32,8 @@ public class TestCountry {
         assertEquals(1234, result);
     }
 
-    /* TEST: setPopulation */
-
-    @Test
-    public void testSetPopulation() {
-        Country country = new Country("test", 1234, 0, CountryClimate.Hot);
-        country.setPopulation(1500);
-        int result = country.getPopulation();
-        assertEquals(1500, result);
-    }
 
     /* TEST: getInfectedPopulation */
-
     @Test
     public void testGetInfectedPopulation() {
         Country country = new Country("test", 1234, 0, CountryClimate.Hot);
@@ -55,72 +41,16 @@ public class TestCountry {
         assertEquals(0, result);
     }
 
-    /* TEST: setInfectedPopulation */
-
-    @Test
-    public void testSetInfectedPopulation() {
-        Country country = new Country("test", 1234, 0, CountryClimate.Hot);
-        country.setInfectedPopulation(999);
-        int result = country.getInfectedPopulation();
-        assertEquals(999, result);
-    }
-
     /* TEST: addInfectedPopulation */
-
     @Test
-    public void testAddInfectedPopulationC1() {
-        class StubCountry {
-            private int population = 1234, infectedPopulation = 0, deathPopulation = 0;
-            public int addInfectedPopulation(int pop) {
-                infectedPopulation += pop;
-                return infectedPopulation;
-            }
-        }
-        StubCountry stubCountry = new StubCountry();
-        int result = stubCountry.addInfectedPopulation(1000);
-        assertEquals(1000,result);
-    }
-
-    @Test
-    public void testAddInfectedPopulationC2() {  // ERROR
-        class StubCountry {
-            private int population = 1234, infectedPopulation = 0, deathPopulation = 0;
-            public int addInfectedPopulation(int pop) {
-                infectedPopulation += pop;
-                if (infectedPopulation > population && infectedPopulation < deathPopulation) {
-                    infectedPopulation = population;
-                } else if (infectedPopulation > population && infectedPopulation >= deathPopulation) {
-                    infectedPopulation = population;
-                }
-                return infectedPopulation;
-            }
-        }
-        StubCountry stubCountry = new StubCountry();
-        int result = stubCountry.addInfectedPopulation(1000);
-        assertEquals(1000,result);
-    }
-
-    @Test
-    public void testAddInfectedPopulationC3() {  // ERROR
-        class StubCountry {
-            private int population = 1234, infectedPopulation = 0, deathPopulation = 0;
-            public int addInfectedPopulation(int pop) {
-                infectedPopulation += pop;
-                if (infectedPopulation > population && infectedPopulation < deathPopulation) {
-                    infectedPopulation = population;
-                } else if (infectedPopulation > population && infectedPopulation >= deathPopulation) {
-                    infectedPopulation = population;
-                }
-                return infectedPopulation;
-            }
-        }
-        StubCountry stubCountry = new StubCountry();
-        int result = stubCountry.addInfectedPopulation(1000);
+    public void testAddInfectedPopulation() {
+        Country country = new Country("test", 1234, 5, CountryClimate.Hot);
+        country.addInfectedPopulation(1000);
+        int result = country.getInfectedPopulation();
         assertEquals(1000,result);
     }
 
     /* TEST: getDeathPopulation */
-
     @Test
     public void testGetDeathPopulation() {
         Country country = new Country("test", 1234, 0, CountryClimate.Hot);
@@ -128,88 +58,25 @@ public class TestCountry {
         assertEquals(0, result);
     }
 
-    /* TEST: setDeathPopulation */
-
-    @Test
-    public void testSetDeathPopulation() {
-        Country country = new Country("test", 1234, 0, CountryClimate.Hot);
-        country.setDeathPopulation(1234);
-        int result = country.getDeathPopulation();
-        assertEquals(1234, result);
-    }
-
     /* TEST : addDeathPopulation */
-
     @Test
     public void testAddDeathPopulationC1() {
-        class StubCountry {
-            private int population = 1234, infectedPopulation = 0, deathPopulation = 0;
-            public int addDeathPopulation(int pop) {
-                deathPopulation += pop;
-                return deathPopulation;
-            }
-        }
-        StubCountry stubCountry = new StubCountry();
-        int result = stubCountry.addDeathPopulation(1000);
-        assertEquals(1000, result);
+        Country country = new Country("test", 1234, 5, CountryClimate.Hot);
+        country.addInfectedPopulation(500);
+        country.addDeathPopulation(500);
+        int result = country.getDeathPopulation();
+        assertEquals(500, result);
     }
 
     @Test
     public void testAddDeathPopulationC2() {
-        class StubCountry {
-            private int population = 1234, infectedPopulation = 0, deathPopulation = 0;
-            public int addDeathPopulation(int pop) {
-                deathPopulation += pop;
-                if (deathPopulation > infectedPopulation) {
-                    deathPopulation = infectedPopulation;
-                }
-                return deathPopulation;
-            }
-        }
-        StubCountry stubCountry = new StubCountry();
-        int result = stubCountry.addDeathPopulation(1000);
-        assertEquals(0, result);
-    }
-
-    @Test
-    public void testAddDeathPopulationC3() { // ERROR
-        class StubCountry {
-            private int population = 1234, infectedPopulation = 0, deathPopulation = 0;
-            public int addDeathPopulation(int pop) {
-                deathPopulation += pop;
-                if (deathPopulation >= infectedPopulation && deathPopulation > population) {
-                    deathPopulation = population;
-                }
-                return deathPopulation;
-            }
-        }
-        StubCountry stubCountry = new StubCountry();
-        int result = stubCountry.addDeathPopulation(1300);
-        assertEquals(1234, result);
-    }
-
-    @Test
-    public void testAddDeathPopulationC4() {
-        class StubCountry {
-            private int population = 1234, infectedPopulation = 0, deathPopulation = 0;
-            public int addDeathPopulation(int pop) {
-                deathPopulation += pop;
-                if (deathPopulation > infectedPopulation) {
-                    deathPopulation = infectedPopulation;
-                }
-                if (deathPopulation >= infectedPopulation && deathPopulation > population) {
-                    deathPopulation = population;
-                }
-                return deathPopulation;
-            }
-        }
-        StubCountry stubCountry = new StubCountry();
-        int result = stubCountry.addDeathPopulation(1000);
+        Country country = new Country("test", 1234, 5, CountryClimate.Hot);
+        country.addDeathPopulation(500);
+        int result = country.getDeathPopulation();
         assertEquals(0, result);
     }
 
     /* TEST : getUninfectedPopulation */
-
     @Test
     public void testGetUninfectedPopulation() {
         Country country = new Country("test", 1234, 0, CountryClimate.Hot);
@@ -218,7 +85,6 @@ public class TestCountry {
     }
 
     /* TEST : getClimate */
-
     @Test
     public void testGetClimate() {
         Country country = new Country("test", 1234, 0, CountryClimate.Hot);
@@ -227,7 +93,6 @@ public class TestCountry {
     }
 
     /* TEST: getState */
-
     @Test
     public void testGetState() {
         Country country = new Country("test", 1234, 0, CountryClimate.Hot);
@@ -236,7 +101,6 @@ public class TestCountry {
     }
 
     /* TEST : setState */
-
     @Test
     public void testSetState() {
         Country country = new Country("test", 1234, 0, CountryClimate.Hot);
@@ -247,7 +111,6 @@ public class TestCountry {
     }
 
     /* TEST : getMedicalSystem */
-
     @Test
     public void testGetMedicalSystem() {
         Country country = new Country("test", 1234, 1234.1234, CountryClimate.Hot);

@@ -30,16 +30,8 @@ public class Country {
         return this.population;
     }
 
-    public void setPopulation(int pop) {
-        this.population = pop;
-    }
-
     public int getInfectedPopulation() {
         return this.infectedPopulation;
-    }
-
-    public void setInfectedPopulation(int pop) {
-        this.infectedPopulation = pop;
     }
 
     public void addInfectedPopulation(int pop) {
@@ -55,10 +47,6 @@ public class Country {
 
     public int getDeathPopulation() {
         return this.deathPopulation;
-    }
-
-    public void setDeathPopulation(int pop) {
-        this.deathPopulation = pop;
     }
 
     public void addDeathPopulation(int pop) {

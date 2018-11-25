@@ -19,6 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 import controller.MainController;
+import object.Constants;
 import object.Game;
 import object.VirusAbility;
 import object.VirusTransmission;
@@ -26,20 +27,20 @@ import object.VirusTransmission;
 public class ConfigTransmissionPanel {
 	
 	ArrayList<VirusTransmission> att_list;
-	final int full_width = 960;
-	final int details_height = 120;
-	final int details_item_width = 320;
-	final int scrollView_width = 760;
-	final int scrollView_height = 410;
-	final int configureView_width = 760;
-	final int configureView_height = 50;
-	final int att_name_field_width = 250;
-	final int att_cost_field_width = 100;
-	final int att_level_field_width = 150;
-	final int att_add_field_width = 100;
-	final int att_info_field_width = 100;
-	final int descriptionView_width = 200;
-	final int descriptionView_height = 410;
+	final int full_width = Constants.full_width;
+	final int details_height = Constants.details_height;
+	final int details_item_width = Constants.details_item_width;
+	final int scrollView_width = Constants.scrollView_width;
+	final int scrollView_height = Constants.scrollView_height;
+	final int configureView_width = Constants.configureView_width;
+	final int configureView_height = Constants.configureView_height;
+	final int att_name_field_width = Constants.att_name_field_width;
+	final int att_cost_field_width = Constants.att_cost_field_width;
+	final int att_level_field_width = Constants.att_level_field_width;
+	final int att_add_field_width = Constants.att_add_field_width;
+	final int att_info_field_width = Constants.att_info_field_width;
+	final int descriptionView_width = Constants.descriptionView_width;
+	final int descriptionView_height = Constants.descriptionView_height;
 	
 	JLabel descriptionLabel;
 	JLabel currcostLabel;
@@ -70,21 +71,16 @@ public class ConfigTransmissionPanel {
 	void generateConfigureTitle(JPanel configurePanel) {
 		JPanel title_panel = new JPanel();
 		title_panel.setPreferredSize(new Dimension(configureView_width, configureView_height));
-		JLabel name_title_label = new JLabel("Attributes Name");
-		name_title_label.setPreferredSize(new Dimension(att_name_field_width, configureView_height));
-		JLabel cost_title_label = new JLabel("Cost");
-		cost_title_label.setPreferredSize(new Dimension(att_cost_field_width, configureView_height));
-		JLabel level_title_label = new JLabel("Level");
-		level_title_label.setPreferredSize(new Dimension(att_level_field_width, configureView_height));
-		JLabel upLevel_title_label = new JLabel("Up Level");
-		upLevel_title_label.setPreferredSize(new Dimension(att_add_field_width, configureView_height));
-		JLabel info_title_label = new JLabel("Info");
-		info_title_label.setPreferredSize(new Dimension(att_info_field_width, configureView_height));
-		title_panel.add(name_title_label);
-		title_panel.add(cost_title_label);
-		title_panel.add(level_title_label);
-		title_panel.add(upLevel_title_label);
-		title_panel.add(info_title_label);
+		
+		String label_arr [] = { Constants.att_name, Constants.cost, Constants.lv, Constants.up_lv, Constants.info };
+		int widths [] = { att_name_field_width, att_cost_field_width, att_level_field_width, att_add_field_width, att_info_field_width };
+		
+		for(int i = 0; i < label_arr.length; i ++) {
+			JLabel label = new JLabel(label_arr[i]);
+			label.setPreferredSize(new Dimension(widths[i], configureView_height));
+			title_panel.add(label);
+		}
+		
 		configurePanel.add(title_panel);
 	}
 	
@@ -194,7 +190,7 @@ public class ConfigTransmissionPanel {
         virusNamePanel.setPreferredSize(new Dimension(details_item_width, details_height));
 
         JPanel backButtonPanel = new JPanel();
-        JButton backButton = new JButton("Back");
+        JButton backButton = new JButton(Constants.back);
         backButton.addActionListener(new ActionListener() {
   		    @Override
   		    public void actionPerformed(ActionEvent e) {
@@ -221,7 +217,7 @@ public class ConfigTransmissionPanel {
         
 	}
 	void generateDescriptionPanel(JPanel descriptionPanel) {
-		descriptionLabel = new JLabel("Description", SwingConstants.CENTER);
+		descriptionLabel = new JLabel(Constants.desc, SwingConstants.CENTER);
 		descriptionLabel.setVerticalAlignment(SwingConstants.CENTER);
 		descriptionLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		descriptionPanel.add(descriptionLabel);

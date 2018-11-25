@@ -1,5 +1,6 @@
 package object;
 
 public interface CountryState {
-    public void handle();
+    public boolean isAll();
+    public void setAll(boolean all);
 }

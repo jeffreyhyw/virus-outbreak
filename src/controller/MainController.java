@@ -102,20 +102,11 @@ public class MainController {
                     game.setLabel(game.mainCurrentDateLabel, "Current Date: " + game.getCurrentDate());
 
                     //Killing / Infecting logic ...
-                    boolean canVirusStillSpread = false;
                     for (Country c : game.getCountries()) {
                         if (c.getInfectedPopulation() > 0) {
                             infectPeople(c);
                             killPeople(c);
-                            if (c.getState() instanceof NormalCountry) {
-                                canVirusStillSpread = true;
-                            }
                         }
-                    }
-                    //If all people is dead in that country, virus cannot spread anymore.
-                    if (!canVirusStillSpread) {
-                        game.setEndGame(true);
-                        game.setLabel(game.mainTitleLabel, "Game Over! " + game.getVirusName() + " has failed to spread all over the world");
                     }
 
                     //Pick a random country to infect

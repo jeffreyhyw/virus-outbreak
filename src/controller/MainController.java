@@ -19,11 +19,12 @@ public class MainController {
 
     //Initialize variable
     public static JFrame frame;
-    static Game game;
+//    static Game game;
+    private static Game game;
 
     public static void main(String[] args) {
         //Create game object
-        game = new Game();
+        game = Game.getInstance();
 
 
         //Schedule a job for the event dispatch thread:

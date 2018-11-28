@@ -11,7 +11,10 @@ import javax.swing.JTable;
 
 public class Game {
     //Initialize variables
+	private static Game gameInstance;
+	
     private String bornCountry;
+    
 
     private boolean endGame = false;
     private final int totalNumberOfDays = 520;
@@ -38,6 +41,14 @@ public class Game {
     private Research research = new Research();
 
     private String selectedRowCountryName = "";
+    
+    public static synchronized Game getInstance(){
+
+		if (gameInstance == null)
+			gameInstance = new Game();
+
+		return gameInstance;
+	}
 
     //UI Components
     //Main UI

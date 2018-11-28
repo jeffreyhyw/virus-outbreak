@@ -95,11 +95,11 @@ public class Game {
     /* For Virus */
     public void initVirus() {
         ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
-            add(new VirusTransmission("Rodent", "<html>Factors Affecting the Transmission of Rodent Ultrasounds in Natural Environments.</html>", 0.15));
-            add(new VirusTransmission("Air I", "<html>Airborne transmission occurs when bacteria or viruses travel on dust particles.</html>", 0.2));
-            add(new VirusTransmission("Air II", "<html>Power up the air transimission.</html>", 0.3));
-            add(new VirusTransmission("Water I", "<html>Water transmission occurs from water pollution.</html>", 0.2));
-            add(new VirusTransmission("Water II", "<html>Power up the water transimission.</html>", 0.3));
+            add(new VirusTransmission("Rodent", "<html>Factors Affecting the Transmission of Rodent Ultrasounds in Natural Environments.</html>", 0.15, ""));
+            add(new VirusTransmission("Air I", "<html>Airborne transmission occurs when bacteria or viruses travel on dust particles.</html>", 0.2, ""));
+            add(new VirusTransmission("Air II", "<html>Power up the air transimission.</html>", 0.3, "Air I"));
+            add(new VirusTransmission("Water I", "<html>Water transmission occurs from water pollution.</html>", 0.2, ""));
+            add(new VirusTransmission("Water II", "<html>Power up the water transimission.</html>", 0.3, "Water II"));
         }};
         ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{
             add(new VirusSymptom("Nausea", "<html>Nausea is pronounced stomach discomfort and the sensation of wanting to vomit.</html>", 0.1, 0.6));
@@ -110,10 +110,10 @@ public class Game {
             add(new VirusSymptom("Anaemia", "<html>Anaemia is a condition in which the blood has a decreased number of red blood cells.</html>", 0, 0.5));
         }};
         ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
-            add(new VirusAbility("Cold Resistance I", "<html>The virus can alive at cold environment.</html>", 0, CountryClimate.Cold));
-            add(new VirusAbility("Heat Resistance I", "<html>The virus can alive at hot environment.</html>", 0, CountryClimate.Hot));
-            add(new VirusAbility("Bacterial Resilience I", "<html>Make the virus stronger.</html>", 15, CountryClimate.Wet));
-            add(new VirusAbility("Drug Resistance I", "<html>Increase the alive rate facing the research increasing.</html>", 25, CountryClimate.Dry));
+            add(new VirusAbility("Cold Resistance I", "<html>The virus can alive at cold environment.</html>", CountryClimate.Cold));
+            add(new VirusAbility("Heat Resistance I", "<html>The virus can alive at hot environment.</html>", CountryClimate.Hot));
+            add(new VirusAbility("Bacterial Resilience I", "<html>Make the virus stronger.</html>", CountryClimate.Wet));
+            add(new VirusAbility("Drug Resistance I", "<html>Increase the alive rate facing the research increasing.</html>", CountryClimate.Dry));
         }};
 
         virus = new Virus("name", transmissionList, symptomList, abilityList);

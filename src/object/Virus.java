@@ -49,7 +49,7 @@ public class Virus {
     }
 
 
-    public int getKillPerDay(Country c, int day) {
+    public int getKillPerDay(Country c) {
         if (getSymptomKillPower() == 0) {
             return 0;
         } else {

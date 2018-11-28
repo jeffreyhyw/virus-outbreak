@@ -128,7 +128,7 @@ public class Main{
 		layout.gridy=1;
 		Date.add(game.mainFinDateLabel, layout);
 		layout.gridy=2;
-		Date.add(resDate,layout);
+//		Date.add(resDate,layout);
 
 		layout.gridy=2;
 		layout.gridx=1;

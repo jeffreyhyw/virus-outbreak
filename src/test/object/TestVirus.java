@@ -10,9 +10,8 @@ import static junit.framework.TestCase.assertEquals;
 public class TestVirus {
 
     /* TEST: getName */
-
     @Test
-    public void TestGetName() {
+    public void testGetName() {
         ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
             add(new VirusTransmission("tran1", "dTran1", 1.0));
             add(new VirusTransmission("tran2", "dTran2", 2.0));
@@ -22,8 +21,8 @@ public class TestVirus {
             add(new VirusSymptom("symp2", "dSymp2", 2.0, 0.2));
         }};
         ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
-            add(new VirusAbility("abi1", "dAbi1", 1.0, CountryClimate.Hot));
-            add(new VirusAbility("abi2", "dAbi2", 2.0, CountryClimate.Cold));
+            add(new VirusAbility("abi1", "dAbi1", CountryClimate.Hot));
+            add(new VirusAbility("abi2", "dAbi2", CountryClimate.Cold));
         }};
 
         Virus virus = new Virus("test", transmissionList, symptomList, abilityList);
@@ -32,9 +31,8 @@ public class TestVirus {
     }
 
     /* TEST: setName */
-
     @Test
-    public void TestSetName() {
+    public void testSetName() {
         ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
             add(new VirusTransmission("tran1", "dTran1", 1.0));
             add(new VirusTransmission("tran2", "dTran2", 2.0));
@@ -44,8 +42,8 @@ public class TestVirus {
             add(new VirusSymptom("symp2", "dSymp2", 2.0, 0.2));
         }};
         ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
-            add(new VirusAbility("abi1", "dAbi1", 1.0, CountryClimate.Hot));
-            add(new VirusAbility("abi2", "dAbi2", 2.0, CountryClimate.Cold));
+            add(new VirusAbility("abi1", "dAbi1", CountryClimate.Hot));
+            add(new VirusAbility("abi2", "dAbi2", CountryClimate.Cold));
         }};
 
         Virus virus = new Virus("test", transmissionList, symptomList, abilityList);
@@ -55,9 +53,8 @@ public class TestVirus {
     }
 
     /* TEST: getTransmissionList */
-
     @Test
-    public void TestGetTransmissionList() {
+    public void testGetTransmissionList() {
         ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
             add(new VirusTransmission("tran1", "dTran1", 1.0));
             add(new VirusTransmission("tran2", "dTran2", 2.0));
@@ -67,8 +64,8 @@ public class TestVirus {
             add(new VirusSymptom("symp2", "dSymp2", 2.0, 0.2));
         }};
         ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
-            add(new VirusAbility("abi1", "dAbi1", 1.0, CountryClimate.Hot));
-            add(new VirusAbility("abi2", "dAbi2", 2.0, CountryClimate.Cold));
+            add(new VirusAbility("abi1", "dAbi1", CountryClimate.Hot));
+            add(new VirusAbility("abi2", "dAbi2", CountryClimate.Cold));
         }};
 
         Virus virus = new Virus("test", transmissionList, symptomList, abilityList);
@@ -82,9 +79,8 @@ public class TestVirus {
     }
 
     /* TEST: getSymptomList */
-
     @Test
-    public void TestGetSymptomList() {
+    public void testGetSymptomList() {
         ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
             add(new VirusTransmission("tran1", "dTran1", 1.0));
             add(new VirusTransmission("tran2", "dTran2", 2.0));
@@ -94,8 +90,8 @@ public class TestVirus {
             add(new VirusSymptom("symp2", "dSymp2", 2.0, 0.2));
         }};
         ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
-            add(new VirusAbility("abi1", "dAbi1", 1.0, CountryClimate.Hot));
-            add(new VirusAbility("abi2", "dAbi2", 2.0, CountryClimate.Cold));
+            add(new VirusAbility("abi1", "dAbi1", CountryClimate.Hot));
+            add(new VirusAbility("abi2", "dAbi2", CountryClimate.Cold));
         }};
 
         Virus virus = new Virus("test", transmissionList, symptomList, abilityList);
@@ -109,9 +105,8 @@ public class TestVirus {
     }
 
     /* TEST: getAbilityList */
-
     @Test
-    public void TestGetAbilityList() {
+    public void testGetAbilityList() {
         ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
             add(new VirusTransmission("tran1", "dTran1", 1.0));
             add(new VirusTransmission("tran2", "dTran2", 2.0));
@@ -121,8 +116,8 @@ public class TestVirus {
             add(new VirusSymptom("symp2", "dSymp2", 2.0, 0.2));
         }};
         ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
-            add(new VirusAbility("abi1", "dAbi1", 1.0, CountryClimate.Hot));
-            add(new VirusAbility("abi2", "dAbi2", 2.0, CountryClimate.Cold));
+            add(new VirusAbility("abi1", "dAbi1", CountryClimate.Hot));
+            add(new VirusAbility("abi2", "dAbi2", CountryClimate.Cold));
         }};
 
         Virus virus = new Virus("test", transmissionList, symptomList, abilityList);
@@ -135,46 +130,29 @@ public class TestVirus {
         }
     }
 
-    /* getInfectPerDay */
-
+    /* TEST: getInfectPerDay */
     @Test
-    public void TestGetInfectPerDayC1() {
-        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
-        }};
-        ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{
-        }};
-        ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
-        }};
+    public void testGetInfectPerDayC1() {
 
-        Virus virus = new Virus("test", transmissionList, symptomList, abilityList);
-        Country country = new Country("test", 1234, 10.0, CountryClimate.Hot);
-        int result = virus.getInfectPerDay(country, 10);
-        assertEquals(1000, result);
-    }
+        class StubVirus extends Virus {
+            private double virusSpeed = 0.01;
 
-    @Test
-    public void TestGetInfectPerDayC2() {
-        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
-            add(new VirusTransmission("tran1", "dTran1", 1.0));
-            add(new VirusTransmission("tran2", "dTran2", 2.0));
-        }};
-        ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{
-            add(new VirusSymptom("symp1", "dSymp1", 1.0, 0.1));
-            add(new VirusSymptom("symp2", "dSymp2", 2.0, 0.2));
-        }};
-        ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
-            add(new VirusAbility("abi1", "dAbi1", 1.0, CountryClimate.Hot));
-            add(new VirusAbility("abi2", "dAbi2", 2.0, CountryClimate.Cold));
-        }};
+            public StubVirus(String name, ArrayList<VirusTransmission> transmissionList, ArrayList<VirusSymptom> symptomList, ArrayList<VirusAbility> abilityList) {
+                super(name, transmissionList, symptomList, abilityList);
+            }
 
-        Virus virus = new Virus("test", transmissionList, symptomList, abilityList);
-        Country country = new Country("test", 1234, 10.0, CountryClimate.Hot);
-        int result = virus.getInfectPerDay(country, 10);
-        assertEquals(1000, result);
-    }
+            @Override
+            public int getInfectPerDay(Country c, int day) {
+                // assume no error in the method getInfectionPower()
+                int resultOfGetInfectionPower = 0;
+                if (resultOfGetInfectionPower == 0) {
+                    return (int) (day * day * c.getMedicalSystem());
+                } else {
+                    return (int) (day * day * c.getMedicalSystem() + (c.getUninfectedPopulation() * (1 - c.getMedicalSystem()) * virusSpeed * (1 + resultOfGetInfectionPower)));
+                }
+            }
+        }
 
-    @Test
-    public void TestGetInfectPerDayC3() {
         ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
             add(new VirusTransmission("tran1", "dTran1", 1.0));
             add(new VirusTransmission("tran2", "dTran2", 2.0));
@@ -184,63 +162,81 @@ public class TestVirus {
             add(new VirusSymptom("symp2", "dSymp2", 2.0, 0.2));
         }};
         ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
-            add(new VirusAbility("abi1", "dAbi1", 1.0, CountryClimate.Hot));
-            add(new VirusAbility("abi2", "dAbi2", 2.0, CountryClimate.Cold));
+            add(new VirusAbility("abi1", "dAbi1", CountryClimate.Hot));
+            add(new VirusAbility("abi2", "dAbi2", CountryClimate.Cold));
         }};
 
-        transmissionList.get(0).setResearched(true);
-        transmissionList.get(0).setLevel(2);
-        transmissionList.get(1).setResearched(true);
-        transmissionList.get(1).setLevel(3);
-
-        Virus virus = new Virus("test", transmissionList, symptomList, abilityList);
+        StubVirus stubVirus = new StubVirus("test", transmissionList, symptomList, abilityList);
         Country country = new Country("test", 1234, 10.0, CountryClimate.Hot);
-        int result = virus.getInfectPerDay(country, 10);
-        assertEquals(8.0, virus.getInfectionPower(country));
-        assertEquals(-999.54, country.getUninfectedPopulation() * (1 - country.getMedicalSystem()) * 0.01 * (1 + virus.getInfectionPower(country)));
-        assertEquals(0, result);
+        int result = stubVirus.getInfectPerDay(country, 10);
+        assertEquals(1000, result);
     }
+
+    @Test
+    public void testGetInfectPerDayC2() {
+
+        class StubVirus extends Virus {
+            private double virusSpeed = 0.01;
+
+            public StubVirus(String name, ArrayList<VirusTransmission> transmissionList, ArrayList<VirusSymptom> symptomList, ArrayList<VirusAbility> abilityList) {
+                super(name, transmissionList, symptomList, abilityList);
+            }
+
+            @Override
+            public int getInfectPerDay(Country c, int day) {
+                // assume no error in the method getInfectionPower()
+                int resultOfGetInfectionPower = 5;
+                if (resultOfGetInfectionPower == 0) {
+                    return (int) (day * day * c.getMedicalSystem());
+                } else {
+                    return (int) (day * day * c.getMedicalSystem() + (c.getUninfectedPopulation() * (1 - c.getMedicalSystem()) * virusSpeed * (1 + resultOfGetInfectionPower)));
+                }
+            }
+        }
+
+        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
+            add(new VirusTransmission("tran1", "dTran1", 1.0));
+            add(new VirusTransmission("tran2", "dTran2", 2.0));
+        }};
+        ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{
+            add(new VirusSymptom("symp1", "dSymp1", 1.0, 0.1));
+            add(new VirusSymptom("symp2", "dSymp2", 2.0, 0.2));
+        }};
+        ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
+            add(new VirusAbility("abi1", "dAbi1", CountryClimate.Hot));
+            add(new VirusAbility("abi2", "dAbi2", CountryClimate.Cold));
+        }};
+
+        StubVirus stubVirus = new StubVirus("test", transmissionList, symptomList, abilityList);
+        Country country = new Country("test", 1234, 10.0, CountryClimate.Hot);
+        int result = stubVirus.getInfectPerDay(country, 10);
+        assertEquals(333, result);
+    }
+
 
     /* getKillPerDay */
 
     @Test
-    public void TestGetKillPerDayC1() {
-        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
-        }};
-        ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{
-        }};
-        ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
-        }};
+    public void testGetKillPerDayC1() {
+        class StubVirus extends Virus {
+            private double virusPower = 0.01;
 
-        Virus virus = new Virus("test", transmissionList, symptomList, abilityList);
-        Country country = new Country("test", 1234, 10.0, CountryClimate.Hot);
-        int result = virus.getKillPerDay(country, 10);
-        assertEquals(0, result);
-    }
+            public StubVirus(String name, ArrayList<VirusTransmission> transmissionList, ArrayList<VirusSymptom> symptomList, ArrayList<VirusAbility> abilityList) {
+                super(name, transmissionList, symptomList, abilityList);
+            }
 
-    @Test
-    public void TestGetKillPerDayC2() {
-        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
-            add(new VirusTransmission("tran1", "dTran1", 1.0));
-            add(new VirusTransmission("tran2", "dTran2", 2.0));
-        }};
-        ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{
-            add(new VirusSymptom("symp1", "dSymp1", 1.0, 0.1));
-            add(new VirusSymptom("symp2", "dSymp2", 2.0, 0.2));
-        }};
-        ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
-            add(new VirusAbility("abi1", "dAbi1", 1.0, CountryClimate.Hot));
-            add(new VirusAbility("abi2", "dAbi2", 2.0, CountryClimate.Cold));
-        }};
+            @Override
+            public int getKillPerDay(Country c) {
+                // assume no error in the method getSymptomKillPower()
+                int resultOfGetSymptomKillPower = 0;
+                if (resultOfGetSymptomKillPower == 0) {
+                    return 0;
+                } else {
+                    return (int) (c.getInfectedPopulation() * (1 - c.getMedicalSystem()) * virusPower * (1 + resultOfGetSymptomKillPower));
+                }
+            }
+        }
 
-        Virus virus = new Virus("test", transmissionList, symptomList, abilityList);
-        Country country = new Country("test", 1234, 10.0, CountryClimate.Hot);
-        int result = virus.getKillPerDay(country, 10);
-        assertEquals(0, result);
-    }
-
-    @Test
-    public void TestGetKillPerDayC3() {
         ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
             add(new VirusTransmission("tran1", "dTran1", 1.0));
             add(new VirusTransmission("tran2", "dTran2", 2.0));
@@ -250,141 +246,142 @@ public class TestVirus {
             add(new VirusSymptom("symp2", "dSymp2", 2.0, 0.2));
         }};
         ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
-            add(new VirusAbility("abi1", "dAbi1", 1.0, CountryClimate.Hot));
-            add(new VirusAbility("abi2", "dAbi2", 2.0, CountryClimate.Cold));
+            add(new VirusAbility("abi1", "dAbi1", CountryClimate.Hot));
+            add(new VirusAbility("abi2", "dAbi2", CountryClimate.Cold));
+        }};
+        StubVirus stubVirus = new StubVirus("test", transmissionList, symptomList, abilityList);
+        Country country = new Country("test", 1234, 10.0, CountryClimate.Hot);
+        int result = stubVirus.getKillPerDay(country);
+        assertEquals(0, result);
+    }
+
+    @Test
+    public void testGetKillPerDayC2() {
+
+        class StubVirus extends Virus {
+            private double virusPower = 0.01;
+
+            public StubVirus(String name, ArrayList<VirusTransmission> transmissionList, ArrayList<VirusSymptom> symptomList, ArrayList<VirusAbility> abilityList) {
+                super(name, transmissionList, symptomList, abilityList);
+            }
+
+            @Override
+            public int getKillPerDay(Country c) {
+                // assume no error in the method getSymptomKillPower()
+                int resultOfGetSymptomKillPower = 10;
+                if (resultOfGetSymptomKillPower == 0) {
+                    return 0;
+                } else {
+                    // c.getInfectedPopulation() is 0
+                    return (int) (c.getInfectedPopulation() * (1 - c.getMedicalSystem()) * virusPower * (1 + resultOfGetSymptomKillPower));
+                }
+            }
+        }
+
+        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
+            add(new VirusTransmission("tran1", "dTran1", 1.0));
+            add(new VirusTransmission("tran2", "dTran2", 2.0));
+        }};
+        ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{
+            add(new VirusSymptom("symp1", "dSymp1", 1.0, 0.1));
+            add(new VirusSymptom("symp2", "dSymp2", 2.0, 0.2));
+        }};
+        ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
+            add(new VirusAbility("abi1", "dAbi1", CountryClimate.Hot));
+            add(new VirusAbility("abi2", "dAbi2", CountryClimate.Cold));
         }};
 
-        symptomList.get(0).setResearched(true);
-        symptomList.get(0).setKillPeopleRate(10.0);
-        symptomList.get(0).setLevel(2);
-        symptomList.get(1).setResearched(true);
-        symptomList.get(1).setKillPeopleRate(15.0);
-        symptomList.get(1).setLevel(3);
-
-        Virus virus = new Virus("test", transmissionList, symptomList, abilityList);
-        Country country = new Country("test", 1234, 0.5, CountryClimate.Hot);
-        country.setInfectedPopulation(1080);
-        int result = virus.getKillPerDay(country, 10);
-        assertEquals(97.5, virus.getSymptomKillPower());
-        assertEquals(531, result);
+        StubVirus stubVirus = new StubVirus("test", transmissionList, symptomList, abilityList);
+        Country country = new Country("test", 1234, 10.0, CountryClimate.Hot);
+        int result = stubVirus.getKillPerDay(country);
+        assertEquals(0, result);
     }
+
 
     /* TEST: getInfectionPower */
 
     @Test
     public void testGetInfectionPowerC1() {
-        class StubVirus {
-            private ArrayList<VirusSymptom> symptomList;
-            public double getInfectionPower(Country c) {
-                double infectPower = 0;
-                for (VirusSymptom vs : symptomList) {
-                    if (vs.isResearched())
-                        infectPower += vs.getInfectionRate() * vs.getLevel();
-                }
-                return infectPower;
-            }
-        }
-        ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{
-            add(new VirusSymptom("symp1", "dSymp1", 1.0, 0.1));
-            add(new VirusSymptom("symp2", "dSymp2", 2.0, 0.2));
-        }};
-        StubVirus stubVirus = new StubVirus();
-        stubVirus.symptomList = symptomList;
-        stubVirus.symptomList.get(1).setResearched(true);
-        stubVirus.symptomList.get(1).setLevel(2);
+        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{}};
+        ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{}};
+        ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{}};
+
+        Virus virus = new Virus("test",transmissionList, symptomList, abilityList);
         Country country = new Country("test", 1234, 0.5, CountryClimate.Hot);
-        double result = stubVirus.getInfectionPower(country);
-        assertEquals(4.0,result);
+        double result = virus.getInfectionPower(country);
+        assertEquals(0.0, result);
     }
 
     @Test
     public void testGetInfectionPowerC2() {
-        class StubVirus {
-            private ArrayList<VirusTransmission> transmissionList;
-            public double getInfectionPower(Country c) {
-                double infectPower = 0;
-                for (VirusTransmission vt : transmissionList) {
-                    if (vt.isResearched())
-                        infectPower += vt.getInfectionRate() * vt.getLevel();
-                }
-                return infectPower;
-            }
-        }
-        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
-            add(new VirusTransmission("tran1", "dTran1", 1.0));
-            add(new VirusTransmission("tran2", "dTran2", 2.0));
+        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{}};
+        ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{
+            add(new VirusSymptom("symp1", "dSymp1", 1.0, 0.1));
+            add(new VirusSymptom("symp2", "dSymp2", 2.0, 0.2));
         }};
-        StubVirus stubVirus = new StubVirus();
-        stubVirus.transmissionList = transmissionList;
-        stubVirus.transmissionList.get(1).setResearched(true);
-        stubVirus.transmissionList.get(1).setLevel(2);
+        ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{}};
+
+        symptomList.get(1).setResearched(true);
+        symptomList.get(1).upLevel();
+
+        Virus virus = new Virus("test",transmissionList, symptomList, abilityList);
         Country country = new Country("test", 1234, 0.5, CountryClimate.Hot);
-        double result = stubVirus.getInfectionPower(country);
-        assertEquals(4.0,result);
+        double result = virus.getInfectionPower(country);
+        assertEquals(2.0, result);
     }
 
     @Test
     public void testGetInfectionPowerC3() {
-        class StubVirus {
-            private ArrayList<VirusAbility> abilityList;
-            public double getInfectionPower(Country c) {
-                double infectPower = 0;
-                for (VirusAbility va : abilityList) {
-                    if (va.isResearched()) {
-                        //Bost virus power if the climate of the place suitable for virus
-                        if (va.getClimateBoost() == c.getClimate()) {
-                            infectPower += va.getInfectionRate() * va.getLevel() * 2;
-                        } else {
-                            infectPower += va.getInfectionRate() * va.getLevel();
-                        }
-                    }
-                }
-                return infectPower;
-            }
-        }
-        ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
-            add(new VirusAbility("abi1", "dAbi1", 1.0, CountryClimate.Hot));
-            add(new VirusAbility("abi2", "dAbi2", 2.0, CountryClimate.Cold));
+        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
+            add(new VirusTransmission("tran1", "dTran1", 1.0));
+            add(new VirusTransmission("tran2", "dTran2", 2.0));
         }};
-        StubVirus stubVirus = new StubVirus();
-        stubVirus.abilityList = abilityList;
-        stubVirus.abilityList.get(0).setResearched(true);
-        stubVirus.abilityList.get(0).upLevel();
+        ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{}};
+        ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{}};
+
+        transmissionList.get(1).setResearched(true);
+        transmissionList.get(1).upLevel();
+
+        Virus virus = new Virus("test",transmissionList, symptomList, abilityList);
         Country country = new Country("test", 1234, 0.5, CountryClimate.Hot);
-        double result = stubVirus.getInfectionPower(country);
-        assertEquals(0.1,result);
+        double result = virus.getInfectionPower(country);
+        assertEquals(2.0, result);
     }
 
     @Test
     public void testGetInfectionPowerC4() {
-        class StubVirus {
-            private ArrayList<VirusAbility> abilityList;
-            public double getInfectionPower(Country c) {
-                double infectPower = 0;
-                for (VirusAbility va : abilityList) {
-                    if (va.isResearched()) {
-                        //Bost virus power if the climate of the place suitable for virus
-                        if (va.getClimateBoost() == c.getClimate()) {
-                            infectPower += va.getInfectionRate() * va.getLevel() * 2;
-                        } else {
-                            infectPower += va.getInfectionRate() * va.getLevel();
-                        }
-                    }
-                }
-                return infectPower;
-            }
-        }
+        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{}};
+        ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{}};
         ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
-            add(new VirusAbility("abi1", "dAbi1", 1.0, CountryClimate.Hot));
-            add(new VirusAbility("abi2", "dAbi2", 2.0, CountryClimate.Cold));
+            add(new VirusAbility("abi1", "dAbi1", CountryClimate.Hot));
+            add(new VirusAbility("abi2", "dAbi2", CountryClimate.Cold));
         }};
-        StubVirus stubVirus = new StubVirus();
-        stubVirus.abilityList = abilityList;
-        stubVirus.abilityList.get(1).setResearched(true);
-        stubVirus.abilityList.get(1).upLevel();
+
+        abilityList.get(0).setResearched(true);
+        abilityList.get(0).upLevel();
+
+        Virus virus = new Virus("test",transmissionList, symptomList, abilityList);
         Country country = new Country("test", 1234, 0.5, CountryClimate.Hot);
-        double result = stubVirus.getInfectionPower(country);
-        assertEquals(0.05,result);
+        double result = virus.getInfectionPower(country);
+        assertEquals(0.1, result);
+    }
+
+    @Test
+    public void testGetInfectionPowerC5() {
+        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{}};
+        ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{}};
+        ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
+            add(new VirusAbility("abi1", "dAbi1", CountryClimate.Hot));
+            add(new VirusAbility("abi2", "dAbi2", CountryClimate.Cold));
+        }};
+
+        abilityList.get(1).setResearched(true);
+        abilityList.get(1).upLevel();
+
+        Virus virus = new Virus("test",transmissionList, symptomList, abilityList);
+        Country country = new Country("test", 1234, 0.5, CountryClimate.Hot);
+        double result = virus.getInfectionPower(country);
+        assertEquals(0.05, result);
     }
 
     /* TEST: getSymptomKillPower */
@@ -392,10 +389,16 @@ public class TestVirus {
     @Test
     public void testGetSymptomKillPowerC1() {
         ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
+            add(new VirusTransmission("tran1", "dTran1", 1.0));
+            add(new VirusTransmission("tran2", "dTran2", 2.0));
         }};
         ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{
+            add(new VirusSymptom("symp1", "dSymp1", 1.0, 1.0));
+            add(new VirusSymptom("symp2", "dSymp2", 2.0, 2.0));
         }};
         ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
+            add(new VirusAbility("abi1", "dAbi1", CountryClimate.Hot));
+            add(new VirusAbility("abi2", "dAbi2", CountryClimate.Cold));
         }};
 
         Virus virus = new Virus("test", transmissionList, symptomList, abilityList);
@@ -414,60 +417,16 @@ public class TestVirus {
             add(new VirusSymptom("symp2", "dSymp2", 2.0, 2.0));
         }};
         ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
-            add(new VirusAbility("abi1", "dAbi1", 1.0, CountryClimate.Hot));
-            add(new VirusAbility("abi2", "dAbi2", 2.0, CountryClimate.Cold));
+            add(new VirusAbility("abi1", "dAbi1", CountryClimate.Hot));
+            add(new VirusAbility("abi2", "dAbi2", CountryClimate.Cold));
         }};
 
-        Virus virus = new Virus("test", transmissionList, symptomList, abilityList);
-        double result = virus.getSymptomKillPower();
-        assertEquals(0.0, result);
-    }
-
-    @Test
-    public void testGetSymptomKillPowerC3() {
-        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
-            add(new VirusTransmission("tran1", "dTran1", 1.0));
-            add(new VirusTransmission("tran2", "dTran2", 2.0));
-        }};
-        ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{
-            add(new VirusSymptom("symp1", "dSymp1", 1.0, 1.0));
-            add(new VirusSymptom("symp2", "dSymp2", 2.0, 2.0));
-        }};
-        ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
-            add(new VirusAbility("abi1", "dAbi1", 1.0, CountryClimate.Hot));
-            add(new VirusAbility("abi2", "dAbi2", 2.0, CountryClimate.Cold));
-        }};
-
-        symptomList.get(0).setResearched(true);
-        symptomList.get(0).setLevel(4);
-
-        Virus virus = new Virus("test", transmissionList, symptomList, abilityList);
-        double result = virus.getSymptomKillPower();
-        assertEquals(6.0, result);
-    }
-
-    @Test
-    public void testGetSymptomKillPowerC4() {
-        ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
-            add(new VirusTransmission("tran1", "dTran1", 1.0));
-            add(new VirusTransmission("tran2", "dTran2", 2.0));
-        }};
-        ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{
-            add(new VirusSymptom("symp1", "dSymp1", 1.0, 1.0));
-            add(new VirusSymptom("symp2", "dSymp2", 2.0, 2.0));
-        }};
-        ArrayList<VirusAbility> abilityList = new ArrayList<VirusAbility>() {{
-            add(new VirusAbility("abi1", "dAbi1", 1.0, CountryClimate.Hot));
-            add(new VirusAbility("abi2", "dAbi2", 2.0, CountryClimate.Cold));
-        }};
-
-        symptomList.get(0).setResearched(true);
-        symptomList.get(0).setLevel(4);
         symptomList.get(1).setResearched(true);
-        symptomList.get(1).setLevel(3);
+        symptomList.get(1).upLevel();
 
         Virus virus = new Virus("test", transmissionList, symptomList, abilityList);
         double result = virus.getSymptomKillPower();
-        assertEquals(15.0, result);
+        assertEquals(3.0, result);
     }
+
 }

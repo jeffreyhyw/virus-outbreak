@@ -129,6 +129,25 @@ public class ConfigTransmissionPanel {
       		    				else if(game.getUpgradePoint() - att_list.get(pos).getCost() < 0) {
       		    					System.out.println("No enough Cost");
       		    				}
+      		    				else if(!att_list.get(pos).getReferenAttName().equals("")) {
+      		    					for(int q = 0; q < att_list.size(); q ++) {
+      		    						if(att_list.get(q).getAtt_name().equals(att_list.get(pos).getReferenAttName())) {
+      		    							if(att_list.get(q).getLevel() != 5) {
+      		    								System.out.println("Please Upgrade the Preview Transmission first");
+      		    							}
+      		    							else {
+      		    								game.calUpgradePoint(1, att_list.get(pos).getCost());
+      		      		    					att_list.get(pos).setResearched(true);
+      		      		    					game.updateCurrentPoint();
+      		      		    					att_list.get(pos).upLevel();
+      		          		    				((JLabel)att_panel.getComponent(k)).setText("Level " + att_list.get(pos).getLevel());
+      		          		    				if(att_list.get(pos).getLevel() >= 5)
+      		          		    	      			upLevelBtn.setEnabled(false);
+      		          		    				break;
+      		    							}
+      		    						}
+      		    					}
+      		    				}
       		    				else {
       		    					game.calUpgradePoint(1, att_list.get(pos).getCost());
       		    					att_list.get(pos).setResearched(true);

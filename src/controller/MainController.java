@@ -153,11 +153,11 @@ public class MainController {
         if (!(c.getState() instanceof DeadCountry)) {
 
             //Killing people in that country if infected > 0 and deathPopulation != totalPopulation
-            c.addDeathPopulation(game.getVirus().getKillPerDay(c, game.getDay()));
-            game.updateMainCountryVal(c.getName(), "Death", game.getVirus().getKillPerDay(c, game.getDay()));
+            c.addDeathPopulation(game.getVirus().getKillPerDay(c));
+            game.updateMainCountryVal(c.getName(), "Death", game.getVirus().getKillPerDay(c));
         } else {
 
-            game.updateMainCountryVal(c.getName(), "Death", game.getVirus().getKillPerDay(c, game.getDay()));
+            game.updateMainCountryVal(c.getName(), "Death", game.getVirus().getKillPerDay(c));
         }
     }
 

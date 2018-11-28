@@ -17,6 +17,13 @@ public class VirusTransmission extends VirusAttribute {
         this.referenAttName = referenAttName;
 
     }
+    public VirusTransmission(String att_name, String description, double infectionRate) {
+        super(att_name, description, 30);
+        this.level = 0;
+        this.infectionRate = infectionRate;
+        this.researched = false;
+        this.referenAttName = "";
+    }
 
     public int getLevel() {
         return level;

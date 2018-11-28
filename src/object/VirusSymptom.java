@@ -5,6 +5,7 @@ public class VirusSymptom extends VirusAttribute {
     private int level;
     private double infectionRate;
     private double killPeopleRate;
+    private boolean researched;
 
     public VirusSymptom(String symptom_name, String description, double infectionRate, double killPeopleRate) {
         super(symptom_name, description, 30);

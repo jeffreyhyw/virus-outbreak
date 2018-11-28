@@ -42,9 +42,9 @@ public class Virus {
 
     public int getInfectPerDay(Country c, int day) {
         if (getInfectionPower(c) == 0) {
-            return (int) (day * day * c.getMedicalSystem());
+            return (int) (day * day * (1 - c.getMedicalSystem()));
         } else {
-            return (int) (day * day * c.getMedicalSystem() + (c.getUninfectedPopulation() * (1 - c.getMedicalSystem()) * virusSpeed * (1 + getInfectionPower(c))));
+            return (int) (day * day * (1 - c.getMedicalSystem()) + (c.getUninfectedPopulation() * (1 - c.getMedicalSystem()) * virusSpeed * (1 + getInfectionPower(c))));
         }
     }
 

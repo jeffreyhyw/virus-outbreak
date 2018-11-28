@@ -11,7 +11,7 @@ public class TestVirusAttribute {
 
     /* TEST : getAtt_name */
     @Test
-    public void TestGetAtt_name() {
+    public void testGetAtt_name() {
         VirusAttribute virusAttribute = new VirusAttribute("att", "desc", 30);
         String result = virusAttribute.getAtt_name();
         assertEquals("att", result);
@@ -19,7 +19,7 @@ public class TestVirusAttribute {
 
     /* TEST : getDescription */
     @Test
-    public void TestGetDescription() {
+    public void testGetDescription() {
         VirusAttribute virusAttribute = new VirusAttribute("att", "desc", 30);
         String result = virusAttribute.getDescription();
         assertEquals("desc", result);
@@ -27,7 +27,7 @@ public class TestVirusAttribute {
 
     /* TEST : getCost */
     @Test
-    public void TestGetCost() {
+    public void testGetCost() {
         VirusAttribute virusAttribute = new VirusAttribute("att", "desc", 30);
         int result = virusAttribute.getCost();
         assertEquals(30, result);
@@ -35,7 +35,7 @@ public class TestVirusAttribute {
 
     /* TEST : isResearched */
     @Test
-    public void TestGetResearched() {
+    public void testGetResearched() {
         VirusAttribute virusAttribute = new VirusAttribute("att", "desc", 30);
         boolean result = virusAttribute.isResearched();
         assertFalse(result);
@@ -43,7 +43,7 @@ public class TestVirusAttribute {
 
     /* TEST : setResearched */
     @Test
-    public void TestSetResearched() {
+    public void testSetResearched() {
         VirusAttribute virusAttribute = new VirusAttribute("att", "desc", 30);
         virusAttribute.setResearched(true);
         boolean result = virusAttribute.isResearched();

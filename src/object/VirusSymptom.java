@@ -20,6 +20,10 @@ public class VirusSymptom extends VirusAttribute {
 
     public void setStatus(boolean status) {
         this.status = status;
+        if(status == true) {
+        		level = 1;
+        }
+	        	
     }
 
     public int getLevel() {
@@ -38,5 +42,14 @@ public class VirusSymptom extends VirusAttribute {
         level = 1;
         return true;
     }
+
+    public boolean isResearched() {
+        return researched;
+    }
+
+    public void setResearched(boolean researched) {
+        this.researched = researched;
+    }
+
 
 }

@@ -95,11 +95,11 @@ public class Game {
     /* For Virus */
     public void initVirus() {
         ArrayList<VirusTransmission> transmissionList = new ArrayList<VirusTransmission>() {{
-            add(new VirusTransmission("Rodent", "<html>Factors Affecting the Transmission of Rodent Ultrasounds in Natural Environments.</html>", 0.15));
-            add(new VirusTransmission("Air I", "<html>Airborne transmission occurs when bacteria or viruses travel on dust particles.</html>", 0.2));
-            add(new VirusTransmission("Air II", "<html>Power up the air transimission.</html>", 0.3));
-            add(new VirusTransmission("Water I", "<html>Water transmission occurs from water pollution.</html>", 0.2));
-            add(new VirusTransmission("Water II", "<html>Power up the water transimission.</html>", 0.3));
+            add(new VirusTransmission("Rodent", "<html>Factors Affecting the Transmission of Rodent Ultrasounds in Natural Environments.</html>", 0.15, ""));
+            add(new VirusTransmission("Air I", "<html>Airborne transmission occurs when bacteria or viruses travel on dust particles.</html>", 0.2, ""));
+            add(new VirusTransmission("Air II", "<html>Power up the air transimission.</html>", 0.3, "Air I"));
+            add(new VirusTransmission("Water I", "<html>Water transmission occurs from water pollution.</html>", 0.2, ""));
+            add(new VirusTransmission("Water II", "<html>Power up the water transimission.</html>", 0.3, "Water II"));
         }};
         ArrayList<VirusSymptom> symptomList = new ArrayList<VirusSymptom>() {{
             add(new VirusSymptom("Nausea", "<html>Nausea is pronounced stomach discomfort and the sensation of wanting to vomit.</html>", 0.1, 0.6));

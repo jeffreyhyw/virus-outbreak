@@ -283,7 +283,7 @@ public class MainController {
     //Decrease rate if there are more and more dead people in that country
     public static double decreaseCountryResearchRate(Country c) {
         double decreaseRate = c.getDeathPopulation() / c.getPopulation();
-        if (decreaseRate > c.getMedicalSystem()) {
+        if (decreaseRate > c.getMedicalSystem() * 0.5) {
             decreaseRate = c.getMedicalSystem() * 0.5;
         }
         return decreaseRate;

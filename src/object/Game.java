@@ -27,7 +27,7 @@ public class Game {
     public Thread gameThread;
     public boolean gameStop = false;
     private final AtomicBoolean running = new AtomicBoolean(false);
-    private ArrayList<Country> countries;
+    protected ArrayList<Country> countries;
     private Virus virus;
     private boolean halfPopulationDead = false;
     private boolean halfPopulationInfected = false;

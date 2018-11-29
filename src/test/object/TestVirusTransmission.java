@@ -51,4 +51,12 @@ public class TestVirusTransmission {
         double result = virusTransmission.getInfectionRate();
         assertEquals(0.5, result);
     }
+
+    /* TEST : getReferenAttName */
+    @Test
+    public void testGetReferenAttName() {
+        VirusTransmission virusTransmission = new VirusTransmission("att", "desc", 0.5, "test");
+        String result = virusTransmission.getReferenAttName();
+        assertEquals("test", result);
+    }
 }

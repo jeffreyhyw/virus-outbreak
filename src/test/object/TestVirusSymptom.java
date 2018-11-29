@@ -17,11 +17,19 @@ public class TestVirusSymptom {
 
     /* TEST : setStatus */
     @Test
-    public void testSetStatus() {
+    public void testSetStatusC1() {
         VirusSymptom virusSymptom = new VirusSymptom("symp", "desc", 0.5, 0.1);
         virusSymptom.setStatus(true);
         boolean result = virusSymptom.getStatus();
         assertTrue(result);
+    }
+
+    @Test
+    public void testSetStatusC2() {
+        VirusSymptom virusSymptom = new VirusSymptom("symp", "desc", 0.5, 0.1);
+        virusSymptom.setStatus(false);
+        boolean result = virusSymptom.getStatus();
+        assertFalse(result);
     }
 
     /* TEST : getLevel */

@@ -5,13 +5,11 @@ public class DeadCountry implements CountryState {
 
 	@Override
 	public boolean isAll() {
-		// TODO Auto-generated method stub
-		return false;
+		return all;
 	}
 
 	@Override
 	public void setAll(boolean all) {
-		// TODO Auto-generated method stub
 		this.all = all;
 	}
 }

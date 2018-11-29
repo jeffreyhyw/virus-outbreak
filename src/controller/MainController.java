@@ -285,6 +285,10 @@ public class MainController {
     public static void print(Object o) {
         System.out.println(o);
     }
+    
+    public Game getGame() {
+    	return game;
+    }
 
 
 }

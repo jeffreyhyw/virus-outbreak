@@ -1,5 +1,6 @@
 package test.object;
 
+
 import object.DeadCountry;
 import object.InfectedCountry;
 import org.junit.Test;
@@ -25,4 +26,5 @@ public class TestInfectedCountry {
         boolean result = infectedCountry.isAll();
         assertTrue(result);
     }
+
 }

@@ -25,4 +25,5 @@ public class TestDeadCountry {
         boolean result = deadCountry.isAll();
         assertTrue(result);
     }
+
 }

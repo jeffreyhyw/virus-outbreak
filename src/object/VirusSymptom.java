@@ -5,7 +5,6 @@ public class VirusSymptom extends VirusAttribute {
     private int level;
     private double infectionRate;
     private double killPeopleRate;
-    private boolean researched;
 
     public VirusSymptom(String symptom_name, String description, double infectionRate, double killPeopleRate) {
         super(symptom_name, description, 30);
@@ -21,10 +20,9 @@ public class VirusSymptom extends VirusAttribute {
 
     public void setStatus(boolean status) {
         this.status = status;
-        if(status == true) {
-        		level = 1;
+        if(status) {
+            level = 1;
         }
-	        	
     }
 
     public int getLevel() {
@@ -38,19 +36,5 @@ public class VirusSymptom extends VirusAttribute {
     public double getInfectionRate() {
         return this.infectionRate;
     }
-
-    public boolean upLevel() {
-        level = 1;
-        return true;
-    }
-
-    public boolean isResearched() {
-        return researched;
-    }
-
-    public void setResearched(boolean researched) {
-        this.researched = researched;
-    }
-
 
 }

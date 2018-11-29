@@ -37,4 +37,10 @@ public class VirusSymptom extends VirusAttribute {
         return this.infectionRate;
     }
 
+    public boolean upLevel() {
+        level = 1;
+        return true;
+    }
+
+
 }
